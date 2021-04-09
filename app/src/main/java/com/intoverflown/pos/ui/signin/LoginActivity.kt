@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.login
+package com.intoverflown.pos.ui.signin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
