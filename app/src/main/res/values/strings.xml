@@ -22,4 +22,5 @@
     <string name="region">Region/City</string>
     <string name="merchant_name">Merchant Name</string>
     <string name="merchant_branch">Merchant Branch</string>
+    <string name="back_btn">back btn</string>
 </resources>
