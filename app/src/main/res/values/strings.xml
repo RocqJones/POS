@@ -12,4 +12,14 @@
     <string name="create_account">Create Account</string>
     <string name="login_fb">login fb</string>
     <string name="login_google">login google</string>
+    <string name="let_s_get_started">Let\'s Get Started!</string>
+    <string name="signup_display_msg">Create your new account to get all features</string>
+    <string name="signup">SignUp</string>
+    <string name="terms_and_conditions">By pressing \'SignUp\' you agree to our terms and conditions</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="country">Country</string>
+    <string name="region">Region/City</string>
+    <string name="merchant_name">Merchant Name</string>
+    <string name="merchant_branch">Merchant Branch</string>
 </resources>
