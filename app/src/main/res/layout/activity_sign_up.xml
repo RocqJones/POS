@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,327 +8,330 @@
     android:background="@color/light_bg"
     tools:context=".ui.signup.SignUpActivity">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:padding="20dp"
-        android:background="@drawable/gradient_solid_blue"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/welcomeBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/let_s_get_started"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:textColor="@color/white"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            android:text="@string/signup_display_msg"
-            android:layout_below="@id/welcomeBack" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp"
-        android:layout_marginTop="-20dp"
-        android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="@drawable/bg_card">
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
+                android:layout_height="200dp"
+                android:padding="20dp"
+                android:background="@drawable/gradient_solid_blue"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/signUpBackBtn"
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/baseline_arrow_back_white_24dp"
+                    android:contentDescription="@string/back_btn" />
 
                 <TextView
-                    android:id="@+id/signUpTxt"
+                    android:id="@+id/welcomeBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/signup"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/signUpCountry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_below="@id/signUpTxt"
                     android:layout_marginTop="15dp"
+                    android:layout_below="@id/signUpBackBtn"
+                    android:text="@string/let_s_get_started"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:fontFamily="sans-serif"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:hint="@string/country"
-                    android:inputType="text"
-                    android:drawableStart="@drawable/baseline_travel_explore_blue_700_18dp"
-                    android:drawablePadding="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:autofillHints="" />
+                    android:textColor="@color/white"/>
 
-                <EditText
-                    android:id="@+id/signUpRegion"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_below="@id/signUpCountry"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="sans-serif"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:hint="@string/region"
-                    android:inputType="text"
-                    android:drawableStart="@drawable/baseline_location_city_blue_700_18dp"
-                    android:drawablePadding="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:autofillHints="" />
-
-                <EditText
-                    android:id="@+id/signUpMerchantName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_below="@id/signUpRegion"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:fontFamily="sans-serif"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:hint="@string/merchant_name"
-                    android:inputType="text"
-                    android:drawableStart="@drawable/baseline_group_work_blue_700_18dp"
-                    android:drawablePadding="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:autofillHints="" />
-
-                <EditText
-                    android:id="@+id/signUpMerchantBranch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_below="@id/signUpMerchantName"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:fontFamily="sans-serif"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:hint="@string/merchant_branch"
-                    android:inputType="text"
-                    android:drawableStart="@drawable/baseline_work_blue_700_18dp"
-                    android:drawablePadding="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:autofillHints="" />
-
-                <EditText
-                    android:id="@+id/signUpUserName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_below="@id/signUpMerchantBranch"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:fontFamily="sans-serif"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:hint="@string/username"
-                    android:inputType="text"
-                    android:drawableStart="@drawable/baseline_account_circle_blue_700_18dp"
-                    android:drawablePadding="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:autofillHints="" />
-
-                <EditText
-                    android:id="@+id/signUpEmailAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_below="@id/signUpUserName"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:fontFamily="sans-serif"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:hint="@string/email"
-                    android:inputType="textEmailAddress"
-                    android:drawableStart="@drawable/baseline_email_blue_700_18dp"
-                    android:drawablePadding="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:autofillHints="" />
-
-                <EditText
-                    android:id="@+id/signUpPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_below="@id/signUpEmailAddress"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:fontFamily="sans-serif"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:drawableStart="@drawable/baseline_lock_blue_700_18dp"
-                    android:drawablePadding="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:importantForAutofill="no" />
-
-                <EditText
-                    android:id="@+id/signUpConfirmPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_below="@id/signUpPassword"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:fontFamily="sans-serif"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:hint="@string/confirm_password"
-                    android:inputType="textPassword"
-                    android:drawableStart="@drawable/baseline_lock_blue_700_18dp"
-                    android:drawablePadding="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:importantForAutofill="no" />
-
-                <Button
-                    android:id="@+id/signUpBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/signUpConfirmPassword"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/signup"
-                    android:layout_centerHorizontal="true"
                     android:textColor="@color/white"
-                    android:fontFamily="sans-serif"
-                    android:textAllCaps="false"
-                    android:drawableEnd="@drawable/baseline_arrow_right_alt_white_36dp"
-                    android:background="@drawable/bg_round_btn"/>
-
-                <TextView
-                    android:id="@+id/signUpNavToSignUp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/signUpBtn"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:fontFamily="sans-serif"
+                    android:textSize="16sp"
                     android:textStyle="normal"
-                    android:text="@string/terms_and_conditions"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="18sp" />
+                    android:text="@string/signup_display_msg"
+                    android:layout_below="@id/welcomeBack" />
 
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:layout_marginTop="-90dp"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_card">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        android:orientation="horizontal">-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
 
-<!--        <ImageView-->
-<!--            android:layout_width="36dp"-->
-<!--            android:layout_height="36dp"-->
-<!--            android:layout_margin="15dp"-->
-<!--            android:contentDescription="@string/signup"-->
-<!--            android:background="@drawable/google_ic" />-->
+                        <TextView
+                            android:id="@+id/signUpTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/signup"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/signUpFb"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="15dp"-->
-<!--            android:contentDescription="@string/signup"-->
-<!--            android:background="@drawable/baseline_facebook_blue_900_36dp" />-->
-<!--    </LinearLayout>-->
+                        <EditText
+                            android:id="@+id/signUpCountry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/signUpTxt"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/country"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_travel_explore_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
 
+                        <EditText
+                            android:id="@+id/signUpRegion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/signUpCountry"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/region"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_location_city_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/signUpMerchantName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/signUpRegion"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/merchant_name"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_group_work_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/signUpMerchantBranch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/signUpMerchantName"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/merchant_branch"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_work_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/signUpUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/signUpMerchantBranch"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/username"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_account_circle_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/signUpEmailAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/signUpUserName"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"
+                            android:drawableStart="@drawable/baseline_email_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/signUpPassword"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/signUpEmailAddress"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:drawableStart="@drawable/baseline_lock_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:importantForAutofill="no" />
+
+                        <EditText
+                            android:id="@+id/signUpConfirmPassword"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/signUpPassword"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/confirm_password"
+                            android:inputType="textPassword"
+                            android:drawableStart="@drawable/baseline_lock_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:importantForAutofill="no" />
+
+                        <Button
+                            android:id="@+id/signUpBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/signUpConfirmPassword"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="@string/signup"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/white"
+                            android:fontFamily="sans-serif"
+                            android:textAllCaps="false"
+                            android:drawableEnd="@drawable/baseline_arrow_right_alt_white_36dp"
+                            android:background="@drawable/bg_round_btn"/>
+
+                        <TextView
+                            android:id="@+id/signUpNavToSignUp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/signUpBtn"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:gravity="center"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="normal"
+                            android:text="@string/terms_and_conditions"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
