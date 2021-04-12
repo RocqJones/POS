@@ -17,10 +17,12 @@
     <string name="signup">SignUp</string>
     <string name="terms_and_conditions">By pressing \'SignUp\' you agree to our terms and conditions</string>
     <string name="username">Username</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_password">Confirm New Password!</string>
     <string name="country">Country</string>
     <string name="region">Region/City</string>
     <string name="merchant_name">Merchant Name</string>
     <string name="merchant_branch">Merchant Branch</string>
     <string name="back_btn">back btn</string>
+    <string name="username_id">Username Id</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
