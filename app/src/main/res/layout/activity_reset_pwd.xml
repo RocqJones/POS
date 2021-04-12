@@ -84,7 +84,7 @@
                     android:background="@drawable/bg_edit_text"
                     android:ems="10"
                     android:hint="@string/username_id"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:drawableStart="@drawable/baseline_account_circle_blue_700_18dp"
                     android:drawablePadding="20dp"
                     android:paddingStart="20dp"

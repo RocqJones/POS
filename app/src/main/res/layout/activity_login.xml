@@ -71,7 +71,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/loginEmailAddress"
+                    android:id="@+id/loginUserId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
@@ -88,7 +88,7 @@
                     android:background="@drawable/bg_edit_text"
                     android:ems="10"
                     android:hint="@string/username_id"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:drawableStart="@drawable/baseline_account_circle_blue_700_18dp"
                     android:drawablePadding="20dp"
                     android:paddingStart="20dp"
@@ -100,7 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:layout_below="@id/loginEmailAddress"
+                    android:layout_below="@id/loginUserId"
                     android:layout_marginTop="20dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
