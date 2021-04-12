@@ -138,20 +138,20 @@
                     android:drawableEnd="@drawable/baseline_arrow_right_alt_white_36dp"
                     android:background="@drawable/bg_round_btn"/>
 
-                <TextView
-                    android:id="@+id/loginNavToSignUp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/loginBtn"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="bold"
-                    android:text="@string/create_account"
-                    android:textColor="@color/text_color_blue"
-                    android:textSize="18sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/loginNavToSignUp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/loginBtn"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:fontFamily="sans-serif"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:text="@string/create_account"-->
+<!--                    android:textColor="@color/text_color_blue"-->
+<!--                    android:textSize="18sp" />-->
 
                 <TextView
                     android:id="@+id/loginForgotPwd"
@@ -173,26 +173,26 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:orientation="horizontal">-->
 
-        <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/login_google"
-            android:background="@drawable/google_ic" />
+<!--        <ImageView-->
+<!--            android:layout_width="36dp"-->
+<!--            android:layout_height="36dp"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:contentDescription="@string/login_google"-->
+<!--            android:background="@drawable/google_ic" />-->
 
-        <ImageView
-            android:id="@+id/loginFb"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="15dp"
-            android:contentDescription="@string/login_fb"
-            android:background="@drawable/baseline_facebook_blue_900_36dp" />
-    </LinearLayout>
+<!--        <ImageView-->
+<!--            android:id="@+id/loginFb"-->
+<!--            android:layout_width="36dp"-->
+<!--            android:layout_height="36dp"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:contentDescription="@string/login_fb"-->
+<!--            android:background="@drawable/baseline_facebook_blue_900_36dp" />-->
+<!--    </LinearLayout>-->
 
 </LinearLayout>
