@@ -25,4 +25,5 @@
     <string name="back_btn">back btn</string>
     <string name="username_id">Username Id</string>
     <string name="reset_password">Reset Password</string>
+    <string name="tag_line">\@2021 Powered by EXTRA INCH Technology Ltd</string>
 </resources>
