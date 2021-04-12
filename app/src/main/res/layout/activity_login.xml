@@ -173,11 +173,12 @@
 
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        android:orientation="horizontal">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
 <!--        <ImageView-->
 <!--            android:layout_width="36dp"-->
@@ -193,6 +194,21 @@
 <!--            android:layout_margin="15dp"-->
 <!--            android:contentDescription="@string/login_fb"-->
 <!--            android:background="@drawable/baseline_facebook_blue_900_36dp" />-->
-<!--    </LinearLayout>-->
+
+        <TextView
+            android:id="@+id/LoginTagLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="bottom"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/tag_line"
+            android:textColor="@color/text_color_blue"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
 </LinearLayout>
