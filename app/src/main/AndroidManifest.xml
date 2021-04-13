@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
         <activity
+            android:name=".ui.splash.SplashSuccessActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
             android:name=".ui.resetpassword.ResetPwdActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -26,7 +29,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
     </application>
 
 </manifest>
