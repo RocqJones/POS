@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.dashboard
+package com.intoverflown.pos.ui.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
