@@ -28,4 +28,10 @@
     <string name="tag_line">\@2021 Powered by EXTRA INCH Technology Ltd</string>
     <string name="created_successfully">Created Successfully</string>
     <string name="gif">gif</string>
+    <string name="ic">ic</string>
+    <string name="inventory">Inventory</string>
+    <string name="sales_expenses">Sales / Expenses</string>
+    <string name="orders">Orders</string>
+    <string name="report">Reports</string>
+    <string name="stock_transfer">Stock Transfer</string>
 </resources>
