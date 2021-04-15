@@ -22,4 +22,19 @@
         android:name="com.intoverflown.pos.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.intoverflown.pos.ui.signin.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/resetPwdActivity"
+        android:name="com.intoverflown.pos.ui.resetpassword.ResetPwdActivity"
+        android:label="activity_reset_pwd"
+        tools:layout="@layout/activity_reset_pwd" />
+    <activity
+        android:id="@+id/signUpActivity"
+        android:name="com.intoverflown.pos.ui.signup.SignUpActivity"
+        android:label="activity_sign_up"
+        tools:layout="@layout/activity_sign_up" />
 </navigation>
