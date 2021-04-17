@@ -39,4 +39,6 @@
     <string name="tab_text_2">Expenses</string>
     <string name="sales_n_expenses"><![CDATA[Sales & Expenses]]></string>
     <string name="float_btn">float btn</string>
+    <string name="notification">Notification</string>
+    <string name="shop_name">Shop Name</string>
 </resources>
