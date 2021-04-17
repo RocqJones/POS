@@ -1,32 +1,36 @@
 package com.intoverflown.pos.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.intoverflown.pos.R
+import com.intoverflown.pos.databinding.FragmentHomeBinding
+import com.intoverflown.pos.ui.salesnexpenses.SalesAndExpenses
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private var binding: FragmentHomeBinding? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding!!.root
 
-        // val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            //textView.text = it
-        })
-        return root
+        navigateFromHomeUI()
+
+        return view
+    }
+
+    private fun navigateFromHomeUI() {
+        binding!!.homeSalesExp.setOnClickListener {
+            val saleExp = Intent(this.context, SalesAndExpenses::class.java)
+            saleExp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(saleExp)
+        }
     }
 }
