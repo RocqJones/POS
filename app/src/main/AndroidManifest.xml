@@ -10,8 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
         <activity
+            android:name=".ui.salesnexpenses.SalesAndExpenses"
+            android:label="@string/sales_n_expenses"
+            android:theme="@style/Theme.POS.NoActionBar" />
+        <activity
             android:name=".ui.splash.SplashSuccessActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ui.resetpassword.ResetPwdActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
