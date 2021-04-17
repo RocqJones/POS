@@ -34,4 +34,9 @@
     <string name="orders">Orders</string>
     <string name="report">Reports</string>
     <string name="stock_transfer">Stock Transfer</string>
+    <string name="title_activity_sales_and_expenses">SalesAndExpenses</string>
+    <string name="tab_text_1">Sales</string>
+    <string name="tab_text_2">Expenses</string>
+    <string name="sales_n_expenses"><![CDATA[Sales & Expenses]]></string>
+    <string name="float_btn">float btn</string>
 </resources>
