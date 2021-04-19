@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.intoverflown.pos.ui.settings.DashboardFragment"
+        android:name="com.intoverflown.pos.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 
