@@ -21,11 +21,11 @@
     <string name="country">Country</string>
     <string name="region">Region/City</string>
     <string name="merchant_name">Merchant Name</string>
-    <string name="merchant_branch">Merchant Branch</string>
+    <string name="register_branch">Register Branch</string>
     <string name="back_btn">back btn</string>
     <string name="username_id">Username Id</string>
     <string name="reset_password">Reset Password</string>
-    <string name="tag_line">\@2021 Powered by EXTRA INCH Technology Ltd</string>
+    <string name="tag_line">\@2021 Powered by EXTRA INCH Technologies Ltd</string>
     <string name="created_successfully">Created Successfully</string>
     <string name="gif">gif</string>
     <string name="ic">ic</string>
@@ -39,6 +39,11 @@
     <string name="tab_text_2">Expenses</string>
     <string name="sales_n_expenses"><![CDATA[Sales & Expenses]]></string>
     <string name="float_btn">float btn</string>
-    <string name="notification">Notification</string>
+    <string name="notification">Notifications</string>
     <string name="shop_name">Shop Name</string>
+    <string name="notification_title">Notification title</string>
+    <string name="let_s_setup_new_branch">Let\'s setup a new branch</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="phone">Phone</string>
+    <string name="register">Register</string>
 </resources>
