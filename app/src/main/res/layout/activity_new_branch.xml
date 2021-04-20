@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_bg"
+    tools:context=".ui.registerbranch.NewBranchActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:padding="20dp"
+                android:background="@drawable/gradient_solid_blue"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/welcomeBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/let_s_setup_new_branch"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/white"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:layout_marginTop="-100dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    android:padding="10dp"
+                    android:background="@color/white">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/regMerchantTxt"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentTop="true"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:layout_marginTop="15dp"-->
+<!--                            android:fontFamily="sans-serif"-->
+<!--                            android:text="@string/register_branch"-->
+<!--                            android:textColor="@color/text_color_blue"-->
+<!--                            android:textSize="20sp"-->
+<!--                            android:textStyle="bold" />-->
+
+                        <EditText
+                            android:id="@+id/regMerchantCountry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/country"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_travel_explore_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/regMerchantRegion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/regMerchantCountry"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/region"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_location_city_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/regMerchantMerchantName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/regMerchantRegion"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/merchant_name"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_group_work_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/regMerchantMerchantBranch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/regMerchantMerchantName"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/branch_name"
+                            android:inputType="text"
+                            android:drawableStart="@drawable/baseline_work_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/regMerchantPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/regMerchantMerchantBranch"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/phone"
+                            android:inputType="phone"
+                            android:drawableStart="@drawable/baseline_local_phone_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+                        <EditText
+                            android:id="@+id/regMerchantEmailAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_below="@id/regMerchantPhone"
+                            android:layout_marginTop="15dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:fontFamily="sans-serif"
+                            android:background="@drawable/bg_edit_text"
+                            android:ems="10"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"
+                            android:drawableStart="@drawable/baseline_email_blue_700_18dp"
+                            android:drawablePadding="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:autofillHints="" />
+
+<!--                        <EditText-->
+<!--                            android:id="@+id/regMerchantPassword"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:layout_below="@id/regMerchantEmailAddress"-->
+<!--                            android:layout_marginTop="15dp"-->
+<!--                            android:layout_alignParentStart="true"-->
+<!--                            android:layout_alignParentEnd="true"-->
+<!--                            android:layout_marginStart="10dp"-->
+<!--                            android:layout_marginEnd="10dp"-->
+<!--                            android:textColor="@color/text_color_blue"-->
+<!--                            android:textSize="14sp"-->
+<!--                            android:textStyle="normal"-->
+<!--                            android:fontFamily="sans-serif"-->
+<!--                            android:background="@drawable/bg_edit_text"-->
+<!--                            android:ems="10"-->
+<!--                            android:hint="@string/password"-->
+<!--                            android:inputType="textPassword"-->
+<!--                            android:drawableStart="@drawable/baseline_lock_blue_700_18dp"-->
+<!--                            android:drawablePadding="20dp"-->
+<!--                            android:paddingStart="20dp"-->
+<!--                            android:paddingEnd="20dp"-->
+<!--                            android:importantForAutofill="no" />-->
+
+<!--                        <EditText-->
+<!--                            android:id="@+id/regMerchantConfirmPassword"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:layout_below="@id/regMerchantPassword"-->
+<!--                            android:layout_marginTop="15dp"-->
+<!--                            android:layout_alignParentStart="true"-->
+<!--                            android:layout_alignParentEnd="true"-->
+<!--                            android:layout_marginStart="10dp"-->
+<!--                            android:layout_marginEnd="10dp"-->
+<!--                            android:textColor="@color/text_color_blue"-->
+<!--                            android:textSize="14sp"-->
+<!--                            android:textStyle="normal"-->
+<!--                            android:fontFamily="sans-serif"-->
+<!--                            android:background="@drawable/bg_edit_text"-->
+<!--                            android:ems="10"-->
+<!--                            android:hint="@string/confirm_password"-->
+<!--                            android:inputType="textPassword"-->
+<!--                            android:drawableStart="@drawable/baseline_lock_blue_700_18dp"-->
+<!--                            android:drawablePadding="20dp"-->
+<!--                            android:paddingStart="20dp"-->
+<!--                            android:paddingEnd="20dp"-->
+<!--                            android:importantForAutofill="no" />-->
+
+                        <Button
+                            android:id="@+id/regMerchantBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/btn_default_height"
+                            android:layout_below="@id/regMerchantEmailAddress"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="10dp"
+                            android:drawableEnd="@drawable/baseline_arrow_right_alt_white_36dp"
+                            android:background="@drawable/bg_round_btn"
+                            android:fontFamily="sans-serif"
+                            android:padding="0dp"
+                            android:text="@string/register"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/regMerchantBtn"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:gravity="center"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="normal"
+                            android:text="@string/tag_line"
+                            android:textColor="@color/text_color_blue"
+                            android:textSize="13sp" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
