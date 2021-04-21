@@ -180,7 +180,7 @@
                             android:fontFamily="sans-serif"
                             android:background="@drawable/bg_edit_text"
                             android:ems="10"
-                            android:hint="@string/merchant_branch"
+                            android:hint="@string/register_branch"
                             android:inputType="text"
                             android:drawableStart="@drawable/baseline_work_blue_700_18dp"
                             android:drawablePadding="20dp"
