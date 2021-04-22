@@ -10,15 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
         <activity
+            android:name=".ui.inventory.addproduct.AddProductActivity"
+            android:label="Add Product"
+            android:parentActivityName=".ui.inventory.InventoryActivityMain"
+            android:theme="@style/Theme.POS"/>
+        <activity
+            android:name=".ui.inventory.InventoryActivityMain"
+            android:label="@string/title_activity_inventory_main"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.POS" />
+        <activity
             android:name=".ui.registerbranch.NewBranchActivity"
             android:label="@string/register_branch"
-            android:theme="@style/Theme.POS"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.POS" />
         <activity
             android:name=".ui.notification.NotificationActivity"
             android:label="@string/notification"
-            android:theme="@style/Theme.POS"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.POS" />
         <activity
             android:name=".ui.salesnexpenses.SalesAndExpenses"
             android:label="@string/sales_n_expenses"
