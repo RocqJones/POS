@@ -46,4 +46,5 @@
     <string name="branch_name">Branch Name</string>
     <string name="phone">Phone</string>
     <string name="register">Register</string>
+    <string name="title_activity_inventory_main">Inventory Management</string>
 </resources>
