@@ -47,4 +47,12 @@
     <string name="phone">Phone</string>
     <string name="register">Register</string>
     <string name="title_activity_inventory_main">Inventory Management</string>
+    <string name="add_product">Add Product</string>
+    <string name="save">Save</string>
+    <string name="product_name">Product Name</string>
+    <string name="unit_price_ksh">Unit Price (Ksh)</string>
+    <string name="purchase_price_ksh">Purchase Price (Ksh)</string>
+    <string name="quantity">Quantity</string>
+    <string name="product_description">Product Description</string>
+    <string name="re_order_level">Re-Order Level</string>
 </resources>
