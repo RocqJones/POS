@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.intoverflown.pos.databinding.FragmentHomeBinding
+import com.intoverflown.pos.ui.inventory.InventoryActivityMain
 import com.intoverflown.pos.ui.registerbranch.NewBranchActivity
 import com.intoverflown.pos.ui.salesnexpenses.SalesAndExpenses
 
@@ -35,9 +36,15 @@ class HomeFragment : Fragment() {
         }
 
         binding!!.homeMerchants.setOnClickListener {
-            val mercht = Intent(this.context, NewBranchActivity::class.java)
-            mercht.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(mercht)
+            val merchant = Intent(this.context, NewBranchActivity::class.java)
+            merchant.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(merchant)
+        }
+
+        binding!!.homeInventory.setOnClickListener {
+            val inventory = Intent(this.context, InventoryActivityMain::class.java)
+            inventory.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(inventory)
         }
     }
 }
