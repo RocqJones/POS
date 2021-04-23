@@ -24,7 +24,7 @@ android {
         }
     }
 
-    // binding
+    // View binding
     buildFeatures {
         viewBinding true
     }
