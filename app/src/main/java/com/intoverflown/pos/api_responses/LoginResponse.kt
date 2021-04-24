@@ -1,3 +1,3 @@
 package com.intoverflown.pos.api_responses
 
-data class loginResponse(val user: User)
+data class LoginResponse(val user: User)
