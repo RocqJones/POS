@@ -60,10 +60,13 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
 
     // Retrofit and GSON
-    def retrofit_version = "2.9.0"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+//    def retrofit_version = "2.9.0"
+//    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+//    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+//    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
+    // volley
+    implementation 'com.android.volley:volley:1.2.0'
 
     // JetPack Data Store preferences
     implementation "androidx.datastore:datastore-preferences-core:1.0.0-beta01"
