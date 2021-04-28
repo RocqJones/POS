@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.intoverflown.pos.databinding.ActivityResetPwdBinding
-import com.intoverflown.pos.ui.signin.LoginActivity
+import com.intoverflown.pos.ui.login.LoginActivity
 import com.intoverflown.pos.ui.splash.SplashSuccessActivity
 
 class ResetPwdActivity : AppCompatActivity() {

@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_profile" />
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.intoverflown.pos.ui.signin.LoginActivity"
+        android:name="com.intoverflown.pos.ui.login.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <activity

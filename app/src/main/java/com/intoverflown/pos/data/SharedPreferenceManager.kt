@@ -3,7 +3,7 @@ package com.intoverflown.pos.data
 import android.content.Context
 import android.content.Intent
 import com.intoverflown.pos.api_response.LoginResponse
-import com.intoverflown.pos.ui.signin.LoginActivity
+import com.intoverflown.pos.ui.login.LoginActivity
 
 class SharedPreferenceManager(context: Context) {
     private val SHARED_PREF_NAME = "volleyLogin"
