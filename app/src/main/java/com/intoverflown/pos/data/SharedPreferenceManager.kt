@@ -32,8 +32,6 @@ class SharedPreferenceManager(context: Context) {
     fun userLogin(loginResponse: LoginResponse) {
         val sharedPreferences = ctx?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences?.edit()
-//        val sharedPreferences = ctx?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-//        val editor = sharedPreferences?.edit()
         editor?.putString(KEY_ID, loginResponse.Id)
         editor?.putString(KEY_FIRSTNAME, loginResponse.FirstName)
         editor?.putString(KEY_LASTNAME, loginResponse.LastName)
