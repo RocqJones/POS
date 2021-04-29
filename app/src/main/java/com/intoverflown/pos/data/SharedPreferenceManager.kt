@@ -2,11 +2,13 @@ package com.intoverflown.pos.data
 
 import android.content.Context
 import android.content.Intent
+import android.drm.DrmInfoRequest.ACCOUNT_ID
 import com.intoverflown.pos.api_response.LoginResponse
 import com.intoverflown.pos.ui.login.LoginActivity
 
+
 class SharedPreferenceManager(context: Context) {
-    private val SHARED_PREF_NAME = "volleyLogin"
+    private val SHARED_PREF_NAME = "pos_pref"
 
     private val KEY_ID = "Id"
     private val KEY_FIRSTNAME = "FirstName"
@@ -41,6 +43,32 @@ class SharedPreferenceManager(context: Context) {
         editor?.apply()
     }
 
+    /** START TESTING */
+    fun userLoginTest(tk: String) {
+        val sharedPreferences = ctx?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        editor?.putString(KEY_TOKEN, "Token")
+        editor?.apply()
+    }
+
+    fun getUserTest() {
+        val sharedPreferences = ctx?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        sharedPreferences?.getString(KEY_TOKEN, "Token")
+    }
+
+    var sharedPref = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+
+    fun getTestId(): String? {
+        return if (sharedPref.getString(KEY_ID, null) != null)
+            sharedPref.getString(KEY_ID, null) else null
+    }
+
+    fun getTestToken(): String? {
+        return if (sharedPref.getString(KEY_TOKEN, null) != null)
+            sharedPref.getString(KEY_TOKEN, null) else null
+    }
+    /** END TESTING */
+
     /** This method will check whether user is already logged in or not */
     fun isLoggedIn(): Boolean {
         val sharedPreferences = ctx?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
@@ -48,16 +76,14 @@ class SharedPreferenceManager(context: Context) {
     }
 
     /** This method will serve the logged in user  */
-    fun getUser(): LoginResponse {
-        val sharedPreferences = ctx!!.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-        return LoginResponse(
-            sharedPreferences.getString(KEY_ID, null)!!,
-            sharedPreferences.getString(KEY_FIRSTNAME, null)!!,
-            sharedPreferences.getString(KEY_LASTNAME, null)!!,
-            sharedPreferences.getString(KEY_USERNAME, null)!!,
-            sharedPreferences.getString(KEY_ROLE, null)!!,
-            sharedPreferences.getString(KEY_TOKEN, null)!!
-        )
+    fun getUser(response: LoginResponse) {
+        val sharedPreferences = ctx?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        sharedPreferences?.getString(KEY_ID, response.Id)
+        sharedPreferences?.getString(KEY_FIRSTNAME, response.FirstName)
+        sharedPreferences?.getString(KEY_LASTNAME, response.LastName)
+        sharedPreferences?.getString(KEY_USERNAME, response.Username)
+        sharedPreferences?.getString(KEY_ROLE, response.Role)
+        sharedPreferences?.getString(KEY_TOKEN, response.Token)
     }
 
     /** This method will logout the user */
@@ -66,6 +92,11 @@ class SharedPreferenceManager(context: Context) {
         val editor = sharedPreferences.edit()
         editor.clear()
         editor.apply()
-        ctx!!.startActivity(Intent(ctx, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        ctx!!.startActivity(
+            Intent(
+                ctx,
+                LoginActivity::class.java
+            ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        )
     }
 }
