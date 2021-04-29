@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginUser(url: String) {
+    private fun loginUser(url : String) {
         val queue = Volley.newRequestQueue(applicationContext)
         val jsonObject = JSONObject()
 
@@ -94,11 +94,15 @@ class LoginActivity : AppCompatActivity() {
                             response.getString("Token")
                         )
                         // Store the user in shared pref
-                        Log.d("token b4 SharedPref", user.Token)
+                        Log.d("token b4 SharedPref", user.Token.toString())
 
                         SharedPreferenceManager.getInstance(applicationContext).userLogin(user)
 
-                        Log.d("token in SharedPref", user.Token)
+                        Log.d("token in SharedPref", user.Token.toString())
+
+                        // testing
+//                        val tst = SharedPreferenceManager.getInstance(applicationContext).userLoginTest(response.getString("Token"))
+//                        Log.d("test", tst.toString())
 
                         Toast.makeText(applicationContext, "Successful", Toast.LENGTH_SHORT).show()
 
