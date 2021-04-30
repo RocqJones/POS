@@ -2,9 +2,7 @@ package com.intoverflown.pos.ui.inventory.addproduct
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.android.volley.toolbox.Volley
-import com.intoverflown.pos.data.SharedPreferenceManager
 import com.intoverflown.pos.databinding.ActivityAddProductBinding
 import com.intoverflown.pos.utils.Constants
 import org.json.JSONObject
