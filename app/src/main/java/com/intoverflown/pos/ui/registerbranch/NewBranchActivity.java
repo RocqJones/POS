@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.intoverflown.pos.databinding.ActivityNewBranchBinding;
 
-import java.sql.DataTruncation;
-
 public class NewBranchActivity extends AppCompatActivity {
 
     private ActivityNewBranchBinding binding;
