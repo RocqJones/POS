@@ -16,7 +16,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.MainActivity;
 import com.intoverflown.pos.R;
-import com.intoverflown.pos.data.SharedPreferenceManager;
 import com.intoverflown.pos.databinding.ActivityLoginBinding;
 import com.intoverflown.pos.ui.resetpassword.ResetPwdActivity;
 import com.intoverflown.pos.utils.Constants;
@@ -30,15 +29,15 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
-//    public SharedPreferences preferences;
-//    public SharedPreferences.Editor editor;
-//    public String SHARED_PREF_NAME = "pos_pref";
-//    public String KEY_ID = "Id";
-//    public String KEY_FIRSTNAME = "FirstName";
-//    public String KEY_LASTNAME = "LastName";
-//    public String KEY_USERNAME = "Username";
-//    public String KEY_ROLE = "Role";
-//    public String KEY_TOKEN = "Token";
+    public SharedPreferences preferences;
+    public SharedPreferences.Editor editor;
+    public String SHARED_PREF_NAME = "pos_pref";
+    public String KEY_ID = "Id";
+    public String KEY_FIRSTNAME = "FirstName";
+    public String KEY_LASTNAME = "LastName";
+    public String KEY_USERNAME = "Username";
+    public String KEY_ROLE = "Role";
+    public String KEY_TOKEN = "Token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
 
         /** User is logged in */
 
-//        /** Create pref file dumb here */
-//        preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        /** Create pref file dumb here */
+        preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
         /** Call login method */
         binding.loginBtn.setOnClickListener(v -> {
@@ -99,25 +98,18 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("token before pref", response.getString("Token"));
 
                             // write responses to shared prefs
-//                            editor = preferences.edit();
-//                            editor.putString(KEY_ID, response.getString("Id"));
-//                            editor.putString(KEY_FIRSTNAME, response.getString("FirstName"));
-//                            editor.putString(KEY_LASTNAME, response.getString("LastName"));
-//                            editor.putString(KEY_USERNAME, response.getString("Username"));
-//                            editor.putString(KEY_ROLE, response.getString("Role"));
-//                            editor.putString(KEY_TOKEN, response.getString("Token"));
-//                            editor.apply();
-                            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager();
-                            sharedPreferenceManager.writePrefResponse(response.getString("Id"),
-                                    response.getString("FirstName"), response.getString("LastName"),
-                                    response.getString("Username"), response.getString("Role"),
-                                    response.getString("Token"));
+                            editor = preferences.edit();
+                            editor.putString(KEY_ID, response.getString("Id"));
+                            editor.putString(KEY_FIRSTNAME, response.getString("FirstName"));
+                            editor.putString(KEY_LASTNAME, response.getString("LastName"));
+                            editor.putString(KEY_USERNAME, response.getString("Username"));
+                            editor.putString(KEY_ROLE, response.getString("Role"));
+                            editor.putString(KEY_TOKEN, response.getString("Token"));
+                            editor.apply();
 
                             // access prefs
-//                            Log.d("uid inside pref", preferences.getString(KEY_ID, "Id"));
-//                            Log.d("token inside pref", preferences.getString(KEY_TOKEN, "Token"));
-                            Log.d("uid inside pref", sharedPreferenceManager.getId());
-                            Log.d("token inside pref", sharedPreferenceManager.getToken());
+                            Log.d("uid inside pref", preferences.getString(KEY_ID, "Id"));
+                            Log.d("token inside pref", preferences.getString(KEY_TOKEN, "Token"));
 
                             // Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
 
