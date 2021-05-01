@@ -1,10 +1,13 @@
 package com.intoverflown.pos.data;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static android.content.Context.MODE_PRIVATE;
 
-public class SharedPreferenceManager extends AppCompatActivity {
+public class SharedPreferenceManager {
+
+    public Context context;
 
     public SharedPreferences preferences;
     public SharedPreferences.Editor editor;
@@ -18,7 +21,7 @@ public class SharedPreferenceManager extends AppCompatActivity {
 
     public void writePrefResponse(String id, String fName, String lName,
                                   String userName, String role, String token) {
-        preferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        preferences = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString(KEY_ID, id);
         editor.putString(KEY_FIRSTNAME, fName);
@@ -30,12 +33,12 @@ public class SharedPreferenceManager extends AppCompatActivity {
     }
 
     public String getId() {
-        preferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        preferences = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         return preferences.getString(KEY_ID, "Id");
     }
 
     public String getToken() {
-        preferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        preferences = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         return preferences.getString(KEY_ID, "Token");
     }
 }
