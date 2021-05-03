@@ -2,9 +2,9 @@ package com.intoverflown.pos.ui.inventory.addproduct;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.intoverflown.pos.databinding.ActivityAddProductBinding;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
 import com.intoverflown.pos.utils.Constants;
