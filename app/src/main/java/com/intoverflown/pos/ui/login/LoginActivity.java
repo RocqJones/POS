@@ -1,5 +1,6 @@
 package com.intoverflown.pos.ui.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.MainActivity;
 import com.intoverflown.pos.R;
 import com.intoverflown.pos.databinding.ActivityLoginBinding;
+import com.intoverflown.pos.ui.registerbranch.NewBranchActivity;
 import com.intoverflown.pos.ui.resetpassword.ResetPwdActivity;
 import com.intoverflown.pos.utils.Constants;
 
@@ -74,9 +76,9 @@ public class LoginActivity extends AppCompatActivity {
         if (username.isEmpty() && password.isEmpty()) {
             Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
         } else {
-            ProgressBar progressBar = new ProgressBar(LoginActivity.this);
-            progressBar.setBackgroundColor(getResources().getColor(R.color.blue_700));
-            progressBar.setVisibility(View.VISIBLE);
+            ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.setMessage("Logging in\nPlease wait...!");
+            progressDialog.show();
 
             try {
                 jsonObject.put("username", username);
@@ -92,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     url, jsonObject, response -> {
                         try {
                             Log.d("connection", response.toString());
-                            progressBar.setVisibility(View.GONE);
+                            progressDialog.dismiss();
 
                             Log.d("uid before pref", response.getString("Id"));
                             Log.d("token before pref", response.getString("Token"));
@@ -124,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                     }, error -> {
                         Log.e("error", error.toString());
                         Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility(View.GONE);
+                        progressDialog.dismiss();
                     }) {
                 @Override
                 public Map<String, String> getHeaders() {
