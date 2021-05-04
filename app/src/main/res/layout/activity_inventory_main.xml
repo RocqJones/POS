@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,83 +7,38 @@
     android:background="@color/light_bg"
     tools:context=".ui.inventory.InventoryActivityMain">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/inventoryCategory"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.POS.AppBarOverlay">
+
+        <TextView
+            android:id="@+id/titleTabbedFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="16dp"
+            android:gravity="center"
+            android:minHeight="?actionBarSize"
+            android:padding="@dimen/appbar_padding"
+            android:text="@string/title_activity_inventory_main"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            app:drawableStartCompat="@drawable/baseline_arrow_back_white_24dp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:background="?attr/colorPrimary"
+            app:tabIndicatorColor="@color/black"
+            app:tabTextColor="@color/white" />
 
-            <RelativeLayout
-                android:id="@+id/linearLy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
+    </com.google.android.material.appbar.AppBarLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/view_product_category"
-                    android:gravity="center_horizontal"
-                    android:fontFamily="sans-serif"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    app:drawableStartCompat="@drawable/baseline_list_alt_blue_700_18dp"
-                    android:drawablePadding="8dp"/>
-
-                <TextView
-                     android:id="@+id/inventoryAdd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/inventoryAddIc"
-                    android:text="@string/add_new"
-                    android:textColor="@color/blue_700"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-
-                <ImageView
-                    android:id="@+id/inventoryAddIc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="15dp"
-                    android:background="@drawable/baseline_add_circle_blue_700_18dp"
-                    android:contentDescription="@string/ic" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/blue_700"
-        android:contentDescription="@string/ic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/inventoryRecycler"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inventoryCategory" />
+        android:layout_height="match_parent"
+        android:background="@color/light_bg"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
