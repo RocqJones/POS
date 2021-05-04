@@ -4,25 +4,39 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
+import com.intoverflown.pos.MainActivity;
 import com.intoverflown.pos.databinding.ActivityInventoryMainBinding;
-import com.intoverflown.pos.ui.inventory.addproduct.AddProductActivity;
+import com.intoverflown.pos.ui.inventory.main.SectionsPagerAdapter;
 
 public class InventoryActivityMain extends AppCompatActivity {
-
-    private ActivityInventoryMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityInventoryMainBinding.inflate(getLayoutInflater());
+        ActivityInventoryMainBinding binding = ActivityInventoryMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.fab.setOnClickListener(v -> {
-            Intent i = new Intent(InventoryActivityMain.this, AddProductActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
+        /* Start - ViewPager */
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
+                getSupportFragmentManager());
+
+        ViewPager viewPager = binding.viewPager;
+
+        viewPager.setAdapter(sectionsPagerAdapter);
+
+        TabLayout tabs = binding.tabs;
+
+        tabs.setupWithViewPager(viewPager);
+        /* End - ViewPager */
+
+        binding.titleTabbedFragment.setOnClickListener(v -> {
+            Intent j = new Intent(InventoryActivityMain.this, MainActivity.class);
+            j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(j);
         });
     }
 }
