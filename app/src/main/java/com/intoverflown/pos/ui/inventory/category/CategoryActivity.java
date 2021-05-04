@@ -98,7 +98,7 @@ public class CategoryActivity extends AppCompatActivity {
 
                     for(int i=0; i < response.length(); i++) {
                         JSONObject jsonObj = response.getJSONObject(i);
-                        Log.d("uid merchant branch", jsonObj.optString("uniqueId"));
+                        Log.d("uid category", jsonObj.optString("uniqueId"));
 
                         // store id
                         editor = preferences.edit();
@@ -131,7 +131,6 @@ public class CategoryActivity extends AppCompatActivity {
                     return "application/json";
                 }
             };
-
             jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
