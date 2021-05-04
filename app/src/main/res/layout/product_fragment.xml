@@ -8,7 +8,7 @@
     tools:context=".ui.inventory.fragments.ProductFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/inventoryRecycler"
+        android:id="@+id/productRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
