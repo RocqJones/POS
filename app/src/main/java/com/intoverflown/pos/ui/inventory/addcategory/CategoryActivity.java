@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.inventory.category;
+package com.intoverflown.pos.ui.inventory.addcategory;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
