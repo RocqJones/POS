@@ -60,6 +60,7 @@ public class AddSupplierActivity extends AppCompatActivity {
 
         Log.d("uid supplier", uid);
         Log.d("token supplier", token);
+        Log.d("uid merchant", merchantUid);
 
         binding.supplierSaveBtn.setOnClickListener(v -> {
             String url = Constants.BASE_URL + "Supplier/Create";
