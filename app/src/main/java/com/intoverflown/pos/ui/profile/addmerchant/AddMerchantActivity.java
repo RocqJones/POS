@@ -15,8 +15,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.MainActivity;
 import com.intoverflown.pos.databinding.ActivityAddMerchantBinding;
-import com.intoverflown.pos.ui.inventory.addcategory.CategoryActivity;
-import com.intoverflown.pos.ui.profile.ProfileFragment;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
