@@ -116,7 +116,7 @@ public class CategoryActivity extends AppCompatActivity {
             }, error -> {
                 progressDialog.dismiss();
                 Log.e("error", error.toString());
-                Toast.makeText(CategoryActivity.this, "Failed to create branch!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CategoryActivity.this, "Failed to create category!", Toast.LENGTH_SHORT).show();
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
