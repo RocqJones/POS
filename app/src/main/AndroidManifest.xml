@@ -13,10 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
         <activity
-            android:name=".ui.inventory.category.CategoryActivity"
-            android:label="@string/add_category"
+            android:name=".ui.inventory.addsupplier.AddSupplierActivity"
+            android:label="@string/add_supplier"
             android:parentActivityName=".ui.inventory.InventoryActivityMain"
             android:theme="@style/Theme.POS.NoActionBar"/>
+        <activity
+            android:name=".ui.inventory.addcategory.CategoryActivity"
+            android:label="@string/add_category"
+            android:parentActivityName=".ui.inventory.InventoryActivityMain"
+            android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.inventory.addproduct.AddProductActivity"
             android:label="@string/add_product"
