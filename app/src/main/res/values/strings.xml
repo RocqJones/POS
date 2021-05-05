@@ -64,5 +64,15 @@
     <string name="inventory_tab_1">Category</string>
     <string name="inventory_tab_2">Supplier</string>
     <string name="inventory_tab_3">Product</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="supplier_address">Supplier Address</string>
+    <string name="add_supplier">Add Supplier</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="merchant_name">Merchant Name:</string>
+    <string name="location">Location:</string>
+    <string name="merchant">Merchant</string>
+    <string name="unit_of_measure_eg_kgs_or_g">Unit of Measure, eg Kgs or g</string>
+    <string name="country">Country</string>
+    <string name="add_merchant">Add Merchant</string>
 
 </resources>
