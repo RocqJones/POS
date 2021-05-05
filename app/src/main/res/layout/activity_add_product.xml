@@ -50,7 +50,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/resetTxt"
+                        android:id="@+id/heading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
@@ -63,10 +63,10 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/addProductName"
+                        android:id="@+id/supplierName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/resetTxt"
+                        android:layout_below="@id/heading"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="10dp"
@@ -86,10 +86,10 @@
                         android:textStyle="normal" />
 
                     <EditText
-                        android:id="@+id/addUnitPrice"
+                        android:id="@+id/supplierAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/addProductName"
+                        android:layout_below="@id/supplierName"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="10dp"
@@ -110,10 +110,10 @@
                         android:textStyle="normal" />
 
                     <EditText
-                        android:id="@+id/addPurchasePrice"
+                        android:id="@+id/supplierPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/addUnitPrice"
+                        android:layout_below="@id/supplierAddress"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="10dp"
@@ -125,7 +125,7 @@
                         android:fontFamily="sans-serif"
                         android:hint="@string/purchase_price_ksh"
                         android:importantForAutofill="yes"
-                        android:inputType="number"
+                        android:inputType="phone"
                         android:padding="5dp"
                         android:paddingStart="20dp"
                         android:paddingEnd="20dp"
@@ -134,10 +134,10 @@
                         android:textStyle="normal" />
 
                     <EditText
-                        android:id="@+id/addQuantity"
+                        android:id="@+id/supplierEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/addPurchasePrice"
+                        android:layout_below="@id/supplierPhone"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="10dp"
@@ -149,7 +149,7 @@
                         android:fontFamily="sans-serif"
                         android:hint="@string/quantity"
                         android:importantForAutofill="yes"
-                        android:inputType="text"
+                        android:inputType="textEmailAddress"
                         android:padding="5dp"
                         android:paddingStart="20dp"
                         android:paddingEnd="20dp"
@@ -158,10 +158,10 @@
                         android:textStyle="normal" />
 
                     <EditText
-                        android:id="@+id/addDescription"
+                        android:id="@+id/supplierRemarks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/addQuantity"
+                        android:layout_below="@id/supplierEmail"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="10dp"
@@ -185,7 +185,7 @@
                         android:id="@+id/addReOrderLevel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/addDescription"
+                        android:layout_below="@id/supplierRemarks"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="10dp"
@@ -206,7 +206,7 @@
                         android:textStyle="normal" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/addSaveBtn"
+                        android:id="@+id/supplierSaveBtn"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/btn_default_height"
                         android:layout_below="@id/addReOrderLevel"
