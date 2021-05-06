@@ -10,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.intoverflown.pos.databinding.ProductCategoryFragmentBinding;
-import com.intoverflown.pos.ui.inventory.addproduct.AddProductActivity;
-import com.intoverflown.pos.ui.inventory.category.CategoryActivity;
+import com.intoverflown.pos.ui.inventory.addcategory.CategoryActivity;
 
 public class CategoryFragment extends Fragment {
 
@@ -24,9 +23,7 @@ public class CategoryFragment extends Fragment {
 
         binding.fab.setOnClickListener(v -> intentToAddCategory());
 
-        binding.categoryAdd.setOnClickListener(v -> intentToAddCategory());
-
-        binding.categoryAddIc.setOnClickListener(v -> intentToAddCategory());
+//        binding.categoryAddIc.setOnClickListener(v -> intentToAddCategory());
 
         return binding.getRoot();
     }
