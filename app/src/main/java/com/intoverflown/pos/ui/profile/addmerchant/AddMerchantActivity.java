@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +43,12 @@ public class AddMerchantActivity extends AppCompatActivity {
         binding = ActivityAddMerchantBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.merchantBackBtn.setOnClickListener(v -> {
+            Intent i = new Intent(AddMerchantActivity.this, MainActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        });
+
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
         uid = preferences.getString(KEY_ID, "Id");
@@ -68,7 +75,7 @@ public class AddMerchantActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
         } else {
             ProgressDialog progressDialog = new ProgressDialog(AddMerchantActivity.this);
-            progressDialog.setMessage("Creating new category...");
+            progressDialog.setMessage("Creating new merchant...");
             progressDialog.show();
 
             try {
