@@ -13,10 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
         <activity
+            android:name=".ui.orders.OrdersActivity"
+            android:label="@string/title_activity_orders"
+            android:theme="@style/Theme.POS.NoActionBar"/>
+        <activity
             android:name=".ui.profile.addmerchant.AddMerchantActivity"
             android:label="@string/add_merchant"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.POS.NoActionBar"/>
+            android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.inventory.addsupplier.AddSupplierActivity"
             android:label="@string/add_supplier"
