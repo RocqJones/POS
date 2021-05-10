@@ -6,13 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.intoverflown.pos.ui.orders.R;
+import com.intoverflown.pos.R;
+
 
 /**
  * A placeholder fragment containing a simple view.
@@ -46,14 +45,9 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        View root = inflater.inflate(R.layout.fragment_main_reusable, container, false);
         final TextView textView = root.findViewById(R.id.section_label);
-        pageViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        pageViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 }
