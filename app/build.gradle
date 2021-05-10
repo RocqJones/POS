@@ -65,4 +65,9 @@ dependencies {
 
     // JetPack Data Store preferences
     implementation "androidx.datastore:datastore-preferences-core:1.0.0-beta01"
+
+    // Glide for images/GIF
+    def glide_version = "4.12.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 }
