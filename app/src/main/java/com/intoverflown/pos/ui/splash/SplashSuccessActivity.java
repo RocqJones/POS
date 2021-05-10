@@ -18,6 +18,6 @@ public class SplashSuccessActivity extends AppCompatActivity {
         binding = ActivitySplashSuccessBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Glide.with(this).asGif().load(R.drawable.check).error(R.drawable.error_img).into(binding.gifCheck);
+        Glide.with(this).asGif().load(R.drawable.checkedited).error(R.drawable.error_img).into(binding.gifCheck);
     }
 }
