@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     public SharedPreferences preferences;
     public SharedPreferences.Editor editor;
-    public String SHARED_PREF_NAME = "pos_pref";
+    private static final String SHARED_PREF_NAME = "pos_pref";
     public String KEY_ID = "Id";
     public String KEY_FIRSTNAME = "FirstName";
     public String KEY_LASTNAME = "LastName";
