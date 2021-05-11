@@ -40,7 +40,7 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_inventory, container, false);
+        View root = inflater.inflate(R.layout.fragment_main_reusable, container, false);
         final TextView textView = root.findViewById(R.id.inventory_section_label);
         pageViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
