@@ -18,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.databinding.FragmentProfileBinding;
+import com.intoverflown.pos.ui.login.LoginActivity;
 import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
@@ -50,6 +51,22 @@ public class ProfileFragment extends Fragment {
             Intent i = new Intent(ProfileFragment.this.getContext(), AddMerchantActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
+        });
+
+        binding.logout.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove("Id");
+            editor.remove("Token");
+            editor.remove("Username");
+            editor.remove("FirstName");
+            editor.remove("LastName");
+            editor.remove("Role");
+            editor.apply();
+
+            Intent g = new Intent(this.getContext(), LoginActivity.class);
+            startActivity(g);
+            Toast.makeText(this.getContext(), "Log out successfully!", Toast.LENGTH_SHORT).show();
+            getActivity().finish();
         });
 
         return binding.getRoot();
