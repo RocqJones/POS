@@ -145,6 +145,7 @@
             android:textSize="18sp"/>
 
         <LinearLayout
+            android:id="@+id/linearLyt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -201,6 +202,17 @@
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLyt"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/baseline_logout_blue_700_24dp"
+            android:contentDescription="@string/ic" />
 
     </RelativeLayout>
 
