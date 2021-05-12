@@ -42,7 +42,7 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        String url = Constants.BASE_URL + "Merchant";
+        String url = Constants.BASE_URL + "Merchant/";
         getMerchantDetails(url);
 
         setDataToProfile();
