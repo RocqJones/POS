@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.intoverflown.pos.databinding.ProductCategoryFragmentBinding;
 import com.intoverflown.pos.patterns.MySingleton;
