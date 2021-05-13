@@ -49,4 +49,9 @@
         android:name="com.intoverflown.pos.ui.salesnexpenses.SalesAndExpenses"
         android:label="activity_sales_and_expenses"
         tools:layout="@layout/activity_sales_and_expenses" />
+    <activity
+        android:id="@+id/addCustomerActivity"
+        android:name="com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity"
+        android:label="activity_add_customer"
+        tools:layout="@layout/activity_add_customer" />
 </navigation>
