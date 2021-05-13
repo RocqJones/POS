@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
         <activity
+            android:name=".ui.customers.addcustomers.AddCustomerActivity"
+            android:label="@string/add_customer"
+            android:theme="@style/Theme.POS.NoActionBar"/>
+        <activity
             android:name=".ui.orders.OrdersActivity"
             android:label="@string/title_activity_orders"
             android:theme="@style/Theme.POS.NoActionBar" />
@@ -57,7 +61,7 @@
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.splash.SplashSuccessActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ui.resetpassword.ResetPwdActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -66,7 +70,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ui.splash.StartSplashActivity"
             android:theme="@style/Theme.POS.NoActionBar">
