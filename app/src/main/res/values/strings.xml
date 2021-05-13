@@ -80,5 +80,11 @@
 
     <string name="orders_tab_text_1">Orders</string>
     <string name="orders_tab_text_2">Quotation</string>
+    <string name="title_customers">Customers</string>
+    <string name="add_customer">Add Customers</string>
+    <string name="first_name">First Name</string>
+    <string name="other_name">Other Name</string>
+    <string name="create_customer">Create Customer</string>
+    <string name="select_item">Select client type</string>
 
 </resources>
