@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.MainActivity;
-import com.intoverflown.pos.R;
 import com.intoverflown.pos.databinding.ActivityLoginBinding;
-import com.intoverflown.pos.ui.registerbranch.NewBranchActivity;
 import com.intoverflown.pos.ui.resetpassword.ResetPwdActivity;
 import com.intoverflown.pos.utils.Constants;
 
