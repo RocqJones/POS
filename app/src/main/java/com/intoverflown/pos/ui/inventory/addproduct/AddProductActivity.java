@@ -88,7 +88,7 @@ public class AddProductActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
         } else {
             ProgressDialog progressDialog = new ProgressDialog(AddProductActivity.this);
-            progressDialog.setMessage("Creating new category...");
+            progressDialog.setMessage("Creating new product...");
             progressDialog.show();
 
             try {
