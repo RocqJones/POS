@@ -86,5 +86,6 @@
     <string name="other_name">Other Name</string>
     <string name="create_customer">Create Customer</string>
     <string name="select_item">Select client type</string>
+    <string name="orders_amp_quote"><![CDATA[Orders & Quotes]]></string>
 
 </resources>
