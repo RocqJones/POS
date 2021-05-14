@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.intoverflown.pos.databinding.FragmentHomeBinding;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
+import com.intoverflown.pos.ui.orders.OrdersActivity;
 import com.intoverflown.pos.ui.registerbranch.NewBranchActivity;
 import com.intoverflown.pos.ui.salesnexpenses.SalesAndExpenses;
 
@@ -44,6 +45,12 @@ public class HomeFragment  extends Fragment {
             Intent k = new Intent(HomeFragment.this.getContext(), NewBranchActivity.class);
             k.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(k);
+        });
+
+        binding.homeOrders.setOnClickListener(v -> {
+            Intent l = new Intent(HomeFragment.this.getContext(), OrdersActivity.class);
+            l.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(l);
         });
     }
 }
