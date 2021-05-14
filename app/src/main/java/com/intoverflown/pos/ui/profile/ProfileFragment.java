@@ -121,7 +121,7 @@ public class ProfileFragment extends Fragment {
             }
         } , error -> {
             Log.e("error", error.toString());
-//            Toast.makeText(this.getContext(), "loading failed!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ProfileFragment.this.getContext(), "loading failed!", Toast.LENGTH_SHORT).show();
         }) {
             @Override
             public Map<String, String> getHeaders() {
