@@ -1,30 +1,29 @@
-package com.intoverflown.pos.ui.customers.addcustomers;
+ package com.intoverflown.pos.ui.customers.addcustomers;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
+ import android.app.ProgressDialog;
+ import android.content.Intent;
+ import android.content.SharedPreferences;
+ import android.os.Bundle;
+ import android.util.Log;
+ import android.widget.ArrayAdapter;
+ import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+ import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.intoverflown.pos.MainActivity;
-import com.intoverflown.pos.databinding.ActivityAddCustomerBinding;
-import com.intoverflown.pos.patterns.MySingleton;
-import com.intoverflown.pos.ui.inventory.addproduct.AddProductActivity;
-import com.intoverflown.pos.utils.Constants;
+ import com.android.volley.DefaultRetryPolicy;
+ import com.android.volley.Request;
+ import com.android.volley.toolbox.JsonArrayRequest;
+ import com.intoverflown.pos.MainActivity;
+ import com.intoverflown.pos.databinding.ActivityAddCustomerBinding;
+ import com.intoverflown.pos.patterns.MySingleton;
+ import com.intoverflown.pos.utils.Constants;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+ import org.json.JSONArray;
+ import org.json.JSONException;
+ import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+ import java.util.HashMap;
+ import java.util.Map;
 
 public class AddCustomerActivity extends AppCompatActivity {
 
