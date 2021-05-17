@@ -80,7 +80,7 @@ public class AddCustomerActivity extends AppCompatActivity {
         String address = binding.customerAddress.getText().toString().trim();
         String phone = binding.customerPhone.getText().toString().trim();
         String email = binding.customerEmail.getText().toString().trim();
-        String cType = binding.customerClientType.getText().toString().trim();
+        String cType = binding.customerClientType.getSelectedItem().toString().trim();
 
         Log.d("client type", cType);
 
