@@ -45,15 +45,9 @@ public class StartSplashActivity extends AppCompatActivity {
             Log.d("token in pref", token);
 
             if (username.equals("Username") && token.equals("Token")) {
-                Intent j = new Intent(this, LoginActivity.class);
-                j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(j);
-                finish();
+                intentHome();
             } else if (username.isEmpty() && token.isEmpty()) {
-                Intent k = new Intent(this, LoginActivity.class);
-                k.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(k);
-                finish();
+                intentHome();
             } else {
                 Intent i = new Intent(this, MainActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -61,5 +55,12 @@ public class StartSplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 3000);
+    }
+
+    private void intentHome() {
+        Intent j = new Intent(this, LoginActivity.class);
+        j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(j);
+        finish();
     }
 }
