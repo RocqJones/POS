@@ -15,11 +15,16 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.intoverflown.pos.databinding.FragmentCustomersBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity;
 import com.intoverflown.pos.utils.Constants;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,13 +65,20 @@ public class CustomersFragment extends Fragment {
     }
 
     private void getCustomerList(String url) {
-        StringRequest stringRequest  = new StringRequest(Request.Method.GET,
-                url + merchantId, response -> Log.d("response customer", response), new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+        JsonObjectRequest jsonObjectRequest  = new JsonObjectRequest(Request.Method.GET,
+                url + merchantId, null, response -> {
+            try {
+                Log.d("response customer", response.toString());
+                JSONArray jsonArray = response.getJSONArray("customers");
+
+                for(int i=0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                    Log.d("response fname", jsonObject.optString("firstName"));
+                }
+            } catch (Exception e){
+                e.printStackTrace();
             }
-        }) {
+        }, Throwable::printStackTrace) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<String, String>();
@@ -76,12 +88,12 @@ public class CustomersFragment extends Fragment {
             }
 
             @Override
-            public String getBodyContentType() {
+            public String getBodyContentType()  {
                 return "application/json";
             }
         };
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MySingleton.getInstance(this.getContext()).addToRequestQueue(stringRequest);
+        MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonObjectRequest);
     }
 }
