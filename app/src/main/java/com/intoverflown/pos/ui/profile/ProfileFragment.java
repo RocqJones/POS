@@ -18,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.databinding.FragmentProfileBinding;
+import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.login.LoginActivity;
 import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
@@ -36,13 +37,17 @@ public class ProfileFragment extends Fragment {
     public SharedPreferences preferences;
     public String SHARED_PREF_NAME = "pos_pref";
     public SharedPreferences.Editor editor;
+    public String MERCHANT_ID = "merchantId";
+
+    String token;
+    Integer merchantId;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        String url = Constants.BASE_URL + "Merchant/";
+        String url = Constants.BASE_URL + "Merchant/?merchantId=";
         getMerchantDetails(url);
 
         setDataToProfile();
@@ -72,37 +77,12 @@ public class ProfileFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void setDataToProfile() {
-        String fullName = preferences.getString("FirstName", "FirstName")
-                + " " +preferences.getString("LastName", "LastName");
-        String userEmail = preferences.getString("Username", "Username");
-
-        binding.profileName.setText(fullName);
-        binding.profileEmail.setText(userEmail);
-
-        // merchants
-//        String merchantName = preferences.getString("merchantName", "merchantName");
-//        String country = preferences.getString("countryId", "countryId");
-    }
-
     private void getMerchantDetails(String url) {
-        RequestQueue queue = Volley.newRequestQueue(this.getContext().getApplicationContext());
-        JSONObject jsonObject = new JSONObject();
-
-        String merchantId = preferences.getString("merchantId", "merchantId");
-        String token = preferences.getString("Token", "Token");
-
-        try {
-            jsonObject.put("merchantId", merchantId);
-
-            Log.d("get", jsonObject.toString());
-
-        } catch (final JSONException e) {
-            e.printStackTrace();
-        }
+        merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        token = preferences.getString("Token", "Token");
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                url, jsonObject, response -> {
+                url + merchantId, null, response -> {
             try {
                 Log.d("response", response.toString());
                 Log.d("get merchantName", response.getString("merchantName"));
@@ -112,9 +92,6 @@ public class ProfileFragment extends Fragment {
                 editor.putString("merchantName", response.getString("merchantName"));
                 editor.putString("countryId", response.getString("countryId"));
                 editor.apply();
-
-                binding.profileMerchantName.setText(preferences.getString("merchantName", "merchantName"));
-                binding.profileLocation.setText(preferences.getString("countryId", "countryId"));
 
             } catch (Exception e) {
                 Log.i("profile", Log.getStackTraceString(e));
@@ -138,6 +115,18 @@ public class ProfileFragment extends Fragment {
         };
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(jsonObjectRequest);
+        MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
+    private void setDataToProfile() {
+        String fullName = preferences.getString("FirstName", "FirstName")
+                + " " +preferences.getString("LastName", "LastName");
+        String userEmail = preferences.getString("Username", "Username");
+
+        binding.profileName.setText(fullName);
+        binding.profileEmail.setText(userEmail);
+
+        binding.profileMerchantName.setText(preferences.getString("merchantName", "merchantName"));
+        binding.profileLocation.setText(preferences.getString("countryId", "countryId"));
     }
 }
