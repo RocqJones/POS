@@ -54,7 +54,7 @@ public class StartSplashActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }, 3000);
+        }, 4000);
     }
 
     private void intentHome() {
