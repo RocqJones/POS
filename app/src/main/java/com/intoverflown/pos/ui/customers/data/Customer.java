@@ -14,6 +14,7 @@ public class Customer {
     private String modifiedById;
     private String otherNames;
     private String phone;
+    private String merchantName;
 
     public String getAddress() {
         return address;
@@ -117,5 +118,13 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getMerchantName() {
+        return merchantName;
+    }
+
+    public void setMerchantName(String merchantName) {
+        this.merchantName = merchantName;
     }
 }
