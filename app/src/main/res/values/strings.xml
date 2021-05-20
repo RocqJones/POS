@@ -88,5 +88,6 @@
     <string name="select_item">Select client type</string>
     <string name="orders_amp_quote"><![CDATA[Orders & Quotes]]></string>
     <string name="address">Address</string>
+    <string name="remarks">Remarks</string>
 
 </resources>
