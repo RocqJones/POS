@@ -31,48 +31,52 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/fName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLTop"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:hint="@string/first_name"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/text_color_blue"/>
-
-            <TextView
-                android:id="@+id/otherName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/address"
-                android:layout_toEndOf="@id/fName"
-                android:fontFamily="sans-serif"
-                android:hint="@string/other_name"
-                android:textColor="@color/text_color_blue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="sans-serif"
-                android:hint="@string/address"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="normal" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:id="@+id/fName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/first_name"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/text_color_blue"/>
+
+                <TextView
+                    android:id="@+id/otherName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="sans-serif"
+                    android:hint="@string/other_name"
+                    android:textColor="@color/text_color_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:fontFamily="sans-serif"
+                    android:hint="@string/address"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/phone"
@@ -81,7 +85,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/fName"
+                android:layout_below="@id/linearLTop"
                 android:hint="@string/phone"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
@@ -97,7 +101,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/address"
+                android:layout_below="@id/linearLTop"
                 android:hint="@string/email"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/black"
