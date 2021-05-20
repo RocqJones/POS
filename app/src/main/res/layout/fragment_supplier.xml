@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.inventory.fragments.SupplierFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/supplierRecycler"
+        android:id="@+id/recyclerSupplier"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
