@@ -45,6 +45,17 @@
                 android:fontFamily="sans-serif"
                 android:textColor="@color/text_color_blue"/>
 
+            <ImageView
+                android:id="@+id/categoryDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/ic_baseline_cancel_24"
+                android:contentDescription="@string/ic" />
+
             <TextView
                 android:id="@+id/cRemarks"
                 android:layout_width="wrap_content"
@@ -79,11 +90,11 @@
                 android:id="@+id/edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                android:layout_below="@id/categoryDelete"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_alignEnd="@id/cName"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_alignEnd="@id/cRemarks"
                 android:backgroundTint="@color/light_bg"
                 app:fabCustomSize="@dimen/btn_default_height"
                 android:src="@drawable/baseline_edit_note_blue_700_18dp"
