@@ -20,9 +20,8 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.RvHold
     ItemSupplierBinding binding;
     Context mContext;
 
-    public AdapterSupplier(List<InventoryRemoteData> supplierData, ItemSupplierBinding binding, Context mContext) {
+    public AdapterSupplier(List<InventoryRemoteData> supplierData, Context mContext) {
         this.supplierData = supplierData;
-        this.binding = binding;
         this.mContext = mContext;
     }
 
