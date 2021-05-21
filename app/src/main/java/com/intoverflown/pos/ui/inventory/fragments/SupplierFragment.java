@@ -10,25 +10,31 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.intoverflown.pos.databinding.SupplierFragmentBinding;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.intoverflown.pos.databinding.FragmentSupplierBinding;
 import com.intoverflown.pos.patterns.MySingleton;
+import com.intoverflown.pos.ui.inventory.adapters.AdapterSupplier;
 import com.intoverflown.pos.ui.inventory.addsupplier.AddSupplierActivity;
+import com.intoverflown.pos.ui.inventory.data.InventoryRemoteData;
 import com.intoverflown.pos.utils.Constants;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class SupplierFragment extends Fragment {
 
-    SupplierFragmentBinding binding;
+    FragmentSupplierBinding binding;
 
     String token;
     Integer merchantId;
@@ -39,16 +45,24 @@ public class SupplierFragment extends Fragment {
     public String KEY_TOKEN = "Token";
     public String MERCHANT_ID = "merchantId";
 
+    List<InventoryRemoteData> supplierData;
+    private AdapterSupplier adapterSupplier;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = SupplierFragmentBinding.inflate(inflater, container, false);
+        binding = FragmentSupplierBinding.inflate(inflater, container, false);
 
         binding.fab.setOnClickListener(v -> {
             Intent i = new Intent(SupplierFragment.this.getContext(), AddSupplierActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
+
+        // call layout manager
+        supplierData = new ArrayList<>();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+        binding.recyclerSupplier.setLayoutManager(linearLayoutManager);
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
@@ -61,13 +75,35 @@ public class SupplierFragment extends Fragment {
     }
 
     private void getSupplier(String url) {
-        StringRequest stringRequest  = new StringRequest(Request.Method.GET,
-                url + merchantId, response -> Log.d("response supplier", response), new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+        JsonObjectRequest jsonObjectRequest  = new JsonObjectRequest(Request.Method.GET,
+                url + merchantId, null, response -> {
+            Log.d("response supplier", response.toString());
+            try {
+                // get merchant name from second array list
+//                JSONArray jsonArray1 = response.getJSONArray("merchant");
+//                JSONObject jsonObject1 = (JSONObject) jsonArray1.get(1);
+                String mName = preferences.getString("merchantName", "merchantName");
+
+                // supplier details from first array list
+                JSONArray jsonArray = response.getJSONArray("supplier");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                    InventoryRemoteData inventoryRemoteData = new InventoryRemoteData();
+                    inventoryRemoteData.setName(jsonObject.optString("name"));
+                    inventoryRemoteData.setAddress(jsonObject.optString("address"));
+                    inventoryRemoteData.setPhone(jsonObject.optString("phone"));
+                    inventoryRemoteData.setEmail(jsonObject.optString("email"));
+                    inventoryRemoteData.setRemarks(jsonObject.optString("remarks"));
+                    inventoryRemoteData.setMerchantName(mName);
+                    supplierData.add(inventoryRemoteData);
+                }
+
+                adapterSupplier = new AdapterSupplier(supplierData, this.getContext());
+                binding.recyclerSupplier.setAdapter(adapterSupplier);
+            } catch (Exception e){
+                e.printStackTrace();
             }
-        }) {
+        }, Throwable::printStackTrace) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<String, String>();
@@ -81,8 +117,8 @@ public class SupplierFragment extends Fragment {
                 return "application/json";
             }
         };
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MySingleton.getInstance(this.getContext()).addToRequestQueue(stringRequest);
+        MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonObjectRequest);
     }
 }
