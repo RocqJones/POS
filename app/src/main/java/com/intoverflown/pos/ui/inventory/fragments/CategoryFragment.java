@@ -11,35 +11,50 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.toolbox.StringRequest;
-import com.intoverflown.pos.databinding.ProductCategoryFragmentBinding;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.intoverflown.pos.databinding.FragmentProductCategoryBinding;
 import com.intoverflown.pos.patterns.MySingleton;
+import com.intoverflown.pos.ui.inventory.adapters.AdapterCategory;
 import com.intoverflown.pos.ui.inventory.addcategory.CategoryActivity;
+import com.intoverflown.pos.ui.inventory.data.InventoryRemoteData;
 import com.intoverflown.pos.utils.Constants;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class CategoryFragment extends Fragment {
 
-    ProductCategoryFragmentBinding binding;
+    FragmentProductCategoryBinding binding;
 
     String token;
     public SharedPreferences preferences;
     public String SHARED_PREF_NAME = "pos_pref";
     public String KEY_TOKEN = "Token";
 
+    List<InventoryRemoteData> categoryData;
+    private AdapterCategory adapterCategory;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = ProductCategoryFragmentBinding.inflate(inflater, container, false);
+        binding = FragmentProductCategoryBinding.inflate(inflater, container, false);
 
         binding.fab.setOnClickListener(v -> intentToAddCategory());
+
+        // prepare data to display on rv
+        categoryData = new ArrayList<>();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+        binding.categoryRecycler.setLayoutManager(linearLayoutManager);
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
@@ -47,9 +62,34 @@ public class CategoryFragment extends Fragment {
 
         String url = Constants.BASE_URL + "ProductCategory";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-            Log.d("response", response);
-            Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+        getCategoryData(url);
+
+        return binding.getRoot();
+    }
+
+    private void getCategoryData(String url) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, response -> {
+            try {
+                Log.d("response", response.toString());
+//            Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                for (int i = 0; i < response.length(); i++) {
+                    JSONObject jsonObject = (JSONObject) response.get(i);
+                    InventoryRemoteData inventoryRemoteData = new InventoryRemoteData();
+                    inventoryRemoteData.setName(jsonObject.optString("name"));
+                    inventoryRemoteData.setRemarks(jsonObject.optString("remarks"));
+
+                    String rawDate = jsonObject.optString("dateCreated");
+                    String [] d = rawDate.split("T");
+
+                    inventoryRemoteData.setDateCreated(d[0]);
+                    categoryData.add(inventoryRemoteData);
+                }
+
+                adapterCategory = new AdapterCategory(categoryData, this.getContext());
+                binding.categoryRecycler.setAdapter(adapterCategory);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }, error -> {
             error.printStackTrace();
             Toast.makeText(getContext(), "Get failed", Toast.LENGTH_SHORT).show();
@@ -68,11 +108,9 @@ public class CategoryFragment extends Fragment {
             }
         };
 
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MySingleton.getInstance(this.getContext()).addToRequestQueue(stringRequest);
-
-        return binding.getRoot();
+        MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonArrayRequest);
     }
 
     private void intentToAddCategory() {
