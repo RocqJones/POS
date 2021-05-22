@@ -26,17 +26,17 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.inventory.addsupplier.AddSupplierActivity"
+            android:name=".ui.inventory.postdata.AddSupplierActivity"
             android:label="@string/add_supplier"
             android:parentActivityName=".ui.inventory.InventoryActivityMain"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.inventory.addcategory.CategoryActivity"
+            android:name=".ui.inventory.postdata.AddCategoryActivity"
             android:label="@string/add_category"
             android:parentActivityName=".ui.inventory.InventoryActivityMain"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.inventory.addproduct.AddProductActivity"
+            android:name=".ui.inventory.postdata.AddProductActivity"
             android:label="@string/add_product"
             android:parentActivityName=".ui.inventory.InventoryActivityMain"
             android:theme="@style/Theme.POS.NoActionBar" />
