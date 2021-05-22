@@ -31,18 +31,31 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/pName"
+                android:id="@+id/pd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/product"
+                android:textColor="@color/text_color_blue"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/pName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/pd"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
                 android:hint="@string/product_name"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif"
-                android:textColor="@color/text_color_blue"/>
+                android:textColor="@color/black"/>
 
             <ImageView
                 android:id="@+id/pDelete"
@@ -66,7 +79,7 @@
                 android:layout_marginEnd="5dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/status"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color_blue"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -120,7 +133,7 @@
                 android:layout_toStartOf="@id/pCategoryName"
                 android:layout_marginTop="10dp"
                 android:text="@string/category"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color_blue"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:fontFamily="sans-serif"
