@@ -1,6 +1,7 @@
 package com.intoverflown.pos
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -12,6 +13,12 @@ import com.intoverflown.pos.ui.notification.NotificationActivity
 class MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
+
+    var preferences: SharedPreferences? = null
+    var SHARED_PREF_NAME = "pos_pref"
+    var MERCHANT_NAME = "merchantName"
+    var merchantName: String? = null
+    var userName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,5 +42,13 @@ class MainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
+
+        preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE)
+        merchantName = preferences?.getString(MERCHANT_NAME, "merchantName")
+        userName = (preferences?.getString("FirstName", "FirstName")
+                + " " + preferences?.getString("LastName", "LastName"))
+
+        binding!!.merchantName.text = merchantName
+        binding!!.fullName.text = userName
     }
 }
