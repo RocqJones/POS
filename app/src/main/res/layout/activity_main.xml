@@ -28,10 +28,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Mazao Bora Shop"
+            android:hint="@string/merchant_name"
             android:fontFamily="sans-serif"
             android:textSize="18sp"
             android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp" />
 
@@ -46,16 +47,35 @@
             android:textSize="12sp"
             android:text="0 Sales  0 Products" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="Inch POS"
-            android:textColor="@color/white"
-            android:textSize="18sp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/user"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:hint="@string/username"/>
+
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
