@@ -13,7 +13,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.intoverflown.pos.databinding.ActivityCategoryBinding;
+import com.intoverflown.pos.databinding.ActivityAddCategoryBinding;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
 import com.intoverflown.pos.utils.Constants;
 
@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class AddCategoryActivity extends AppCompatActivity {
 
-    private ActivityCategoryBinding binding;
+    private ActivityAddCategoryBinding binding;
 
     String uid;
     String token;
@@ -39,7 +39,7 @@ public class AddCategoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCategoryBinding.inflate(getLayoutInflater());
+        binding = ActivityAddCategoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.categoryBackBtn.setOnClickListener(v -> {
