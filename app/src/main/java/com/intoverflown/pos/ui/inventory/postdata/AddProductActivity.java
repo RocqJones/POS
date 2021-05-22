@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.inventory.addcategory;
+package com.intoverflown.pos.ui.inventory.postdata;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,9 +13,8 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.intoverflown.pos.databinding.ActivityCategoryBinding;
+import com.intoverflown.pos.databinding.ActivityAddProductBinding;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
-import com.intoverflown.pos.ui.inventory.addproduct.AddProductActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -25,68 +24,86 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CategoryActivity extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity {
 
-    private ActivityCategoryBinding binding;
-
+    private ActivityAddProductBinding binding;
     String uid;
     String token;
+    String merchantId;
+    String categoryId;
+    String supplierId;
     public SharedPreferences preferences;
     public SharedPreferences.Editor editor;
     public String SHARED_PREF_NAME = "pos_pref";
     public String KEY_ID = "Id";
     public String KEY_TOKEN = "Token";
+    public String MERCHANT_ID = "merchantId";
+    public String CATEGORY_ID = "categoryId";
+    public String SUPPLIER_ID = "supplierId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCategoryBinding.inflate(getLayoutInflater());
+
+        binding = ActivityAddProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.categoryBackBtn.setOnClickListener(v -> {
-            Intent i = new Intent(CategoryActivity.this, InventoryActivityMain.class);
+        binding.addBackBtn.setOnClickListener(v -> {
+            Intent i = new  Intent(AddProductActivity.this, InventoryActivityMain.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
 
-        /* Get uid and token */
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
         uid = preferences.getString(KEY_ID, "Id");
         token = preferences.getString(KEY_TOKEN, "Token");
+        merchantId = preferences.getString(MERCHANT_ID, "merchantId");
+        categoryId = preferences.getString(CATEGORY_ID, "categoryId");
+        supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
 
-        Log.d("uid category", uid);
-        Log.d("token category", token);
-
-        binding.categorySaveBtn.setOnClickListener(v -> {
-            String url = Constants.BASE_URL + "ProductCategory/Create";
-            createCategory(url);
+        binding.addSaveBtn.setOnClickListener(v -> {
+            String url = Constants.BASE_URL + "Product/Create";
+            postProduct(url);
         });
     }
 
-    private void createCategory(String url) {
+    private void postProduct(String url) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         JSONArray array = new JSONArray();
         JSONObject jsonObjects = new JSONObject();
 
-        String name = binding.categoryName.getText().toString().trim();
-        String remarks = binding.categoryRemarks.getText().toString().trim();
+        String productName = binding.addName.getText().toString().trim();
+        String unitOfMeasure = binding.addUnitMeasure.getText().toString().trim();
+        String purchasePrice = binding.addPrice.getText().toString().trim();
+        String quantity = binding.addQty.getText().toString().trim();
+        String remarks = binding.addRemarks.getText().toString().trim();
+        String reorderLevel = binding.addReOrderLevel.getText().toString().trim();
+        String status = "Available";
 
-        if (name.isEmpty() && remarks.isEmpty()) {
+        if (productName.isEmpty() && unitOfMeasure.isEmpty() && purchasePrice.isEmpty()
+                && quantity.isEmpty() && remarks.isEmpty() && reorderLevel.isEmpty()) {
             Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
         } else {
-            ProgressDialog progressDialog = new ProgressDialog(CategoryActivity.this);
-            progressDialog.setMessage("Creating new category...");
+            ProgressDialog progressDialog = new ProgressDialog(AddProductActivity.this);
+            progressDialog.setMessage("Creating new product...");
             progressDialog.show();
 
             try {
-                jsonObjects.put("Name", name);
-                jsonObjects.put("Remarks", remarks);
+                jsonObjects.put("Id", uid);
+                jsonObjects.put("name", productName);
+                jsonObjects.put("remarks", remarks);
+                jsonObjects.put("unitOfMeasure", unitOfMeasure);
+                jsonObjects.put("statusID", status);
+                jsonObjects.put("reOrderLevel", reorderLevel);
+                jsonObjects.put("categoryId", categoryId);
+                jsonObjects.put("quantity", quantity);
+                jsonObjects.put("supplierId", supplierId);
+                jsonObjects.put("merchantId", merchantId);
                 jsonObjects.put("createdById", uid);
 
                 array = new JSONArray("["+jsonObjects.toString()+"]");
                 Log.d("Post", array.toString());
-
             } catch (final JSONException e) {
                 e.printStackTrace();
             }
@@ -98,25 +115,25 @@ public class CategoryActivity extends AppCompatActivity {
 
                     for(int i=0; i < response.length(); i++) {
                         JSONObject jsonObj = response.getJSONObject(i);
-                        Log.d("uid category", jsonObj.optString("uniqueId"));
+                        Log.d("uid addProduct", jsonObj.optString("uniqueId"));
 
                         // store id
                         editor = preferences.edit();
-                        editor.putString("categoryId", jsonObj.optString("uniqueId"));
+                        editor.putString("createProductId", jsonObj.optString("uniqueId"));
                         editor.apply();
                     }
 
                     progressDialog.dismiss();
                     Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
-                    proceedToCreateProduct();
+                    proceedToInventory();
                 } catch (Exception e) {
                     Toast.makeText(this, "Error occurred\nCheck logs!", Toast.LENGTH_LONG).show();
-                    Log.i("new branch", Log.getStackTraceString(e));
+                    Log.i("new merchant", Log.getStackTraceString(e));
                 }
             }, error -> {
                 progressDialog.dismiss();
                 Log.e("error", error.toString());
-                Toast.makeText(CategoryActivity.this, "Failed to create category!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddProductActivity.this, "Failed to create product!", Toast.LENGTH_SHORT).show();
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
@@ -138,10 +155,9 @@ public class CategoryActivity extends AppCompatActivity {
         }
     }
 
-    private void proceedToCreateProduct() {
-        Intent j = new Intent(CategoryActivity.this, AddProductActivity.class);
+    private void proceedToInventory() {
+        Intent j = new Intent(AddProductActivity.this, InventoryActivityMain.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
-        finish();
     }
 }

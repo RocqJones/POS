@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.inventory.addsupplier;
+package com.intoverflown.pos.ui.inventory.postdata;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,7 +15,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.databinding.ActivityAddSupplierBinding;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
-import com.intoverflown.pos.ui.inventory.addproduct.AddProductActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
