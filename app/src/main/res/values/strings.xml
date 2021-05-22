@@ -97,5 +97,6 @@
     <string name="category">Category</string>
     <string name="supplier">Supplier:</string>
     <string name="product">Product</string>
+    <string name="user">User</string>
 
 </resources>
