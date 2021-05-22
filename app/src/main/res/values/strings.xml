@@ -90,5 +90,12 @@
     <string name="address">Address</string>
     <string name="remarks">Remarks</string>
     <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+    <string name="units">Units:</string>
+    <string name="g_kgs">g/kgs</string>
+    <string name="status">Status</string>
+    <string name="level">Level</string>
+    <string name="category">Category</string>
+    <string name="supplier">Supplier:</string>
+    <string name="product">Product</string>
 
 </resources>
