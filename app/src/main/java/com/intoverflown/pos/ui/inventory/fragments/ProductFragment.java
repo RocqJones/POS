@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.intoverflown.pos.databinding.FragmentProductBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.inventory.adapters.AdapterProducts;
-import com.intoverflown.pos.ui.inventory.addproduct.AddProductActivity;
+import com.intoverflown.pos.ui.inventory.postdata.AddProductActivity;
 import com.intoverflown.pos.ui.inventory.data.InventoryRemoteData;
 import com.intoverflown.pos.utils.Constants;
 

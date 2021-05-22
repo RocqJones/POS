@@ -19,7 +19,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.intoverflown.pos.databinding.FragmentProductCategoryBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.inventory.adapters.AdapterCategory;
-import com.intoverflown.pos.ui.inventory.addcategory.CategoryActivity;
+import com.intoverflown.pos.ui.inventory.postdata.AddCategoryActivity;
 import com.intoverflown.pos.ui.inventory.data.InventoryRemoteData;
 import com.intoverflown.pos.utils.Constants;
 
@@ -114,7 +114,7 @@ public class CategoryFragment extends Fragment {
     }
 
     private void intentToAddCategory() {
-        Intent j = new Intent(CategoryFragment.this.getContext(), CategoryActivity.class);
+        Intent j = new Intent(CategoryFragment.this.getContext(), AddCategoryActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
     }

@@ -18,7 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.intoverflown.pos.databinding.FragmentSupplierBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.inventory.adapters.AdapterSupplier;
-import com.intoverflown.pos.ui.inventory.addsupplier.AddSupplierActivity;
+import com.intoverflown.pos.ui.inventory.postdata.AddSupplierActivity;
 import com.intoverflown.pos.ui.inventory.data.InventoryRemoteData;
 import com.intoverflown.pos.utils.Constants;
 
