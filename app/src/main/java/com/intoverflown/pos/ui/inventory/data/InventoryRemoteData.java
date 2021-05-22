@@ -17,6 +17,42 @@ public class InventoryRemoteData {
     String name;
     String phone;
     String remarks;
+    String units;
+    String reOrderLevel;
+    String category;
+    String supplier;
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getReOrderLevel() {
+        return reOrderLevel;
+    }
+
+    public void setReOrderLevel(String reOrderLevel) {
+        this.reOrderLevel = reOrderLevel;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
 
     public String getCountryId() {
         return countryId;
