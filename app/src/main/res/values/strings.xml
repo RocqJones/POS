@@ -98,5 +98,11 @@
     <string name="supplier">Supplier:</string>
     <string name="product">Product</string>
     <string name="user">User</string>
+    <string name="create_order">Create Order</string>
+    <string name="order_date">Order Date</string>
+    <string name="_2021_01_01">2021-01-01</string>
+    <string name="required_date">Required Date</string>
+    <string name="discount">% Discount</string>
+    <string name="total_due_ksh">Total due (Ksh)</string>
 
 </resources>
