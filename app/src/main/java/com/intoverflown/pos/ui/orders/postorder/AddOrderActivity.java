@@ -221,7 +221,11 @@ public class AddOrderActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
-        }, Throwable::printStackTrace){
+        }, error -> {
+           error.printStackTrace();
+            progressDialog.dismiss();
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        }){
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<String, String>();
