@@ -10,10 +10,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.databinding.ActivityAddProductBinding;
+import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
 import com.intoverflown.pos.utils.Constants;
 
@@ -69,7 +68,6 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void postProduct(String url) {
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         JSONArray array = new JSONArray();
         JSONObject jsonObjects = new JSONObject();
 
@@ -151,7 +149,7 @@ public class AddProductActivity extends AppCompatActivity {
             jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-            queue.add(jsonObjectRequest);
+            MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
         }
     }
 
