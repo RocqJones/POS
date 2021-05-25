@@ -90,7 +90,7 @@ public class AddCategoryActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(com.android.volley.Request.Method.POST,
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(com.android.volley.Request.Method.POST,
                     url, array, response -> {
                 try {
                     Log.d("response", response.toString());
@@ -130,10 +130,10 @@ public class AddCategoryActivity extends AppCompatActivity {
                     return "application/json";
                 }
             };
-            jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+            jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-            queue.add(jsonObjectRequest);
+            queue.add(jsonArrayRequest);
         }
     }
 
