@@ -23,7 +23,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.RVHolder> {
         return 0;
     }
 
-    public class RVHolder extends RecyclerView.ViewHolder {
+    static class RVHolder extends RecyclerView.ViewHolder {
         public RVHolder(@NonNull View itemView) {
             super(itemView);
         }
