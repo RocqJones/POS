@@ -104,5 +104,12 @@
     <string name="required_date">Required Date</string>
     <string name="discount">% Discount</string>
     <string name="total_due_ksh">Total due (Ksh)</string>
+    <string name="order_no">Order NO</string>
+    <string name="cdrd">CDRD</string>
+    <string name="shipping_date">Shipping Date</string>
+    <string name="customer">Customer</string>
+    <string name="unit_cost_ksh">Unit cost (Ksh.)</string>
+    <string name="_0_0">0.0</string>
+    <string name="total_order_ksh">Total Order (Ksh.)</string>
 
 </resources>
