@@ -155,7 +155,7 @@ public class AddOrderActivity extends AppCompatActivity {
         double discount = Double.parseDouble(binding.orderDiscount.getText().toString().trim());
         double totalDue = Double.parseDouble(binding.orderTotalDue.getText().toString().trim());
         String orderStatusId = "Quote";
-        String orderNo = "RSFVSF";
+        String orderNo = "RSFSD";
         String paymentTypeId = "Cash";
         String shippingDate = "23-07-21";
         String shippingAddress = "KE";
