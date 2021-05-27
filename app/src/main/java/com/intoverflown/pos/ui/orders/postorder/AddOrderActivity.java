@@ -281,7 +281,6 @@ public class AddOrderActivity extends AppCompatActivity {
 
     static Integer getOrderId(int r) {
         Random rand = new Random();
-        int rand_int = rand.nextInt(r);
-        return rand_int;
+        return rand.nextInt(r);
     }
 }
