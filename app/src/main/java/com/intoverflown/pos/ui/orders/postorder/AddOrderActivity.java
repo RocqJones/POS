@@ -160,7 +160,7 @@ public class AddOrderActivity extends AppCompatActivity {
         String paymentTypeId = "Cash";
         String shippingDate = "23-07-21";
         String shippingAddress = "KE";
-        String orderId = "none";
+        int orderId = getOrderId(500);
         int totalOrderAmt = 33;
 
         // I will check not empty here later
@@ -276,5 +276,12 @@ public class AddOrderActivity extends AppCompatActivity {
         }
 
         return r.toString().toUpperCase();
+    }
+
+    static Integer getOrderId(int r) {
+        Random rand = new Random();
+        int rand_int = rand.nextInt(r);
+        System.out.println(rand_int);
+        return rand_int;
     }
 }
