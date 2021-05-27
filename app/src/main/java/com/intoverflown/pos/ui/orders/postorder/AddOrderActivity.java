@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.intoverflown.pos.databinding.ActivityAddOrderBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.orders.OrdersActivity;
@@ -259,7 +260,7 @@ public class AddOrderActivity extends AppCompatActivity {
         String randomString = new String(array, StandardCharsets.UTF_8);
 
         // Create a StringBuffer to store the result and remove all special chars
-        StringBuffer r = new StringBuffer();
+        StringBuilder r = new StringBuilder();
         String  AlphaNumericString = randomString.replaceAll("[^A-Za-z0-9]", "");
 
         // Append first 20 alphanumeric characters from the generated random String into the result
@@ -281,7 +282,6 @@ public class AddOrderActivity extends AppCompatActivity {
     static Integer getOrderId(int r) {
         Random rand = new Random();
         int rand_int = rand.nextInt(r);
-        System.out.println(rand_int);
         return rand_int;
     }
 }
