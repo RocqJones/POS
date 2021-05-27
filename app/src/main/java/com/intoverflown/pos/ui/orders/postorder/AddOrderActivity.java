@@ -17,7 +17,6 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.intoverflown.pos.databinding.ActivityAddOrderBinding;
 import com.intoverflown.pos.patterns.MySingleton;
-import com.intoverflown.pos.ui.inventory.postdata.AddCategoryActivity;
 import com.intoverflown.pos.ui.orders.OrdersActivity;
 import com.intoverflown.pos.utils.Constants;
 
@@ -25,11 +24,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class AddOrderActivity extends AppCompatActivity {
 
@@ -155,7 +156,7 @@ public class AddOrderActivity extends AppCompatActivity {
         double discount = Double.parseDouble(binding.orderDiscount.getText().toString().trim());
         double totalDue = Double.parseDouble(binding.orderTotalDue.getText().toString().trim());
         String orderStatusId = "Quote";
-        String orderNo = "RSFSD";
+        String orderNo = getRandomOrderNo(5);
         String paymentTypeId = "Cash";
         String shippingDate = "23-07-21";
         String shippingAddress = "KE";
@@ -248,5 +249,32 @@ public class AddOrderActivity extends AppCompatActivity {
         Intent k = new Intent(this, OrdersActivity.class);
         k.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(k);
+    }
+
+    static String getRandomOrderNo(int n) {
+        // length is bounded by 256 Character
+        byte[] array = new byte[256];
+        new Random().nextBytes(array);
+
+        String randomString = new String(array, StandardCharsets.UTF_8);
+
+        // Create a StringBuffer to store the result and remove all special chars
+        StringBuffer r = new StringBuffer();
+        String  AlphaNumericString = randomString.replaceAll("[^A-Za-z0-9]", "");
+
+        // Append first 20 alphanumeric characters from the generated random String into the result
+        for (int k = 0; k < AlphaNumericString.length(); k++) {
+
+            if (Character.isLetter(AlphaNumericString.charAt(k))
+                    && (n > 0)
+                    || Character.isDigit(AlphaNumericString.charAt(k))
+                    && (n > 0)) {
+
+                r.append(AlphaNumericString.charAt(k));
+                n--;
+            }
+        }
+
+        return r.toString().toUpperCase();
     }
 }
