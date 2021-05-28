@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.goodreturn;
+package com.intoverflown.pos.ui.returngoods;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.intoverflown.pos.MainActivity;
 import com.intoverflown.pos.databinding.ActivityInwardsOutwardsBinding;
-import com.intoverflown.pos.ui.goodreturn.ui.main.SectionsPagerAdapter;
+import com.intoverflown.pos.ui.returngoods.ui.main.SectionsPagerAdapter;
 
 public class InwardsOutwardsActivity extends AppCompatActivity {
 

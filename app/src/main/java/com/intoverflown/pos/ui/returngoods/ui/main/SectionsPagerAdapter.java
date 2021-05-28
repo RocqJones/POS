@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.goodreturn.ui.main;
+package com.intoverflown.pos.ui.returngoods.ui.main;
 
 import android.content.Context;
 
@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.intoverflown.pos.R;
-import com.intoverflown.pos.ui.goodreturn.fragments.InwardsFragment;
-import com.intoverflown.pos.ui.goodreturn.fragments.OutwardsFragment;
+import com.intoverflown.pos.ui.returngoods.fragments.InwardsFragment;
+import com.intoverflown.pos.ui.returngoods.fragments.OutwardsFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

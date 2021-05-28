@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.goodreturn.ui.main;
+package com.intoverflown.pos.ui.returngoods.ui.main;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
