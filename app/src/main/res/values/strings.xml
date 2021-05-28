@@ -111,5 +111,6 @@
     <string name="unit_cost_ksh">Unit cost (Ksh.)</string>
     <string name="_0_0">0.0</string>
     <string name="total_order_ksh">Total Order (Ksh.)</string>
+    <string name="goods_return">Goods Return</string>
 
 </resources>
