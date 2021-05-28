@@ -13,8 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
         <activity
+            android:name=".ui.returngoods.InwardsOutwardsActivity"
+            android:label="@string/title_activity_inwards_outwards"
+            android:theme="@style/Theme.POS.NoActionBar" />
+        <activity
             android:name=".ui.orders.postorder.AddOrderActivity"
-            android:theme="@style/Theme.POS.NoActionBar"/>
+            android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.customers.addcustomers.AddCustomerActivity"
             android:label="@string/add_customer"
