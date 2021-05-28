@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.intoverflown.pos.databinding.ActivityAddOrderBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.orders.OrdersActivity;
