@@ -13,6 +13,7 @@ import com.intoverflown.pos.databinding.FragmentHomeBinding;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
 import com.intoverflown.pos.ui.orders.OrdersActivity;
 import com.intoverflown.pos.ui.registerbranch.NewBranchActivity;
+import com.intoverflown.pos.ui.returngoods.InwardsOutwardsActivity;
 import com.intoverflown.pos.ui.salesnexpenses.SalesAndExpenses;
 
 public class HomeFragment  extends Fragment {
@@ -51,6 +52,12 @@ public class HomeFragment  extends Fragment {
             Intent l = new Intent(HomeFragment.this.getContext(), OrdersActivity.class);
             l.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(l);
+        });
+
+        binding.homeReturnInOut.setOnClickListener(v -> {
+            Intent m = new Intent(HomeFragment.this.getContext(), InwardsOutwardsActivity.class);
+            m.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(m);
         });
     }
 }
