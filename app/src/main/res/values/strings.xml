@@ -95,12 +95,12 @@
     <string name="status">Status</string>
     <string name="level">Level</string>
     <string name="category">Category</string>
-    <string name="supplier">Supplier:</string>
+    <string name="supplier">Supplier</string>
     <string name="product">Product</string>
     <string name="user">User</string>
     <string name="create_order">Create Order</string>
     <string name="order_date">Order Date</string>
-    <string name="_2021_01_01">2021-01-01</string>
+    <string name="_2021_01_01">2021–01–01</string>
     <string name="required_date">Required Date</string>
     <string name="discount">% Discount</string>
     <string name="total_due_ksh">Total due (Ksh)</string>
@@ -111,6 +111,20 @@
     <string name="unit_cost_ksh">Unit cost (Ksh.)</string>
     <string name="_0_0">0.0</string>
     <string name="total_order_ksh">Total Order (Ksh.)</string>
-    <string name="goods_return">Goods Return</string>
+    <string name="goods_return">Return Goods</string>
+    <string name="title_activity_inwards_outwards">InwardsOutwardsActivity</string>
+    <string name="inwards_outwards_returns">Return Goods</string>
+
+    <string name="tab_inwards_1">Inwards</string>
+    <string name="tab_outwards_2">Outwards</string>
+    <string name="add_return_inwards">Add Return Inwards</string>
+    <string name="merchant_branch">Merchant Branch</string>
+    <string name="date_delivered">Date Delivered</string>
+    <string name="returned_quantity">Returned Quantity</string>
+    <string name="returned_reason">Returned Reason</string>
+    <string name="add_returned_outwards">Add Returned Outwards</string>
+    <string name="create_return_inwards">Create Return Inwards</string>
+    <string name="create_return_outwards">Create Return Outwards</string>
+    <string name="returned_date">Returned Date</string>
 
 </resources>
