@@ -147,8 +147,8 @@ public class AddInwardsActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/json");
                 params.put("Authorization", "Bearer " + token);
+                params.put("Content-Type", "application/json");
                 return params;
             }
 
