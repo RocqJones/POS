@@ -333,7 +333,7 @@
                             android:textStyle="bold"
                             android:textSize="14sp"
                             android:textColor="@color/text_color_blue"
-                            android:text="@string/required_date"/>
+                            android:text="@string/returned_date"/>
 
                         <EditText
                             android:id="@+id/selectReturnedDate"
