@@ -33,9 +33,11 @@ public class NewBranchActivity extends AppCompatActivity {
     public String SHARED_PREF_NAME = "pos_pref";
     public String KEY_ID = "Id";
     public String KEY_TOKEN = "Token";
+    public String MERCHANT_ID = "merchantId";
 
     String uid;
     String token;
+    Integer merchantId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class NewBranchActivity extends AppCompatActivity {
 
         uid = preferences.getString(KEY_ID, "Id");
         token = preferences.getString(KEY_TOKEN, "Token");
+        merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
 
         Log.d("uid new branch", uid);
         Log.d("token new branch", token);
@@ -84,6 +87,7 @@ public class NewBranchActivity extends AppCompatActivity {
             progressDialog.show();
 
             try {
+                jsonObjects.put("MerchantId", merchantId);
                 jsonObjects.put("RegionId", region);
                 jsonObjects.put("BranchName", branchName);
                 jsonObjects.put("Address", address);
