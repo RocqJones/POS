@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.intoverflown.pos.databinding.FragmentOrdersBinding;
 import com.intoverflown.pos.patterns.MySingleton;
+import com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity;
 import com.intoverflown.pos.ui.orders.adapter.AdapterOrder;
 import com.intoverflown.pos.ui.orders.data.OrderRemoteData;
 import com.intoverflown.pos.ui.orders.postorder.AddOrderActivity;
@@ -71,7 +72,13 @@ public class OrdersFragment extends Fragment {
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
         merchantId = Integer.parseInt(preferences.getString(MERCHANT_ID, "merchantId"));
-        customerId = Integer.parseInt(preferences.getString(CUSTOMER_ID, "customerId"));
+        if (preferences.contains("customerId")) {
+            customerId = Integer.parseInt(preferences.getString(CUSTOMER_ID, "customerId"));
+        } else {
+            Intent tC = new Intent(OrdersFragment.this.getContext(), AddCustomerActivity.class);
+            tC.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(tC);
+        }
 
         String url = Constants.BASE_URL + "Order/?Id=0&CustomerId=";
         getAllOrders(url);
