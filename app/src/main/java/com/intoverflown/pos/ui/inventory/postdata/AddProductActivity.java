@@ -14,6 +14,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.intoverflown.pos.databinding.ActivityAddProductBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -57,9 +58,26 @@ public class AddProductActivity extends AppCompatActivity {
 
         uid = preferences.getString(KEY_ID, "Id");
         token = preferences.getString(KEY_TOKEN, "Token");
-        merchantId = preferences.getString(MERCHANT_ID, "merchantId");
-        categoryId = preferences.getString(CATEGORY_ID, "categoryId");
-        supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
+        if (preferences.contains("merchantId")) {
+            merchantId = preferences.getString(MERCHANT_ID, "merchantId");
+        } else {
+            Intent mC = new Intent(this, AddMerchantActivity.class);
+            startActivity(mC);
+        }
+
+        if (preferences.contains("categoryId")) {
+            categoryId = preferences.getString(CATEGORY_ID, "categoryId");
+        } else {
+            Intent cT = new Intent(this, AddCategoryActivity.class);
+            startActivity(cT);
+        }
+
+        if (preferences.contains("supplierId")) {
+            supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
+        } else {
+            Intent sP = new Intent(this, AddSupplierActivity.class);
+            startActivity(sP);
+        }
 
         binding.addSaveBtn.setOnClickListener(v -> {
             String url = Constants.BASE_URL + "Product/Create";
