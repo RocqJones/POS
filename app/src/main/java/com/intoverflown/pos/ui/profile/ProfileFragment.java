@@ -73,7 +73,13 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getMerchantDetails(String url) {
-        merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        if (preferences.contains("merchantId")) {
+            merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        } else {
+            Intent mer = new Intent(ProfileFragment.this.getContext(), AddMerchantActivity.class);
+            mer.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(mer);
+        }
         token = preferences.getString("Token", "Token");
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
