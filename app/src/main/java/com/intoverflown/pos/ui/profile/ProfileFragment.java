@@ -127,7 +127,12 @@ public class ProfileFragment extends Fragment {
         binding.profileName.setText(fullName);
         binding.profileEmail.setText(userEmail);
 
-        binding.profileMerchantName.setText(preferences.getString("merchantName", "merchantName"));
-        binding.profileLocation.setText(preferences.getString("countryId", "countryId"));
+        if (preferences.contains("merchantName") && preferences.contains("countryId")) {
+            binding.profileMerchantName.setText(preferences.getString("merchantName", "merchantName"));
+            binding.profileLocation.setText(preferences.getString("countryId", "countryId"));
+        } else {
+            Intent pM = new Intent(ProfileFragment.this.getContext(), AddMerchantActivity.class);
+            startActivity(pM);
+        }
     }
 }
