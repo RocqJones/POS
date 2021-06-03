@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +18,10 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.intoverflown.pos.databinding.ActivityAddOrderBinding;
 import com.intoverflown.pos.patterns.MySingleton;
+import com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity;
+import com.intoverflown.pos.ui.inventory.postdata.AddSupplierActivity;
 import com.intoverflown.pos.ui.orders.OrdersActivity;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -59,6 +63,11 @@ public class AddOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        String[] paymentTypes = {"Cash", "Mobile", "Card"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, paymentTypes);
+        binding.paymentType.setAdapter(adapter);
 
         // order date picker
         binding.orderDate.setOnClickListener(v -> {
@@ -144,9 +153,26 @@ public class AddOrderActivity extends AppCompatActivity {
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         uid = preferences.getString(KEY_ID, "Id");
         token = preferences.getString(KEY_TOKEN, "Token");
-        merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
-        supplierId = Integer.valueOf(preferences.getString(SUPPLIER_ID, "supplierId"));
-        customerId = Integer.valueOf(preferences.getString(CUSTOMER_ID, "customerId"));
+        if (preferences.contains("merchantId")) {
+            merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        } else {
+            Intent mC = new Intent(this, AddMerchantActivity.class);
+            startActivity(mC);
+        }
+
+        if (preferences.contains("supplierId")) {
+            supplierId = Integer.valueOf(preferences.getString(SUPPLIER_ID, "supplierId"));
+        } else {
+            Intent sP = new Intent(this, AddSupplierActivity.class);
+            startActivity(sP);
+        }
+
+        if (preferences.contains("customerId")) {
+            customerId = Integer.valueOf(preferences.getString(CUSTOMER_ID, "customerId"));
+        } else {
+            Intent cM = new Intent(this, AddCustomerActivity.class);
+            startActivity(cM);
+        }
 //        productId = Integer.valueOf(preferences.getString(PRODUCT_ID, "createProductId"));
         productId = 10;
         binding.orderCreateBtn.setOnClickListener(v -> {
@@ -168,8 +194,8 @@ public class AddOrderActivity extends AppCompatActivity {
         double totalDue = Double.parseDouble(binding.orderTotalDue.getText().toString().trim());
         String orderStatusId = "Quote";
         String orderNo = getRandomOrderNo(5);
-        String paymentTypeId = "Cash";
-        String shippingDate = "2021-06-06";
+        String paymentTypeId = binding.paymentType.getSelectedItem().toString().trim();
+        String shippingDate = binding.shippingDate.getText().toString().trim();
         String shippingAddress = "KE";
         int orderId = getOrderId(500);
         int totalOrderAmt = 33;
