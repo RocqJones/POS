@@ -174,19 +174,19 @@ public class AddInwardsActivity extends AppCompatActivity {
     }
 
     private void updateLabel1() {
-        String format = "dd/mm/yyyy";
+        String format = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
         binding.selectOrderDate.setText(simpleDateFormat.format(myCalender.getTime()));
     }
 
     private void updateLabel2() {
-        String format = "dd/mm/yyyy";
+        String format = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
         binding.selectDateDelivered.setText(simpleDateFormat.format(myCalender.getTime()));
     }
 
     private void updateLabel3() {
-        String format = "dd/mm/yyyy";
+        String format = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
         binding.selectReturnedDate.setText(simpleDateFormat.format(myCalender.getTime()));
     }
