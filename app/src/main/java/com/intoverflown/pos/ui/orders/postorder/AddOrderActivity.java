@@ -25,10 +25,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -54,29 +52,59 @@ public class AddOrderActivity extends AppCompatActivity {
     Integer customerId;
     Integer productId;
 
+    String m, d;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Date picker
-        DatePickerDialog.OnDateSetListener date = (view, year, month, dayOfMonth) -> {
-            myCalender.set(Calendar.YEAR, year);
-            myCalender.set(Calendar.MONTH, month);
-            myCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel1();
-        };
+        // order date picker
+        binding.orderDate.setOnClickListener(v -> {
+            int mYear = myCalender.get(Calendar.YEAR);
+            int mMonth = myCalender.get(Calendar.MONTH);
+            int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                myCalender.set(year, month, dayOfMonth);
+                if(month < 10){
+                    m ="0" + (month + 1);
+                } else {
+                    m = ""+ (month + 1);
+                }
+                if (dayOfMonth<10){
+                    d ="0"+ dayOfMonth;
+                } else {
+                    d = "" + dayOfMonth;
+                }
+                String fnD = year + "-" + m + "-" + d;
+                binding.orderDate.setText(fnD);
+            },mYear, mMonth, mDay);
+            datePickerDialog.show();
+        });
 
-        DatePickerDialog.OnDateSetListener date2 = (view, year, month, dayOfMonth) -> {
-            myCalender.set(Calendar.YEAR, year);
-            myCalender.set(Calendar.MONTH, month);
-            myCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel2();
-        };
-
-        binding.orderDate.setOnClickListener(v -> datePickerDialog(date));
-        binding.requiredDate.setOnClickListener(v -> datePickerDialog(date2));
+        // required date picker
+        binding.requiredDate.setOnClickListener(v -> {
+            int mYear = myCalender.get(Calendar.YEAR);
+            int mMonth = myCalender.get(Calendar.MONTH);
+            int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                myCalender.set(year, month, dayOfMonth);
+                if(month < 10){
+                    m ="0" + (month + 1);
+                } else {
+                    m = ""+ (month + 1);
+                }
+                if (dayOfMonth<10){
+                    d ="0"+ dayOfMonth;
+                } else {
+                    d = "" + dayOfMonth;
+                }
+                String fnD = year + "-" + m + "-" + d;
+                binding.requiredDate.setText(fnD);
+            },mYear, mMonth, mDay);
+            datePickerDialog.show();
+        });
 
         // auto calculate due cost
         TextWatcher textWatcher = new TextWatcher() {
@@ -125,23 +153,6 @@ public class AddOrderActivity extends AppCompatActivity {
             String url = Constants.BASE_URL + "Order/Create";
             postOrder(url);
         });
-    }
-
-    private void datePickerDialog(DatePickerDialog.OnDateSetListener date) {
-        new DatePickerDialog(this, date, myCalender.get(Calendar.YEAR),
-                myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
-    }
-
-    private void updateLabel1() {
-        String format = "yyyy-mm-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
-        binding.orderDate.setText(simpleDateFormat.format(myCalender.getTime()));
-    }
-
-    private void updateLabel2() {
-        String format = "yyyy-mm-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
-        binding.requiredDate.setText(simpleDateFormat.format(myCalender.getTime()));
     }
 
     private void postOrder(String url) {
