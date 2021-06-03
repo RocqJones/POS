@@ -122,7 +122,7 @@
     <string name="date_delivered">Date Delivered</string>
     <string name="returned_quantity">Returned Quantity</string>
     <string name="returned_reason">Returned Reason</string>
-    <string name="add_returned_outwards">Add Returned Outwards</string>
+    <string name="add_returned_outwards">Add Return Outwards</string>
     <string name="create_return_inwards">Create Return Inwards</string>
     <string name="create_return_outwards">Create Return Outwards</string>
     <string name="returned_date">Returned Date</string>
