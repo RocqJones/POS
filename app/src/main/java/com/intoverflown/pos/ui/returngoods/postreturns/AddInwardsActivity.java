@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -23,11 +22,8 @@ import com.intoverflown.pos.utils.Constants;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class AddInwardsActivity extends AppCompatActivity {
@@ -70,22 +66,20 @@ public class AddInwardsActivity extends AppCompatActivity {
             int mYear = myCalender.get(Calendar.YEAR);
             int mMonth = myCalender.get(Calendar.MONTH);
             int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    myCalender.set(year, month, dayOfMonth);
-                    if(month < 10){
-                        m ="0" + (month + 1);
-                    } else {
-                        m = ""+ (month + 1);
-                    }
-                    if (dayOfMonth<10){
-                        d ="0"+ dayOfMonth;
-                    } else {
-                        d = "" + dayOfMonth;
-                    }
-                    binding.selectOrderDate.setText(year + "-" + m + "-" + d);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                myCalender.set(year, month, dayOfMonth);
+                if(month < 10){
+                    m ="0" + (month + 1);
+                } else {
+                    m = ""+ (month + 1);
                 }
+                if (dayOfMonth<10){
+                    d ="0"+ dayOfMonth;
+                } else {
+                    d = "" + dayOfMonth;
+                }
+                String fnD = year + "-" + m + "-" + d;
+                binding.selectOrderDate.setText(fnD);
             },mYear, mMonth, mDay);
             datePickerDialog.show();
         });
@@ -95,22 +89,20 @@ public class AddInwardsActivity extends AppCompatActivity {
             int mYear = myCalender.get(Calendar.YEAR);
             int mMonth = myCalender.get(Calendar.MONTH);
             int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    myCalender.set(year, month, dayOfMonth);
-                    if(month < 10){
-                        m ="0" + (month + 1);
-                    } else {
-                        m = ""+ (month + 1);
-                    }
-                    if (dayOfMonth<10){
-                        d ="0"+ dayOfMonth;
-                    } else {
-                        d = "" + dayOfMonth;
-                    }
-                    binding.selectDateDelivered.setText(year + "-" + m + "-" + d);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                myCalender.set(year, month, dayOfMonth);
+                if(month < 10){
+                    m ="0" + (month + 1);
+                } else {
+                    m = ""+ (month + 1);
                 }
+                if (dayOfMonth<10){
+                    d ="0"+ dayOfMonth;
+                } else {
+                    d = "" + dayOfMonth;
+                }
+                String fnD = year + "-" + m + "-" + d;
+                binding.selectDateDelivered.setText(fnD);
             },mYear, mMonth, mDay);
             datePickerDialog.show();
         });
@@ -120,22 +112,20 @@ public class AddInwardsActivity extends AppCompatActivity {
             int mYear = myCalender.get(Calendar.YEAR);
             int mMonth = myCalender.get(Calendar.MONTH);
             int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    myCalender.set(year, month, dayOfMonth);
-                    if(month < 10){
-                        m ="0" + (month + 1);
-                    } else {
-                        m = ""+ (month + 1);
-                    }
-                    if (dayOfMonth<10){
-                        d ="0"+ dayOfMonth;
-                    } else {
-                        d = "" + dayOfMonth;
-                    }
-                    binding.selectReturnedDate.setText(year + "-" + m + "-" + d);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                myCalender.set(year, month, dayOfMonth);
+                if(month < 10){
+                    m ="0" + (month + 1);
+                } else {
+                    m = ""+ (month + 1);
                 }
+                if (dayOfMonth<10){
+                    d ="0"+ dayOfMonth;
+                } else {
+                    d = "" + dayOfMonth;
+                }
+                String fnD = year + "-" + m + "-" + d;
+                binding.selectReturnedDate.setText(fnD);
             },mYear, mMonth, mDay);
             datePickerDialog.show();
         });
