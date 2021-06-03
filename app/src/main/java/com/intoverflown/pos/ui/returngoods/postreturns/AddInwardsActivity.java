@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +25,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -48,6 +51,8 @@ public class AddInwardsActivity extends AppCompatActivity {
     Integer customerId;
     String merchantBranchId;
 
+    String m, d;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,31 +65,80 @@ public class AddInwardsActivity extends AppCompatActivity {
             startActivity(i);
         });
 
-        // Date picker
-        DatePickerDialog.OnDateSetListener date1 = (view, year, month, dayOfMonth) -> {
-            myCalender.set(Calendar.YEAR, year);
-            myCalender.set(Calendar.MONTH, month);
-            myCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel1();
-        };
+        // order date picker
+        binding.selectOrderDate.setOnClickListener(v -> {
+            int mYear = myCalender.get(Calendar.YEAR);
+            int mMonth = myCalender.get(Calendar.MONTH);
+            int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    myCalender.set(year, month, dayOfMonth);
+                    if(month < 10){
+                        m ="0" + (month + 1);
+                    } else {
+                        m = ""+ (month + 1);
+                    }
+                    if (dayOfMonth<10){
+                        d ="0"+ dayOfMonth;
+                    } else {
+                        d = "" + dayOfMonth;
+                    }
+                    binding.selectOrderDate.setText(year + "-" + m + "-" + d);
+                }
+            },mYear, mMonth, mDay);
+            datePickerDialog.show();
+        });
 
-        DatePickerDialog.OnDateSetListener date2 = (view, year, month, dayOfMonth) -> {
-            myCalender.set(Calendar.YEAR, year);
-            myCalender.set(Calendar.MONTH, month);
-            myCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel2();
-        };
+        // delivered date picker
+        binding.selectDateDelivered.setOnClickListener(v -> {
+            int mYear = myCalender.get(Calendar.YEAR);
+            int mMonth = myCalender.get(Calendar.MONTH);
+            int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    myCalender.set(year, month, dayOfMonth);
+                    if(month < 10){
+                        m ="0" + (month + 1);
+                    } else {
+                        m = ""+ (month + 1);
+                    }
+                    if (dayOfMonth<10){
+                        d ="0"+ dayOfMonth;
+                    } else {
+                        d = "" + dayOfMonth;
+                    }
+                    binding.selectDateDelivered.setText(year + "-" + m + "-" + d);
+                }
+            },mYear, mMonth, mDay);
+            datePickerDialog.show();
+        });
 
-        DatePickerDialog.OnDateSetListener date3 = (view, year, month, dayOfMonth) -> {
-            myCalender.set(Calendar.YEAR, year);
-            myCalender.set(Calendar.MONTH, month);
-            myCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel3();
-        };
-
-        binding.selectOrderDate.setOnClickListener(v -> datePickerDialog(date1));
-        binding.selectDateDelivered.setOnClickListener(v -> datePickerDialog(date2));
-        binding.selectReturnedDate.setOnClickListener(v -> datePickerDialog(date3));
+        // returned date picker
+        binding.selectReturnedDate.setOnClickListener(v -> {
+            int mYear = myCalender.get(Calendar.YEAR);
+            int mMonth = myCalender.get(Calendar.MONTH);
+            int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    myCalender.set(year, month, dayOfMonth);
+                    if(month < 10){
+                        m ="0" + (month + 1);
+                    } else {
+                        m = ""+ (month + 1);
+                    }
+                    if (dayOfMonth<10){
+                        d ="0"+ dayOfMonth;
+                    } else {
+                        d = "" + dayOfMonth;
+                    }
+                    binding.selectReturnedDate.setText(year + "-" + m + "-" + d);
+                }
+            },mYear, mMonth, mDay);
+            datePickerDialog.show();
+        });
 
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         uid = preferences.getString(KEY_ID, "Id");
@@ -166,28 +220,5 @@ public class AddInwardsActivity extends AppCompatActivity {
         Intent j = new Intent(this, InwardsOutwardsActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
-    }
-
-    private void datePickerDialog(DatePickerDialog.OnDateSetListener date) {
-        new DatePickerDialog(this, date, myCalender.get(Calendar.YEAR),
-                myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
-    }
-
-    private void updateLabel1() {
-        String format = "yyyy-mm-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
-        binding.selectOrderDate.setText(simpleDateFormat.format(myCalender.getTime()));
-    }
-
-    private void updateLabel2() {
-        String format = "yyyy-mm-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
-        binding.selectDateDelivered.setText(simpleDateFormat.format(myCalender.getTime()));
-    }
-
-    private void updateLabel3() {
-        String format = "yyyy-mm-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
-        binding.selectReturnedDate.setText(simpleDateFormat.format(myCalender.getTime()));
     }
 }
