@@ -36,11 +36,11 @@ public class HomeFragment  extends Fragment {
             startActivity(i);
         });
 
-        binding.homeSalesExp.setOnClickListener(v -> {
-            Intent j = new Intent(HomeFragment.this.getContext(), SalesAndExpenses.class);
-            j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(j);
-        });
+//        binding.homeSalesExp.setOnClickListener(v -> {
+//            Intent j = new Intent(HomeFragment.this.getContext(), SalesAndExpenses.class);
+//            j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(j);
+//        });
 
         binding.homeMerchants.setOnClickListener(v -> {
             Intent k = new Intent(HomeFragment.this.getContext(), NewBranchActivity.class);

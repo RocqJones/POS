@@ -22,6 +22,7 @@ import com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity;
 import com.intoverflown.pos.ui.orders.adapter.AdapterOrder;
 import com.intoverflown.pos.ui.orders.data.OrderRemoteData;
 import com.intoverflown.pos.ui.orders.postorder.AddOrderActivity;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -71,7 +72,12 @@ public class OrdersFragment extends Fragment {
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
-        merchantId = Integer.parseInt(preferences.getString(MERCHANT_ID, "merchantId"));
+        if (preferences.contains("merchantId")) {
+            merchantId = Integer.parseInt(preferences.getString(MERCHANT_ID, "merchantId"));
+        } else {
+            Intent mI = new Intent(OrdersFragment.this.getContext(), AddMerchantActivity.class);
+            startActivity(mI);
+        }
         if (preferences.contains("customerId")) {
             customerId = Integer.parseInt(preferences.getString(CUSTOMER_ID, "customerId"));
         } else {

@@ -15,6 +15,9 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.intoverflown.pos.databinding.ActivityAddOutwardsBinding;
 import com.intoverflown.pos.patterns.MySingleton;
+import com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity;
+import com.intoverflown.pos.ui.inventory.postdata.AddSupplierActivity;
+import com.intoverflown.pos.ui.registerbranch.NewBranchActivity;
 import com.intoverflown.pos.ui.returngoods.InwardsOutwardsActivity;
 import com.intoverflown.pos.utils.Constants;
 
@@ -60,7 +63,7 @@ public class AddOutwardsActivity extends AppCompatActivity {
             startActivity(i);
         });
 
-// order date picker
+        // order date picker
         binding.selectOrderDate.setOnClickListener(v -> {
             int mYear = myCalender.get(Calendar.YEAR);
             int mMonth = myCalender.get(Calendar.MONTH);
@@ -132,9 +135,26 @@ public class AddOutwardsActivity extends AppCompatActivity {
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         uid = preferences.getString(KEY_ID, "Id");
         token = preferences.getString(KEY_TOKEN, "Token");
-        supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
-        merchantBranchId = preferences.getString(MERCHANT_BRANCH, "merchantBranchId");
-        customerId = Integer.valueOf(preferences.getString(CUSTOMER_ID, "customerId"));
+        if (preferences.contains("supplierId")) {
+            supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
+        } else {
+            Intent sP = new Intent(this, AddSupplierActivity.class);
+            startActivity(sP);
+        }
+
+        if (preferences.contains("merchantBranchId")) {
+            merchantBranchId = preferences.getString(MERCHANT_BRANCH, "merchantBranchId");
+        } else {
+            Intent mB = new Intent(this, NewBranchActivity.class);
+            startActivity(mB);
+        }
+
+        if (preferences.contains("customerId")) {
+            customerId = Integer.valueOf(preferences.getString(CUSTOMER_ID, "customerId"));
+        } else {
+            Intent cS = new Intent(this, AddCustomerActivity.class);
+            startActivity(cS);
+        }
 
         binding.createReturnOut.setOnClickListener(v -> {
             String url = Constants.BASE_URL + "ReturnOutward/Create";

@@ -20,6 +20,7 @@ import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.customers.adapter.AdapterCustomer;
 import com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity;
 import com.intoverflown.pos.ui.customers.data.Customer;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -66,7 +67,12 @@ public class CustomersFragment extends Fragment {
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
-        merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        if (preferences.contains("merchantId")) {
+            merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        } else {
+            Intent mC = new Intent(CustomersFragment.this.getContext(), AddMerchantActivity.class);
+            startActivity(mC);
+        }
 
         String url = Constants.BASE_URL + "Customer/GetCustomerList?MerchantId=";
         getCustomerList(url);

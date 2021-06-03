@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.intoverflown.pos.databinding.ActivityMainBinding
 import com.intoverflown.pos.ui.notification.NotificationActivity
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,7 +45,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE)
-        merchantName = preferences?.getString(MERCHANT_NAME, "merchantName")
+
+        if (preferences!!.contains("merchantName")) {
+            merchantName = preferences?.getString(MERCHANT_NAME, "merchantName")
+        } else {
+            val mN = Intent(this, AddMerchantActivity::class.java)
+            mN.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(mN)
+        }
+
         userName = (preferences?.getString("FirstName", "FirstName")
                 + " " + preferences?.getString("LastName", "LastName"))
 

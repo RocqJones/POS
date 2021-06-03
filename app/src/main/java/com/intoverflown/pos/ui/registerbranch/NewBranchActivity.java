@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.MainActivity;
 import com.intoverflown.pos.databinding.ActivityNewBranchBinding;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -56,7 +57,12 @@ public class NewBranchActivity extends AppCompatActivity {
 
         uid = preferences.getString(KEY_ID, "Id");
         token = preferences.getString(KEY_TOKEN, "Token");
-        merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        if (preferences.contains("merchantId")) {
+            merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        } else {
+            Intent mI = new Intent(this, AddMerchantActivity.class);
+            startActivity(mI);
+        }
 
         Log.d("uid new branch", uid);
         Log.d("token new branch", token);
