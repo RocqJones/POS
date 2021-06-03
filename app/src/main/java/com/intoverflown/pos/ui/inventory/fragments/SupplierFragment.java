@@ -20,6 +20,7 @@ import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.inventory.adapters.AdapterSupplier;
 import com.intoverflown.pos.ui.inventory.postdata.AddSupplierActivity;
 import com.intoverflown.pos.ui.inventory.data.InventoryRemoteData;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -66,7 +67,12 @@ public class SupplierFragment extends Fragment {
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
-        merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        if (preferences.contains("merchantId")) {
+            merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        } else {
+            Intent mD = new Intent(SupplierFragment.this.getContext(), AddMerchantActivity.class);
+            startActivity(mD);
+        }
 
         String url = Constants.BASE_URL + "Supplier/GetSupplierList?MerchantId=";
         getSupplier(url);

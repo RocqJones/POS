@@ -18,8 +18,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.intoverflown.pos.databinding.FragmentProductBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.inventory.adapters.AdapterProducts;
+import com.intoverflown.pos.ui.inventory.postdata.AddCategoryActivity;
 import com.intoverflown.pos.ui.inventory.postdata.AddProductActivity;
 import com.intoverflown.pos.ui.inventory.data.InventoryRemoteData;
+import com.intoverflown.pos.ui.inventory.postdata.AddSupplierActivity;
+import com.intoverflown.pos.ui.profile.ProfileFragment;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -74,10 +78,30 @@ public class ProductFragment extends Fragment {
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
-        productId = preferences.getString(PRODUCT_ID, "createProductId");
-        categoryId = preferences.getString(CATEGORY_ID, "categoryId");
-        supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
-        merchantId = preferences.getString(MERCHANT_ID, "merchantId");
+        if (preferences.contains("createProductId")) {
+            productId = preferences.getString(PRODUCT_ID, "createProductId");
+        } else {
+            Intent pD = new Intent(ProductFragment.this.getContext(), AddProductActivity.class);
+            startActivity(pD);
+        }
+        if (preferences.contains("categoryId")) {
+            categoryId = preferences.getString(CATEGORY_ID, "categoryId");
+        } else {
+            Intent cG = new Intent(ProductFragment.this.getContext(), AddCategoryActivity.class);
+            startActivity(cG);
+        }
+        if (preferences.contains("supplierId")) {
+            supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
+        } else {
+            Intent sP = new Intent(ProductFragment.this.getContext(), AddSupplierActivity.class);
+            startActivity(sP);
+        }
+        if (preferences.contains("merchantId")) {
+            merchantId = preferences.getString(MERCHANT_ID, "merchantId");
+        } else {
+            Intent mD = new Intent(ProductFragment.this.getContext(), AddMerchantActivity.class);
+            startActivity(mD);
+        }
 
         String url = Constants.BASE_URL + "Product?Id=";
         getProductName(url);

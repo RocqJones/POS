@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.databinding.ActivityAddSupplierBinding;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -55,7 +56,12 @@ public class AddSupplierActivity extends AppCompatActivity {
 
         uid = preferences.getString(KEY_ID, "Id");
         token = preferences.getString(KEY_TOKEN, "Token");
-        merchantUid = preferences.getString(MERCHANT_ID, "merchantId");
+        if (preferences.contains("merchantId")) {
+            merchantUid = preferences.getString(MERCHANT_ID, "merchantId");
+        } else {
+            Intent mD = new Intent(this, AddMerchantActivity.class);
+            startActivity(mD);
+        }
 
         Log.d("uid supplier", uid);
         Log.d("token supplier", token);
