@@ -169,7 +169,7 @@ public class AddOrderActivity extends AppCompatActivity {
         String orderStatusId = "Quote";
         String orderNo = getRandomOrderNo(5);
         String paymentTypeId = "Cash";
-        String shippingDate = "23-07-21";
+        String shippingDate = "2021-06-06";
         String shippingAddress = "KE";
         int orderId = getOrderId(500);
         int totalOrderAmt = 33;
