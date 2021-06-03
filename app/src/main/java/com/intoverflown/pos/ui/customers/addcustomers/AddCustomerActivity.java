@@ -16,6 +16,7 @@
  import com.intoverflown.pos.MainActivity;
  import com.intoverflown.pos.databinding.ActivityAddCustomerBinding;
  import com.intoverflown.pos.patterns.MySingleton;
+ import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
  import com.intoverflown.pos.utils.Constants;
 
  import org.json.JSONArray;
@@ -62,7 +63,12 @@ public class AddCustomerActivity extends AppCompatActivity {
 
         uid = preferences.getString(KEY_ID, "Id");
         token = preferences.getString(KEY_TOKEN, "Token");
-        merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        if (preferences.contains("merchantId")) {
+            merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
+        } else {
+            Intent mD = new Intent(this, AddMerchantActivity.class);
+            startActivity(mD);
+        }
 
         binding.customerCreateBtn.setOnClickListener(v -> {
             String url = Constants.BASE_URL + "Customer/Create";
