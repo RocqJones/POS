@@ -133,13 +133,13 @@ public class AddOrderActivity extends AppCompatActivity {
     }
 
     private void updateLabel1() {
-        String format = "dd/mm/yyyy";
+        String format = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
         binding.orderDate.setText(simpleDateFormat.format(myCalender.getTime()));
     }
 
     private void updateLabel2() {
-        String format = "dd/mm/yyyy";
+        String format = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
         binding.requiredDate.setText(simpleDateFormat.format(myCalender.getTime()));
     }
