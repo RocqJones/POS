@@ -108,7 +108,7 @@ public class AddOutwardsActivity extends AppCompatActivity {
         String returnReason = binding.returnedReason.getText().toString().trim();
 
         ProgressDialog progressDialog = new ProgressDialog(AddOutwardsActivity.this);
-        progressDialog.setMessage("Creating return inwards...");
+        progressDialog.setMessage("Creating return outwards...");
         progressDialog.show();
 
         JSONObject jsonObject = new JSONObject();
