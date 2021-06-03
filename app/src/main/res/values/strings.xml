@@ -126,5 +126,6 @@
     <string name="create_return_inwards">Create Return Inwards</string>
     <string name="create_return_outwards">Create Return Outwards</string>
     <string name="returned_date">Returned Date</string>
+    <string name="payment_type">Payment Type</string>
 
 </resources>
