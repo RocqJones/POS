@@ -1,4 +1,4 @@
-package com.intoverflown.pos.ui.merchantbranch;
+package com.intoverflown.pos.ui.merchantbranch.addmerchantbranch;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

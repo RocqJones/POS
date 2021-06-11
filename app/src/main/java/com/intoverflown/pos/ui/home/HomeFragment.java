@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.intoverflown.pos.databinding.FragmentHomeBinding;
 import com.intoverflown.pos.ui.inventory.InventoryActivityMain;
 import com.intoverflown.pos.ui.orders.OrdersActivity;
-import com.intoverflown.pos.ui.merchantbranch.NewBranchActivity;
+import com.intoverflown.pos.ui.merchantbranch.addmerchantbranch.NewBranchActivity;
 import com.intoverflown.pos.ui.returngoods.InwardsOutwardsActivity;
 
 public class HomeFragment  extends Fragment {
