@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/light_bg"
-    tools:context=".ui.registerbranch.NewBranchActivity">
+    tools:context=".ui.merchantbranch.NewBranchActivity">
 
     <ScrollView
         android:layout_width="match_parent"
