@@ -61,7 +61,7 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.registerbranch.NewBranchActivity"
+            android:name=".ui.merchantbranch.NewBranchActivity"
             android:label="@string/register_branch"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
