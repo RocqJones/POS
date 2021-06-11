@@ -17,7 +17,7 @@ import com.intoverflown.pos.databinding.ActivityAddOutwardsBinding;
 import com.intoverflown.pos.patterns.MySingleton;
 import com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity;
 import com.intoverflown.pos.ui.inventory.postdata.AddSupplierActivity;
-import com.intoverflown.pos.ui.registerbranch.NewBranchActivity;
+import com.intoverflown.pos.ui.merchantbranch.NewBranchActivity;
 import com.intoverflown.pos.ui.returngoods.InwardsOutwardsActivity;
 import com.intoverflown.pos.utils.Constants;
 
