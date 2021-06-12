@@ -128,5 +128,7 @@
     <string name="returned_date">Returned Date</string>
     <string name="payment_type">Payment Type</string>
     <string name="merchant_branch_list">Merchant Branch List</string>
+    <string name="ordered_quantity">Ordered Quantity</string>
+    <string name="name">Name</string>
 
 </resources>
