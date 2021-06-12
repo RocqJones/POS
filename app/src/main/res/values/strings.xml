@@ -127,5 +127,6 @@
     <string name="create_return_outwards">Create Return Outwards</string>
     <string name="returned_date">Returned Date</string>
     <string name="payment_type">Payment Type</string>
+    <string name="merchant_branch_list">Merchant Branch List</string>
 
 </resources>
