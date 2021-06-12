@@ -3,13 +3,23 @@ package com.intoverflown.pos
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.intoverflown.pos.databinding.ActivityMainBinding
+import com.intoverflown.pos.patterns.MySingleton
 import com.intoverflown.pos.ui.notification.NotificationActivity
 import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity
+import com.intoverflown.pos.utils.Constants
+import org.json.JSONObject
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +30,12 @@ class MainActivity : AppCompatActivity() {
     var MERCHANT_NAME = "merchantName"
     var merchantName: String? = null
     var userName: String? = null
+
+    var editor: SharedPreferences.Editor? = null
+    var MERCHANT_ID = "merchantId"
+
+    var token: String? = null
+    var merchantId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +62,8 @@ class MainActivity : AppCompatActivity() {
 
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE)
 
-        if (preferences!!.contains("merchantName")) {
-            merchantName = preferences?.getString(MERCHANT_NAME, "merchantName")
+        if (preferences!!.contains("merchantId")) {
+            merchantName = preferences!!.getString(MERCHANT_NAME, "merchantName")
         } else {
             val mN = Intent(this, AddMerchantActivity::class.java)
             mN.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -59,5 +75,67 @@ class MainActivity : AppCompatActivity() {
 
         binding!!.merchantName.text = merchantName
         binding!!.fullName.text = userName
+
+        val url = Constants.BASE_URL + "Merchant/?merchantId="
+        getMerchantDetails(url)
+    }
+
+    private fun getMerchantDetails(url: String) {
+        if (preferences!!.contains("merchantId")) {
+            merchantId = Integer.valueOf(preferences!!.getString(MERCHANT_ID, "merchantId"))
+        } else {
+            val mer = Intent(this, AddMerchantActivity::class.java)
+            mer.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(mer)
+        }
+        token = preferences!!.getString("Token", "Token")
+        val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
+            Method.GET,
+            url + merchantId, null, Response.Listener { response: JSONObject ->
+                try {
+                    Log.d("response", response.toString())
+                    Log.d("get merchantName", response.getString("merchantName"))
+                    Log.d("get countryId", response.getString("countryId"))
+                    editor = preferences!!.edit()
+                    editor!!.putString("merchantName", response.getString("merchantName"))
+                    editor!!.putString("countryId", response.getString("countryId"))
+                    editor!!.apply()
+                } catch (e: Exception) {
+                    Log.i("profile", Log.getStackTraceString(e))
+                }
+            }, Response.ErrorListener { error: VolleyError ->
+                Log.e("error", error.toString())
+                Toast.makeText(
+                    this,
+                    "loading failed!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }) {
+            override fun getHeaders(): Map<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["Content-Type"] = "application/json"
+                params["Authorization"] = "Bearer $token"
+                return params
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+        }
+        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
+            60000,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+        MySingleton.getInstance(this.applicationContext).addToRequestQueue(jsonObjectRequest)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding!!.merchantName.text = preferences!!.getString("merchantName", "merchantName")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        binding!!.merchantName.text = preferences!!.getString("merchantName", "merchantName")
     }
 }
