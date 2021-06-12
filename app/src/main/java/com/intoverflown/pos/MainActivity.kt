@@ -76,11 +76,12 @@ class MainActivity : AppCompatActivity() {
         binding!!.merchantName.text = merchantName
         binding!!.fullName.text = userName
 
-        val url = Constants.BASE_URL + "Merchant/?merchantId="
-        getMerchantDetails(url)
+
+        getMerchantDetails()
     }
 
-    private fun getMerchantDetails(url: String) {
+    private fun getMerchantDetails() {
+        val url = Constants.BASE_URL + "Merchant/?merchantId="
         if (preferences!!.contains("merchantId")) {
             merchantId = Integer.valueOf(preferences!!.getString(MERCHANT_ID, "merchantId"))
         } else {
@@ -131,11 +132,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        getMerchantDetails()
         binding!!.merchantName.text = preferences!!.getString("merchantName", "merchantName")
     }
 
     override fun onRestart() {
         super.onRestart()
+        getMerchantDetails()
         binding!!.merchantName.text = preferences!!.getString("merchantName", "merchantName")
     }
 }
