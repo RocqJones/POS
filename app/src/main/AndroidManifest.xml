@@ -13,13 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
         <activity
+            android:name=".ui.merchantbranch.MerchantBranchActivity"
+            android:label="@string/merchant_branch_list"
+            android:theme="@style/Theme.POS"/>
+        <activity
             android:name=".ui.returngoods.postreturns.AddOutwardsActivity"
             android:label="@string/add_returned_outwards"
-            android:theme="@style/Theme.POS.NoActionBar"/>
+            android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.returngoods.postreturns.AddInwardsActivity"
             android:label="@string/add_return_inwards"
-            android:theme="@style/Theme.POS.NoActionBar"/>
+            android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.returngoods.InwardsOutwardsActivity"
             android:label="@string/title_activity_inwards_outwards"
@@ -61,7 +65,7 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.merchantbranch.NewBranchActivity"
+            android:name=".ui.merchantbranch.addmerchantbranch.NewBranchActivity"
             android:label="@string/register_branch"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
