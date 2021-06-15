@@ -103,6 +103,7 @@ public class InwardsFragment extends Fragment {
             }
         }, error -> {
             error.printStackTrace();
+            Log.d("error", "check string url and network conn");
             Toast.makeText(getContext(), "Failed, Check network", Toast.LENGTH_SHORT).show();
         }) {
             @Override
