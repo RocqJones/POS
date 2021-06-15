@@ -18,6 +18,8 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.intoverflown.pos.databinding.FragmentInwardsBinding;
 import com.intoverflown.pos.patterns.MySingleton;
+import com.intoverflown.pos.ui.orders.fragments.OrdersFragment;
+import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.ui.returngoods.adapter.AdapterReturnInwards;
 import com.intoverflown.pos.ui.returngoods.data.ReturnRemoteData;
 import com.intoverflown.pos.ui.returngoods.postreturns.AddInwardsActivity;
@@ -39,9 +41,11 @@ public class InwardsFragment extends Fragment {
 
     public SharedPreferences preferences;
     public String SHARED_PREF_NAME = "pos_pref";
+    public String MERCHANT_ID = "merchantId";
     public String KEY_TOKEN = "Token";
 
     String token;
+    int merchantId;
 
     List<ReturnRemoteData> returnInwardsData;
     private AdapterReturnInwards adapterReturnInwards;
@@ -63,8 +67,14 @@ public class InwardsFragment extends Fragment {
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
+        if (preferences.contains("merchantId")) {
+            merchantId = Integer.parseInt(preferences.getString(MERCHANT_ID, "merchantId"));
+        } else {
+            Intent mI = new Intent(InwardsFragment.this.getContext(), AddMerchantActivity.class);
+            startActivity(mI);
+        }
 
-        String url = Constants.BASE_URL + "ReturnInward";
+        String url = Constants.BASE_URL + "ReturnInward?MerchantId=" + merchantId;
         getReturnInwards(url);
 
         return binding.getRoot();
