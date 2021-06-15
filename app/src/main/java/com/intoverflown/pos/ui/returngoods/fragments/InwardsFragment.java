@@ -64,7 +64,7 @@ public class InwardsFragment extends Fragment {
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
 
-        String url = Constants.BASE_URL + "Service/POS/API/v1/ReturnInward";
+        String url = Constants.BASE_URL + "ReturnInward";
         getReturnInwards(url);
 
         return binding.getRoot();
@@ -81,8 +81,15 @@ public class InwardsFragment extends Fragment {
                     ReturnRemoteData returnRemoteData = new ReturnRemoteData();
                     returnRemoteData.setReturnedQuantity(jsonObject.optString("returnedQuantity"));
                     returnRemoteData.setOrderedQuantity(jsonObject.optString("orderedQuantity"));
-                    returnRemoteData.setReturnDate(jsonObject.optString("returnDate"));
-                    returnRemoteData.setOrderDate(jsonObject.optString("orderDate"));
+
+                    String rawOrdD1 = jsonObject.optString("returnDate");
+                    String [] d1 = rawOrdD1.split("T");
+                    returnRemoteData.setReturnDate(d1[0]);
+
+                    String rawOrdD2 = jsonObject.optString("orderDate");
+                    String [] d2 = rawOrdD2.split("T");
+                    returnRemoteData.setOrderDate(d2[0]);
+
                     returnRemoteData.setCustomer(jsonObject.optString("customer"));
                     returnRemoteData.setSupplier(jsonObject.optString("supplier"));
                     returnRemoteData.setReturnReason(jsonObject.optString("returnReason"));
