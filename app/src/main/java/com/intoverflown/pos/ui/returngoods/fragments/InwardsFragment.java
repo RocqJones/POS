@@ -43,7 +43,7 @@ public class InwardsFragment extends Fragment {
 
     String token;
 
-    List<ReturnRemoteData> data;
+    List<ReturnRemoteData> returnInwardsData;
     private AdapterReturnInwards adapterReturnInwards;
 
     @Override
@@ -57,7 +57,7 @@ public class InwardsFragment extends Fragment {
             startActivity(i);
         });
 
-        data = new ArrayList<>();
+        returnInwardsData = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.returnInwardsRv.setLayoutManager(linearLayoutManager);
 
@@ -73,8 +73,8 @@ public class InwardsFragment extends Fragment {
     private void getReturnInwards(String url) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
                 null, response -> {
+            Log.d("response", response.toString());
             try {
-                Log.d("response", response.toString());
                 JSONArray jsonArray = response.getJSONArray("returnInward");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = (JSONObject) jsonArray.get(i);
@@ -86,12 +86,12 @@ public class InwardsFragment extends Fragment {
                     returnRemoteData.setCustomer(jsonObject.optString("customer"));
                     returnRemoteData.setSupplier(jsonObject.optString("supplier"));
                     returnRemoteData.setReturnReason(jsonObject.optString("returnReason"));
-                    data.add(returnRemoteData);
+                    returnInwardsData.add(returnRemoteData);
                 }
 
-                adapterReturnInwards = new AdapterReturnInwards(data, this.getContext());
+                adapterReturnInwards = new AdapterReturnInwards(returnInwardsData, this.getContext());
                 binding.returnInwardsRv.setAdapter(adapterReturnInwards);
-            } catch (Exception e) {
+            } catch (Exception e){
                 e.printStackTrace();
             }
         }, error -> {
