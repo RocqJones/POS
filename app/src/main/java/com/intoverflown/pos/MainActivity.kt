@@ -101,6 +101,8 @@ class MainActivity : AppCompatActivity() {
                     editor!!.putString("merchantName", response.getString("merchantName"))
                     editor!!.putString("countryId", response.getString("countryId"))
                     editor!!.apply()
+
+                    binding!!.merchantName.text = preferences!!.getString("merchantName", "merchantName")
                 } catch (e: Exception) {
                     Log.i("profile", Log.getStackTraceString(e))
                 }
@@ -133,12 +135,10 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         getMerchantDetails()
-        binding!!.merchantName.text = preferences!!.getString("merchantName", "merchantName")
     }
 
     override fun onRestart() {
         super.onRestart()
         getMerchantDetails()
-        binding!!.merchantName.text = preferences!!.getString("merchantName", "merchantName")
     }
 }
