@@ -130,5 +130,6 @@
     <string name="merchant_branch_list">Merchant Branch List</string>
     <string name="ordered_quantity">Ordered Quantity</string>
     <string name="name">Name</string>
+    <string name="contact_person">Contact Person</string>
 
 </resources>
