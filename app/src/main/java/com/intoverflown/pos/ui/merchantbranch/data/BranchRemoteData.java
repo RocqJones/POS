@@ -1,6 +1,6 @@
 package com.intoverflown.pos.ui.merchantbranch.data;
 
-public class BranchRemoteDate {
+public class BranchRemoteData {
     int id;
     String regionId;
     String branchName;
