@@ -14,7 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.MainActivity;
-import com.intoverflown.pos.databinding.ActivityNewBranchBinding;
+import com.intoverflown.pos.databinding.ActivityAddBranchBinding;
 import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class NewBranchActivity extends AppCompatActivity {
 
-    private ActivityNewBranchBinding binding;
+    private ActivityAddBranchBinding binding;
 
     public SharedPreferences preferences;
     public SharedPreferences.Editor editor;
@@ -44,7 +44,7 @@ public class NewBranchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityNewBranchBinding.inflate(getLayoutInflater());
+        binding = ActivityAddBranchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.upBtn.setOnClickListener(v -> {
