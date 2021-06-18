@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.intoverflown.pos.MainActivity;
 import com.intoverflown.pos.databinding.ActivityAddBranchBinding;
+import com.intoverflown.pos.ui.merchantbranch.MerchantBranchActivity;
 import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.utils.Constants;
 
@@ -48,7 +49,7 @@ public class NewBranchActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.upBtn.setOnClickListener(v -> {
-            Intent i = new Intent(NewBranchActivity.this, MainActivity.class);
+            Intent i = new Intent(NewBranchActivity.this, MerchantBranchActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
@@ -159,7 +160,7 @@ public class NewBranchActivity extends AppCompatActivity {
     }
 
     private void intentBackHome() {
-        Intent j = new Intent(NewBranchActivity.this, MainActivity.class);
+        Intent j = new Intent(NewBranchActivity.this, MerchantBranchActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
         finish();
