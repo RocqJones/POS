@@ -15,7 +15,7 @@
         <activity
             android:name=".ui.merchantbranch.MerchantBranchActivity"
             android:label="@string/merchant_branch_list"
-            android:theme="@style/Theme.POS"/>
+            android:theme="@style/Theme.POS.NoActionBar"/>
         <activity
             android:name=".ui.returngoods.postreturns.AddOutwardsActivity"
             android:label="@string/add_returned_outwards"
