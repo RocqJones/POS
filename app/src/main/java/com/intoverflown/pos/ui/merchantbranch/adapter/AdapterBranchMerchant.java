@@ -10,31 +10,31 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.intoverflown.pos.databinding.ItemBranchesBinding;
-import com.intoverflown.pos.ui.merchantbranch.data.BranchRemoteDate;
+import com.intoverflown.pos.ui.merchantbranch.data.BranchRemoteData;
 
 import java.util.List;
 
-public class AdapterNewMerchant extends RecyclerView.Adapter<AdapterNewMerchant.RVHolder> {
+public class AdapterBranchMerchant extends RecyclerView.Adapter<AdapterBranchMerchant.RVHolder> {
 
-    List<BranchRemoteDate> rvBranchData;
+    List<BranchRemoteData> rvBranchData;
     ItemBranchesBinding binding;
     Context mContext;
 
-    public AdapterNewMerchant(List<BranchRemoteDate> rvBranchData, Context mContext) {
+    public AdapterBranchMerchant(List<BranchRemoteData> rvBranchData, Context mContext) {
         this.rvBranchData = rvBranchData;
         this.mContext = mContext;
     }
 
     @NonNull
     @Override
-    public AdapterNewMerchant.RVHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterBranchMerchant.RVHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         binding = ItemBranchesBinding.inflate(LayoutInflater.from(parent.getContext()));
         View view = binding.getRoot();
-        return new AdapterNewMerchant.RVHolder(view);
+        return new AdapterBranchMerchant.RVHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterNewMerchant.RVHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterBranchMerchant.RVHolder holder, int position) {
         holder.branchName.setText(rvBranchData.get(position).getBranchName());
         holder.address.setText(rvBranchData.get(position).getAddress());
         holder.phone.setText(rvBranchData.get(position).getPhone());
