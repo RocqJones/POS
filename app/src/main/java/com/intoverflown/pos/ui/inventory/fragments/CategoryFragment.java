@@ -38,6 +38,7 @@ public class CategoryFragment extends Fragment {
 
     String token;
     public SharedPreferences preferences;
+    public SharedPreferences.Editor editor;
     public String SHARED_PREF_NAME = "pos_pref";
     public String KEY_TOKEN = "Token";
 
@@ -72,6 +73,8 @@ public class CategoryFragment extends Fragment {
             try {
                 Log.d("response", response.toString());
 //            Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                ArrayList<String> category = new ArrayList<String>();
+
                 for (int i = 0; i < response.length(); i++) {
                     JSONObject jsonObject = (JSONObject) response.get(i);
                     InventoryRemoteData inventoryRemoteData = new InventoryRemoteData();
@@ -83,7 +86,15 @@ public class CategoryFragment extends Fragment {
 
                     inventoryRemoteData.setDateCreated(d[0]);
                     categoryData.add(inventoryRemoteData);
+
+                    // write names to arr. The '#' will be used to get sub-string
+                    String temp_str = jsonObject.optString("id")+":"+jsonObject.optString("name");
+                    category.add(temp_str);
                 }
+
+                editor = preferences.edit();
+                editor.putString("categoryArr", category.toString());
+                editor.apply();
 
                 adapterCategory = new AdapterCategory(categoryData, this.getContext());
                 binding.categoryRecycler.setAdapter(adapterCategory);
