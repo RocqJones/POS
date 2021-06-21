@@ -45,7 +45,7 @@ public class AddSupplierActivity extends AppCompatActivity {
         binding = ActivityAddSupplierBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.heading.setOnClickListener(v -> {
+        binding.addBackBtn.setOnClickListener(v -> {
             Intent i = new Intent(AddSupplierActivity.this, InventoryActivityMain.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
