@@ -78,24 +78,24 @@ public class ProductFragment extends Fragment {
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
-        if (preferences.contains("createProductId")) {
-            productId = preferences.getString(PRODUCT_ID, "createProductId");
-        } else {
-            Intent pD = new Intent(ProductFragment.this.getContext(), AddProductActivity.class);
-            startActivity(pD);
-        }
-        if (preferences.contains("categoryId")) {
-            categoryId = preferences.getString(CATEGORY_ID, "categoryId");
-        } else {
-            Intent cG = new Intent(ProductFragment.this.getContext(), AddCategoryActivity.class);
-            startActivity(cG);
-        }
-        if (preferences.contains("supplierId")) {
-            supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
-        } else {
-            Intent sP = new Intent(ProductFragment.this.getContext(), AddSupplierActivity.class);
-            startActivity(sP);
-        }
+//        if (preferences.contains("createProductId")) {
+//            productId = preferences.getString(PRODUCT_ID, "createProductId");
+//        } else {
+//            Intent pD = new Intent(ProductFragment.this.getContext(), AddProductActivity.class);
+//            startActivity(pD);
+//        }
+//        if (preferences.contains("categoryId")) {
+//            categoryId = preferences.getString(CATEGORY_ID, "categoryId");
+//        } else {
+//            Intent cG = new Intent(ProductFragment.this.getContext(), AddCategoryActivity.class);
+//            startActivity(cG);
+//        }
+//        if (preferences.contains("supplierId")) {
+//            supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
+//        } else {
+//            Intent sP = new Intent(ProductFragment.this.getContext(), AddSupplierActivity.class);
+//            startActivity(sP);
+//        }
         if (preferences.contains("merchantId")) {
             merchantId = preferences.getString(MERCHANT_ID, "merchantId");
         } else {
@@ -103,7 +103,7 @@ public class ProductFragment extends Fragment {
             startActivity(mD);
         }
 
-        String url = Constants.BASE_URL + "Product?Id=";
+        String url = Constants.BASE_URL + "Product?";
         getProductName(url);
 
         return binding.getRoot();
@@ -111,7 +111,7 @@ public class ProductFragment extends Fragment {
 
     private void getProductName(String url) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                url + productId + "&CategoryId=" + categoryId + "&SupplierId=" + supplierId + "&MerchantId=" + merchantId,
+                url + "MerchantId=" + merchantId,
                 null, response -> {
             Log.d("response products", response.toString());
             try {
