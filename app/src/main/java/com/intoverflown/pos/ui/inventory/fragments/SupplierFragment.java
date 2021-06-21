@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,6 +91,7 @@ public class SupplierFragment extends Fragment {
 //                JSONObject jsonObject1 = (JSONObject) jsonArray1.get(1);
                 String mName = preferences.getString("merchantName", "merchantName");
 
+                ArrayList<String> suppliers = new ArrayList<String>();
                 // supplier details from first array list
                 JSONArray jsonArray = response.getJSONArray("supplier");
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -102,7 +104,14 @@ public class SupplierFragment extends Fragment {
                     inventoryRemoteData.setRemarks(jsonObject.optString("remarks"));
                     inventoryRemoteData.setMerchantName(mName);
                     supplierData.add(inventoryRemoteData);
+
+                    // write names to arr. The '#' will be used to get sub-string
+                    String temp_str = jsonObject.optString("id")+":"+jsonObject.optString("name");
+                    suppliers.add(temp_str);
                 }
+                editor = preferences.edit();
+                editor.putString("supplierArr", suppliers.toString());
+                editor.apply();
 
                 adapterSupplier = new AdapterSupplier(supplierData, this.getContext());
                 binding.recyclerSupplier.setAdapter(adapterSupplier);
