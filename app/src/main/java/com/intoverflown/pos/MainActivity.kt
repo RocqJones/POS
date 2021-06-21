@@ -76,6 +76,8 @@ class MainActivity : AppCompatActivity() {
         binding!!.merchantName.text = merchantName
         binding!!.fullName.text = userName
 
+        editor?.remove("supplierArr")
+        editor?.apply()
 
         getMerchantDetails()
     }
