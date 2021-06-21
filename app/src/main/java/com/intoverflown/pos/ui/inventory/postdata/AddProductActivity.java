@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,8 +40,9 @@ public class AddProductActivity extends AppCompatActivity {
     public String KEY_ID = "Id";
     public String KEY_TOKEN = "Token";
     public String MERCHANT_ID = "merchantId";
-    public String CATEGORY_ID = "categoryId";
+    public String CATEGORY_ARR = "categoryArr";
     public String SUPPLIER_ID = "supplierId";
+    public String SUPPLIER_ARR = "supplierArr";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +68,37 @@ public class AddProductActivity extends AppCompatActivity {
             startActivity(mC);
         }
 
-        if (preferences.contains("categoryId")) {
-            categoryId = preferences.getString(CATEGORY_ID, "categoryId");
+        if (preferences.contains("categoryArr")) {
+            // categoryId = preferences.getString(CATEGORY_ID, "categoryId");
+            String categoryArr = preferences.getString(CATEGORY_ARR, "categoryArr");
+
+            String temp_str = categoryArr.replace("[", "").replace("]", "");
+            String[] categoryT = temp_str.split(",");
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddProductActivity.this,
+                    android.R.layout.simple_dropdown_item_1line, categoryT);
+            binding.category.setAdapter(adapter);
+
+            String ct = binding.category.getSelectedItem().toString().trim();
+            String [] c = ct.split(":");
+            categoryId = c[0];
         } else {
             Intent cT = new Intent(this, AddCategoryActivity.class);
             startActivity(cT);
         }
 
-        if (preferences.contains("supplierId")) {
-            supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
+        if (preferences.contains("supplierId") | preferences.contains("supplierArr")) {
+            // supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
+            String supplierArr = preferences.getString(SUPPLIER_ARR, "supplierArr");
+
+            String temp_str = supplierArr.replace("[", "").replace("]", "");
+            String[] supplierT = temp_str.split(",");
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddProductActivity.this,
+                    android.R.layout.simple_dropdown_item_1line, supplierT);
+            binding.supplier.setAdapter(adapter);
+
+            String sp = binding.supplier.getSelectedItem().toString().trim();
+            String [] s = sp.split(":");
+            supplierId = s[0];
         } else {
             Intent sP = new Intent(this, AddSupplierActivity.class);
             startActivity(sP);
