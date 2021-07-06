@@ -18,7 +18,6 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.intoverflown.pos.databinding.FragmentInwardsBinding;
 import com.intoverflown.pos.patterns.MySingleton;
-import com.intoverflown.pos.ui.orders.fragments.OrdersFragment;
 import com.intoverflown.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.intoverflown.pos.ui.returngoods.adapter.AdapterReturnInwards;
 import com.intoverflown.pos.ui.returngoods.data.ReturnRemoteData;
