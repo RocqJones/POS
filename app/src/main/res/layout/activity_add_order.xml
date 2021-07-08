@@ -82,19 +82,19 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="5dp"
                             android:fontFamily="sans-serif"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
+                            android:text="@string/product"
                             android:textColor="@color/text_color_blue"
-                            android:text="@string/product"/>
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <Spinner
                             android:id="@+id/selectProduct"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
+                            android:textColor="@color/black"
                             android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:textColor="@color/black"/>
+                            android:textStyle="normal" />
 
                     </LinearLayout>
 
@@ -119,10 +119,10 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="5dp"
                             android:fontFamily="sans-serif"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
+                            android:text="@string/order_date"
                             android:textColor="@color/text_color_blue"
-                            android:text="@string/order_date"/>
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <EditText
                             android:id="@+id/orderDate"
@@ -130,17 +130,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="20dp"
-                            android:inputType="datetime"
-                            android:hint="@string/_2021_01_01"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:ems="10"
-                            android:fontFamily="sans-serif"
                             android:background="@color/white"
+                            android:ems="10"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:autofillHints="" />
+                            android:fontFamily="sans-serif"
+                            android:hint="@string/_2021_01_01"
+                            android:inputType="datetime"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="normal" />
 
                     </LinearLayout>
 
@@ -165,10 +164,10 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="5dp"
                             android:fontFamily="sans-serif"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
+                            android:text="@string/required_date"
                             android:textColor="@color/text_color_blue"
-                            android:text="@string/required_date"/>
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <EditText
                             android:id="@+id/requiredDate"
@@ -176,17 +175,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="20dp"
-                            android:inputType="datetime"
-                            android:hint="@string/_2021_01_01"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:ems="10"
-                            android:fontFamily="sans-serif"
                             android:background="@color/white"
+                            android:ems="10"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:autofillHints="" />
+                            android:fontFamily="sans-serif"
+                            android:hint="@string/_2021_01_01"
+                            android:inputType="datetime"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="normal" />
 
                     </LinearLayout>
 
@@ -200,7 +198,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:autofillHints=""
+
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
                         android:fontFamily="sans-serif"
@@ -224,7 +222,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:autofillHints=""
+
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
                         android:fontFamily="sans-serif"
@@ -248,7 +246,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:autofillHints=""
+
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
                         android:fontFamily="sans-serif"
@@ -272,7 +270,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:autofillHints=""
+
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
                         android:fontFamily="sans-serif"
@@ -307,10 +305,10 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="5dp"
                             android:fontFamily="sans-serif"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
+                            android:text="@string/shipping_date"
                             android:textColor="@color/text_color_blue"
-                            android:text="@string/shipping_date"/>
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <EditText
                             android:id="@+id/shippingDate"
@@ -318,17 +316,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="20dp"
-                            android:inputType="datetime"
-                            android:hint="@string/_2021_01_01"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:ems="10"
-                            android:fontFamily="sans-serif"
                             android:background="@color/white"
+                            android:ems="10"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:autofillHints="" />
+                            android:fontFamily="sans-serif"
+                            android:hint="@string/_2021_01_01"
+                            android:inputType="datetime"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="normal" />
 
                     </LinearLayout>
 
@@ -352,25 +349,25 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="5dp"
+                            android:fontFamily="sans-serif"
                             android:text="@string/supplier"
                             android:textColor="@color/text_color_blue"
-                            android:textStyle="bold"
                             android:textSize="14sp"
-                            android:fontFamily="sans-serif"/>
+                            android:textStyle="bold" />
 
                         <Spinner
                             android:id="@+id/customerClientType"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/btn_default_height"
                             android:ems="10"
-                            android:hint="@string/select_item"
                             android:fontFamily="sans-serif"
+                            android:hint="@string/select_item"
                             android:padding="5dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
                             android:textColor="@color/black"
                             android:textSize="14sp"
-                            android:textStyle="normal"/>
+                            android:textStyle="normal" />
 
                     </LinearLayout>
 
@@ -394,25 +391,25 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="5dp"
+                            android:fontFamily="sans-serif"
                             android:text="@string/payment_type"
                             android:textColor="@color/text_color_blue"
-                            android:textStyle="bold"
                             android:textSize="14sp"
-                            android:fontFamily="sans-serif"/>
+                            android:textStyle="bold" />
 
                         <Spinner
                             android:id="@+id/paymentType"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/btn_default_height"
                             android:ems="10"
-                            android:hint="@string/select_item"
                             android:fontFamily="sans-serif"
+                            android:hint="@string/select_item"
                             android:padding="5dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
                             android:textColor="@color/black"
                             android:textSize="14sp"
-                            android:textStyle="normal"/>
+                            android:textStyle="normal" />
 
                     </LinearLayout>
 
@@ -444,8 +441,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_gravity="bottom"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -453,8 +450,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="sans-serif"
