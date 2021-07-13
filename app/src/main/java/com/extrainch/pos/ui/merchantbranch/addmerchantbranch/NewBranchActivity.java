@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.extrainch.pos.databinding.ActivityAddBranchBinding;
+import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.merchantbranch.MerchantBranchActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
@@ -22,7 +25,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class NewBranchActivity extends AppCompatActivity {
@@ -39,6 +44,8 @@ public class NewBranchActivity extends AppCompatActivity {
     String uid;
     String token;
     Integer merchantId;
+
+    List<String> mutableArrCountry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +74,59 @@ public class NewBranchActivity extends AppCompatActivity {
         Log.d("uid new branch", uid);
         Log.d("token new branch", token);
 
+        // countries
+        mutableArrCountry = new ArrayList<String>();
+        getCountryList();
+
         binding.regMerchantBtn.setOnClickListener(v -> {
             String url = Constants.BASE_URL + "MerchantBranch/Create";
             postNewMerchant(url);
         });
+    }
+
+    private void getCountryList() {
+        String countryUrl = Constants.BASE_URL + "Code/GetCountry";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
+                countryUrl, null, response -> {
+            try {
+                Log.d("response", response.toString());
+
+                for (int i = 0; i < response.length(); i++) {
+                    JSONObject jsonObject = (JSONObject) response.get(i);
+                    String txt = jsonObject.optString("text");
+                    mutableArrCountry.add(txt);
+                }
+                Log.d("arr", mutableArrCountry.toString());
+
+                String[] countries = mutableArrCountry.toArray(new String[mutableArrCountry.size()]);
+                Log.d("arrStr", String.valueOf(countries));
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_dropdown_item_1line, countries);
+                binding.regMerchantRegion.setAdapter(adapter);
+
+            } catch (Exception e) {
+                Log.i("profile", Log.getStackTraceString(e));
+            }
+        } , error -> {
+            Log.e("error", error.toString());
+            Toast.makeText(this, "loading failed!", Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json");
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
     }
 
     private void postNewMerchant(String url) {
@@ -78,7 +134,7 @@ public class NewBranchActivity extends AppCompatActivity {
         JSONArray array = new JSONArray();
         JSONObject jsonObjects = new JSONObject();
 
-        String region = binding.regMerchantRegion.getText().toString().trim();
+        String region = binding.regMerchantRegion.getSelectedItem().toString().trim();
         String address = binding.regMerchantAddress.getText().toString().trim();
         String branchName = binding.regMerchantMerchantBranch.getText().toString().trim();
         String contactPerson = binding.regMerchantMerchantName.getText().toString().trim();
