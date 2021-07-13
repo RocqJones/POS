@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DialogAnimation_1">
+        <item name="android:windowEnterAnimation">@anim/dialog_in</item>
+    </style>
+    <style name="DialogAnimation_slide">
+        <item name="android:windowEnterAnimation">@anim/dialog_slide_in</item>
+    </style>
+</resources>
