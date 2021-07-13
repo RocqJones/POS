@@ -50,6 +50,8 @@ public class ProductFragment extends Fragment {
     public String SUPPLIER_ID = "supplierId";
     public String PRODUCT_ID = "createProductId";
 
+    public SharedPreferences.Editor editor;
+
     String categoryName;
     String supplierName;
 
@@ -113,6 +115,7 @@ public class ProductFragment extends Fragment {
             Log.d("response products", response.toString());
             try {
 
+                ArrayList<String> products = new ArrayList<String>();
 
                 JSONArray jsonArray1 = response.getJSONArray("productCategory");
                 for (int i = 0; i < jsonArray1.length(); i++) {
@@ -138,7 +141,13 @@ public class ProductFragment extends Fragment {
                     inventoryRemoteData.setSupplier(supplierName);
                     inventoryRemoteData.setRemarks(jsonObject3.optString("remarks"));
                     productData.add(inventoryRemoteData);
+
+                    String temp_str = jsonObject3.optString("id")+":"+jsonObject3.optString("name");
+                    products.add(temp_str);
                 }
+                editor = preferences.edit();
+                editor.putString("productArr", products.toString());
+                editor.apply();
 
                 adapterProducts = new AdapterProducts(productData, this.getContext());
                 binding.productRecycler.setAdapter(adapterProducts);
