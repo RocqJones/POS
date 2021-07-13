@@ -7,51 +7,51 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.intoverflown.pos.ui.home.HomeFragment"
+        android:name="com.extrainch.pos.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_customers"
-        android:name="com.intoverflown.pos.ui.customers.CustomersFragment"
+        android:name="com.extrainch.pos.ui.customers.CustomersFragment"
         android:label="@string/title_customers"
         tools:layout="@layout/fragment_customers" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.intoverflown.pos.ui.profile.ProfileFragment"
+        android:name="com.extrainch.pos.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.intoverflown.pos.ui.settings.SettingsFragment"
+        android:name="com.extrainch.pos.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.intoverflown.pos.ui.login.LoginActivity"
+        android:name="com.extrainch.pos.ui.login.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <activity
         android:id="@+id/resetPwdActivity"
-        android:name="com.intoverflown.pos.ui.resetpassword.ResetPwdActivity"
+        android:name="com.extrainch.pos.ui.resetpassword.ResetPwdActivity"
         android:label="activity_reset_pwd"
         tools:layout="@layout/activity_reset_pwd" />
     <activity
         android:id="@+id/signUpActivity"
-        android:name="com.intoverflown.pos.ui.signup.SignUpActivity"
+        android:name="com.extrainch.pos.ui.signup.SignUpActivity"
         android:label="activity_sign_up"
         tools:layout="@layout/activity_sign_up" />
     <activity
         android:id="@+id/salesAndExpenses"
-        android:name="com.intoverflown.pos.ui.salesnexpenses.SalesAndExpenses"
+        android:name="com.extrainch.pos.ui.salesnexpenses.SalesAndExpenses"
         android:label="activity_sales_and_expenses"
         tools:layout="@layout/activity_sales_and_expenses" />
     <activity
         android:id="@+id/addCustomerActivity"
-        android:name="com.intoverflown.pos.ui.customers.addcustomers.AddCustomerActivity"
+        android:name="com.extrainch.pos.ui.customers.addcustomers.AddCustomerActivity"
         android:label="activity_add_customer"
         tools:layout="@layout/activity_add_customer" />
 </navigation>
