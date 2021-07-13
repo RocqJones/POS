@@ -90,39 +90,58 @@
                             android:drawablePadding="20dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
-                            android:autofillHints="" />
+                             />
 
-                        <EditText
-                            android:id="@+id/regMerchantRegion"
+                        <LinearLayout
+                            android:id="@+id/regMerchantRegionH"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_below="@id/regMerchantMerchantBranch"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentEnd="true"
                             android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginEnd="10dp"
-                            android:layout_below="@id/regMerchantMerchantBranch"
-                            android:textColor="@color/text_color_blue"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif"
-                            android:background="@drawable/bg_edit_text"
-                            android:ems="10"
-                            android:hint="@string/region"
-                            android:inputType="text"
-                            android:drawableStart="@drawable/baseline_location_city_blue_700_18dp"
-                            android:drawablePadding="20dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="20dp"
-                            android:autofillHints="" />
+                            android:background="@drawable/bg_edit_text">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="5dp"
+                                android:fontFamily="sans-serif"
+                                android:text="@string/region"
+                                android:textColor="@color/text_color_blue"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:drawablePadding="20dp"
+                                android:paddingStart="20dp"
+                                android:paddingEnd="20dp"
+                                app:drawableStartCompat="@drawable/baseline_location_city_blue_700_18dp" />
+
+                            <Spinner
+                                android:id="@+id/regMerchantRegion"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/btn_default_height"
+                                android:ems="10"
+                                android:fontFamily="sans-serif"
+                                android:hint="@string/select_item"
+                                android:padding="5dp"
+                                android:paddingStart="20dp"
+                                android:paddingEnd="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
 
                         <EditText
                             android:id="@+id/regMerchantAddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:layout_below="@id/regMerchantRegion"
+                            android:layout_below="@id/regMerchantRegionH"
                             android:layout_marginTop="15dp"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentEnd="true"
@@ -140,7 +159,7 @@
                             android:drawablePadding="20dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
-                            android:autofillHints="" />
+                             />
 
                         <EditText
                             android:id="@+id/regMerchantMerchantName"
@@ -165,7 +184,7 @@
                             android:drawablePadding="20dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
-                            android:autofillHints="" />
+                             />
 
                         <EditText
                             android:id="@+id/regMerchantPhone"
@@ -190,7 +209,7 @@
                             android:drawablePadding="20dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
-                            android:autofillHints="" />
+                             />
 
                         <EditText
                             android:id="@+id/regMerchantEmailAddress"
@@ -215,7 +234,7 @@
                             android:drawablePadding="20dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
-                            android:autofillHints="" />
+                             />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/regMerchantBtn"
