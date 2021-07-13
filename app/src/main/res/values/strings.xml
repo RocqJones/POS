@@ -132,5 +132,6 @@
     <string name="name">Name</string>
     <string name="contact_person">Contact Person</string>
     <string name="merchant_type">Merchant Type</string>
+    <string name="modify_merchant">Modify Merchant</string>
 
 </resources>
