@@ -356,7 +356,7 @@
                             android:textStyle="bold" />
 
                         <Spinner
-                            android:id="@+id/customerClientType"
+                            android:id="@+id/orderSupplier"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/btn_default_height"
                             android:ems="10"
