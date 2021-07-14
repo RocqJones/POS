@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.extrainch.pos.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/navigation_printer"
+        android:name="com.extrainch.pos.ui.printer.PrinterFragment"
+        android:label="@string/title_printer"
+        tools:layout="@layout/fragment_printer" />
 
     <activity
         android:id="@+id/loginActivity"
