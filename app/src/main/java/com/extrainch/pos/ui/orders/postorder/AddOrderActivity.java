@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.extrainch.pos.databinding.ActivityAddOrderBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.customers.addcustomers.AddCustomerActivity;
+import com.extrainch.pos.ui.inventory.postdata.AddProductActivity;
 import com.extrainch.pos.ui.inventory.postdata.AddSupplierActivity;
 import com.extrainch.pos.ui.orders.OrdersActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
@@ -49,12 +50,15 @@ public class AddOrderActivity extends AppCompatActivity {
     public String CUSTOMER_ID = "customerId";
     public String PRODUCT_ID = "createProductId";
 
+    public String SUPPLIER_ARR = "supplierArr";
+    public String PRODUCT_ARR = "productArr";
+
     String uid;
     String token;
     Integer merchantId;
-    Integer supplierId;
+    String supplierId;
     Integer customerId;
-    Integer productId;
+    String productId;
 
     String m, d;
 
@@ -160,12 +164,12 @@ public class AddOrderActivity extends AppCompatActivity {
             startActivity(mC);
         }
 
-        if (preferences.contains("supplierId")) {
-            supplierId = Integer.valueOf(preferences.getString(SUPPLIER_ID, "supplierId"));
-        } else {
-            Intent sP = new Intent(this, AddSupplierActivity.class);
-            startActivity(sP);
-        }
+//        if (preferences.contains("supplierId")) {
+//            supplierId = Integer.valueOf(preferences.getString(SUPPLIER_ID, "supplierId"));
+//        } else {
+//            Intent sP = new Intent(this, AddSupplierActivity.class);
+//            startActivity(sP);
+//        }
 
         if (preferences.contains("customerId")) {
             customerId = Integer.valueOf(preferences.getString(CUSTOMER_ID, "customerId"));
@@ -173,8 +177,44 @@ public class AddOrderActivity extends AppCompatActivity {
             Intent cM = new Intent(this, AddCustomerActivity.class);
             startActivity(cM);
         }
+
+        if (preferences.contains("supplierId") | preferences.contains("supplierArr")) {
+            // supplierId = preferences.getString(SUPPLIER_ID, "supplierId");
+            String supplierArr = preferences.getString(SUPPLIER_ARR, "supplierArr");
+
+            String temp_str = supplierArr.replace("[", "").replace("]", "");
+            String[] supplierT = temp_str.split(",");
+            ArrayAdapter<String> adapterS = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_dropdown_item_1line, supplierT);
+            binding.orderSupplier.setAdapter(adapterS);
+
+            String sp = binding.orderSupplier.getSelectedItem().toString().trim();
+            String [] s = sp.split(":");
+            supplierId = s[0];
+        } else {
+            Intent sP = new Intent(this, AddSupplierActivity.class);
+            startActivity(sP);
+        }
+
+        if (preferences.contains("productArr")) {
+            String supplierArr = preferences.getString(PRODUCT_ARR, "productArr");
+
+            String temp_str_p = supplierArr.replace("[", "").replace("]", "");
+            String[] supplierT = temp_str_p.split(",");
+            ArrayAdapter<String> adapterP = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_dropdown_item_1line, supplierT);
+            binding.selectProduct.setAdapter(adapterP);
+
+            String sp = binding.selectProduct.getSelectedItem().toString().trim();
+            String [] s = sp.split(":");
+            productId = s[0];
+        } else {
+            Intent p = new Intent(this, AddProductActivity.class);
+            startActivity(p);
+        }
+
 //        productId = Integer.valueOf(preferences.getString(PRODUCT_ID, "createProductId"));
-        productId = 10;
+        //productId = 10;
         binding.orderCreateBtn.setOnClickListener(v -> {
             String url = Constants.BASE_URL + "Order/Create";
             postOrder(url);
