@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">POS</string>
     <string name="title_home">Home</string>
-    <string name="title_settings">Settings</string>
+    <string name="title_printer">Printer</string>
     <string name="title_profile">Profile</string>
     <string name="welcome">Welcome Back!</string>
     <string name="login_welcome_msg">Login into your account</string>
@@ -31,7 +31,7 @@
     <string name="ic">ic</string>
     <string name="inventory">Inventory</string>
     <string name="sales_expenses">Sales / Expenses</string>
-    <string name="orders">Orders / Quote</string>
+    <string name="orders">Orders / Purchase</string>
     <string name="report">Reports</string>
     <string name="stock_transfer">Stock Transfer</string>
     <string name="title_activity_sales_and_expenses">SalesAndExpenses</string>
@@ -79,14 +79,14 @@
     <string name="title_activity_orders">OrdersActivity</string>
 
     <string name="orders_tab_text_1">Orders</string>
-    <string name="orders_tab_text_2">Quotation</string>
+    <string name="orders_tab_text_2">Purchase</string>
     <string name="title_customers">Customers</string>
     <string name="add_customer">Add Customers</string>
     <string name="first_name">First Name</string>
     <string name="other_name">Other Name</string>
     <string name="create_customer">Create Customer</string>
     <string name="select_item">Select client type</string>
-    <string name="orders_amp_quote"><![CDATA[Orders & Quotes]]></string>
+    <string name="orders_amp_quote"><![CDATA[Orders & Purchase]]></string>
     <string name="address">Address</string>
     <string name="remarks">Remarks</string>
     <string name="yyyy_mm_dd">YYYY-MM-DD</string>
@@ -133,5 +133,20 @@
     <string name="contact_person">Contact Person</string>
     <string name="merchant_type">Merchant Type</string>
     <string name="modify_merchant">Modify Merchant</string>
+    <string name="unit_measure">Unit Measure</string>
+    <string name="create_purchase">Create Purchase</string>
+    <string name="received_date">Received Date</string>
+    <string name="amount_paid">Amount Paid</string>
+    <string name="amount_due_date">Amount Due Date</string>
+    <string name="payment_status">Payment Status</string>
+    <string name="amount_due">Amount Due</string>
+    <string name="purchase_receipt">Purchase Receipt</string>
+    <string name="print_receipt">Print Receipt</string>
+    <string name="received_quantity">Received Quantity</string>
+    <string name="set_your_display_message">Set your display message</string>
+    <string name="ok">OK</string>
+    <string name="requested_date">Requested Date</string>
+    <string name="purchase_status">Purchase Status</string>
+    <string name="total_cost_kes">Total Cost (KES)</string>
 
 </resources>
