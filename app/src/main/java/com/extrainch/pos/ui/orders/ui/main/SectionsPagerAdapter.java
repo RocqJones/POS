@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.extrainch.pos.R;
 import com.extrainch.pos.ui.orders.fragments.OrdersFragment;
-import com.extrainch.pos.ui.orders.fragments.QuoteFragment;
+import com.extrainch.pos.ui.orders.fragments.PurchaseOrderFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -37,7 +37,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 break;
 
             case 1:
-                fragment = new QuoteFragment();
+                fragment = new PurchaseOrderFragment();
         }
         return fragment;
     }
