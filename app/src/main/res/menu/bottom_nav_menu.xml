@@ -17,8 +17,8 @@
         android:title="@string/title_profile" />
 
     <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/baseline_settings_black_24dp"
-        android:title="@string/title_settings" />
+        android:id="@+id/navigation_printer"
+        android:icon="@drawable/baseline_print_black_24dp"
+        android:title="@string/title_printer" />
 
 </menu>
