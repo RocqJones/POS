@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -79,9 +80,8 @@ public class ProfileFragment extends Fragment {
             startActivity(i);
         });
 
-        binding.profileEditMerchant.setOnClickListener(v -> {
-            dialogEditMerchant(R.style.DialogAnimation_1, "Left - Right Animation!");
-        });
+        binding.profileEditMerchant.setOnClickListener(v ->
+                dialogEditMerchant(R.style.DialogAnimation_1, "Left - Right Animation!"));
 
         binding.logout.setOnClickListener(v -> {
             SharedPreferences.Editor editor = preferences.edit();
@@ -121,7 +121,8 @@ public class ProfileFragment extends Fragment {
             }
         } , error -> {
             Log.e("error", error.toString());
-            Toast.makeText(ProfileFragment.this.getContext(), "loading failed!", Toast.LENGTH_SHORT).show();
+            String failed = "The server was unreachable, check your internet connection!";
+            warnDialog(failed);
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -180,8 +181,9 @@ public class ProfileFragment extends Fragment {
         JSONArray array = new JSONArray();
         JSONObject jsonObjects = new JSONObject();
 
-        if (mName.isEmpty() && mCountry.isEmpty() && mType.isEmpty()) {
-            Toast.makeText(this.getContext(), "All fields required!", Toast.LENGTH_SHORT).show();
+        if (mName.isEmpty() || mCountry.isEmpty() || mType.isEmpty()) {
+            String empError = "Sorry, Please fill all the fields required!";
+            warnDialog(empError);
         } else {
             ProgressDialog progressDialog = new ProgressDialog(this.getContext());
             progressDialog.setMessage("Updating merchant...");
@@ -210,15 +212,20 @@ public class ProfileFragment extends Fragment {
                     Log.d("response", response.toString());
                     progressDialog.dismiss();
                     getMerchantDetails(Constants.BASE_URL + "Merchant/?merchantId=");
-                    Toast.makeText(this.getContext(), "Updated Successfully!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this.getContext(), "Updated Successfully!", Toast.LENGTH_SHORT).show();
+                    String mg = "Merchant created successfully!";
+                    successDialog(mg);
                 } catch (Exception e) {
-                    Toast.makeText(this.getContext(), "Error occurred\nCheck logs!", Toast.LENGTH_LONG).show();
                     Log.i("new merchant", Log.getStackTraceString(e));
+                    String err = "Error occurred while sending request\nCheck logs!";
+                    warnDialog(err);
                 }
             }, error -> {
                 progressDialog.dismiss();
                 Log.e("error", error.toString());
-                Toast.makeText(this.getContext(), "Failed to create merchant!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this.getContext(), "Failed to create merchant!", Toast.LENGTH_SHORT).show();
+                String failed = "The server was unreachable, check your internet connection!";
+                warnDialog(failed);
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
@@ -266,7 +273,9 @@ public class ProfileFragment extends Fragment {
             }
         } , error -> {
             Log.e("error", error.toString());
-            Toast.makeText(ProfileFragment.this.getContext(), "loading failed!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(ProfileFragment.this.getContext(), "loading failed!", Toast.LENGTH_SHORT).show();
+            String failed = "The server was unreachable, check your internet connection!";
+            warnDialog(failed);
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -301,5 +310,39 @@ public class ProfileFragment extends Fragment {
             Intent pM = new Intent(ProfileFragment.this.getContext(), AddMerchantActivity.class);
             startActivity(pM);
         }
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(ProfileFragment.this.getContext());
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(ProfileFragment.this.getContext());
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
