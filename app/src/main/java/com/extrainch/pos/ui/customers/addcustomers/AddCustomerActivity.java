@@ -1,12 +1,14 @@
  package com.extrainch.pos.ui.customers.addcustomers;
 
+ import android.app.Dialog;
  import android.app.ProgressDialog;
  import android.content.Intent;
  import android.content.SharedPreferences;
  import android.os.Bundle;
  import android.util.Log;
  import android.widget.ArrayAdapter;
- import android.widget.Toast;
+ import android.widget.Button;
+ import android.widget.TextView;
 
  import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +16,7 @@
  import com.android.volley.Request;
  import com.android.volley.toolbox.JsonArrayRequest;
  import com.extrainch.pos.MainActivity;
+ import com.extrainch.pos.R;
  import com.extrainch.pos.databinding.ActivityAddCustomerBinding;
  import com.extrainch.pos.patterns.MySingleton;
  import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
@@ -89,9 +92,10 @@ public class AddCustomerActivity extends AppCompatActivity {
 
         Log.d("client type", cType);
 
-        if (fName.isEmpty() && oName.isEmpty() && address.isEmpty() && phone.isEmpty()
-                && email.isEmpty() && cType.isEmpty()) {
-            Toast.makeText(this, "Enter all fields!", Toast.LENGTH_SHORT).show();
+        if (fName.isEmpty() || oName.isEmpty() || address.isEmpty() || phone.isEmpty()
+                || email.isEmpty() || cType.isEmpty()) {
+            String empError = "Sorry, Please fill all the fields required!";
+            warnDialog(empError);
         } else {
             ProgressDialog progressDialog = new ProgressDialog(AddCustomerActivity.this);
             progressDialog.setMessage("Creating customer...");
@@ -129,16 +133,19 @@ public class AddCustomerActivity extends AppCompatActivity {
                     }
 
                     progressDialog.dismiss();
-                    Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
+                    String mg = "Customer created successfully!";
+                    successDialog(mg);
                     proceedToHome();
                 } catch (Exception e) {
-                    Toast.makeText(this, "Error occurred\nCheck logs!", Toast.LENGTH_LONG).show();
                     Log.i("new customer", Log.getStackTraceString(e));
+                    String err = "Error occurred while sending request\nCheck logs!";
+                    warnDialog(err);
                 }
             },error -> {
                 progressDialog.dismiss();
                 Log.e("error", error.toString());
-                Toast.makeText(AddCustomerActivity.this, "Failed to create customer!", Toast.LENGTH_SHORT).show();
+                String failed = "The server was unreachable, check your internet connection!";
+                warnDialog(failed);
             }){
                 @Override
                 public Map<String, String> getHeaders() {
@@ -163,5 +170,39 @@ public class AddCustomerActivity extends AppCompatActivity {
         Intent j = new Intent(this, MainActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
