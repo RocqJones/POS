@@ -1,5 +1,6 @@
 package com.extrainch.pos.ui.orders.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentOrdersBinding;
 import com.extrainch.pos.patterns.MySingleton;
+import com.extrainch.pos.ui.customers.CustomersFragment;
 import com.extrainch.pos.ui.customers.addcustomers.AddCustomerActivity;
 import com.extrainch.pos.ui.orders.adapter.AdapterOrder;
 import com.extrainch.pos.ui.orders.data.OrderRemoteData;
@@ -69,6 +74,14 @@ public class OrdersFragment extends Fragment {
         orderData = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.ordersRecyclerView.setLayoutManager(linearLayoutManager);
+
+        if (orderData.isEmpty()) {
+            binding.ordersRecyclerView.setVisibility(View.GONE);
+            binding.noData.setVisibility(View.VISIBLE);
+        } else {
+            binding.ordersRecyclerView.setVisibility(View.VISIBLE);
+            binding.noData.setVisibility(View.GONE);
+        }
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
@@ -151,7 +164,9 @@ public class OrdersFragment extends Fragment {
 
         }, error -> {
             error.printStackTrace();
-            Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+            String failed = "Failed because the server was unreachable, check your internet connection!";
+            warnDialog(failed);
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -169,5 +184,39 @@ public class OrdersFragment extends Fragment {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(OrdersFragment.this.getContext());
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(OrdersFragment.this.getContext());
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
