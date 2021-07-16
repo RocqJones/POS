@@ -1,10 +1,13 @@
 package com.extrainch.pos
 
+
+import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -12,14 +15,15 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.extrainch.pos.databinding.ActivityMainBinding
 import com.extrainch.pos.patterns.MySingleton
 import com.extrainch.pos.ui.notification.NotificationActivity
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity
 import com.extrainch.pos.utils.Constants
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.json.JSONObject
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE)
 
-        if (preferences!!.contains("merchantId")) {
+        if (preferences!!.contains("merchantName")) {
             merchantName = preferences!!.getString(MERCHANT_NAME, "merchantName")
         } else {
             val mN = Intent(this, AddMerchantActivity::class.java)
@@ -76,9 +80,19 @@ class MainActivity : AppCompatActivity() {
         binding!!.merchantName.text = merchantName
         binding!!.fullName.text = userName
 
-        editor?.remove("supplierArr")
-        editor?.apply()
+//        editor?.remove("supplierArr")
+//        editor?.apply()
 
+        getMerchantDetails()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getMerchantDetails()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
         getMerchantDetails()
     }
 
@@ -107,14 +121,18 @@ class MainActivity : AppCompatActivity() {
                     binding!!.merchantName.text = preferences!!.getString("merchantName", "merchantName")
                 } catch (e: Exception) {
                     Log.i("profile", Log.getStackTraceString(e))
+                    val err = "Error occurred while sending request\nCheck logs!"
+                    warnDialog(err)
                 }
             }, Response.ErrorListener { error: VolleyError ->
                 Log.e("error", error.toString())
-                Toast.makeText(
-                    this,
-                    "loading failed!",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    this,
+//                    "loading failed!",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+                val failed = "The server was unreachable, check your internet connection!"
+                warnDialog(failed)
             }) {
             override fun getHeaders(): Map<String, String> {
                 val params: MutableMap<String, String> = HashMap()
@@ -134,13 +152,19 @@ class MainActivity : AppCompatActivity() {
         MySingleton.getInstance(this.applicationContext).addToRequestQueue(jsonObjectRequest)
     }
 
-    override fun onResume() {
-        super.onResume()
-        getMerchantDetails()
-    }
+    private fun warnDialog(message: String) {
+        val dialog = Dialog(this@MainActivity)
+        dialog.setContentView(R.layout.dialog_warning)
+        dialog.setCancelable(false);
 
-    override fun onRestart() {
-        super.onRestart()
-        getMerchantDetails()
+        val warnMessage = dialog.findViewById(R.id.warnMessage) as TextView
+        val okBtn: Button = dialog.findViewById(R.id.okBtn) as Button
+        warnMessage.text = message
+
+        okBtn.setOnClickListener { dialog.dismiss() }
+
+        dialog.window!!.attributes!!.windowAnimations = R.style.DialogAnimation_1
+        dialog.show()
+        dialog.setCanceledOnTouchOutside(true)
     }
 }
