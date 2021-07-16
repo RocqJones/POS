@@ -1,5 +1,6 @@
 package com.extrainch.pos.ui.inventory.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentSupplierBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.inventory.adapters.AdapterSupplier;
@@ -64,6 +68,14 @@ public class SupplierFragment extends Fragment {
         supplierData = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.recyclerSupplier.setLayoutManager(linearLayoutManager);
+
+        if (supplierData.isEmpty()) {
+            binding.recyclerSupplier.setVisibility(View.GONE);
+            binding.noData.setVisibility(View.VISIBLE);
+        } else {
+            binding.recyclerSupplier.setVisibility(View.VISIBLE);
+            binding.noData.setVisibility(View.GONE);
+        }
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
@@ -116,8 +128,14 @@ public class SupplierFragment extends Fragment {
                 binding.recyclerSupplier.setAdapter(adapterSupplier);
             } catch (Exception e){
                 e.printStackTrace();
+                String err = "Error occurred while sending request\nCheck logs!";
+                warnDialog(err);
             }
-        }, Throwable::printStackTrace) {
+        }, error -> {
+            error.printStackTrace();
+            String failed = "Failed because the server was unreachable, check your internet connection!";
+            warnDialog(failed);
+        }) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<String, String>();
@@ -134,5 +152,22 @@ public class SupplierFragment extends Fragment {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(SupplierFragment.this.getContext());
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
