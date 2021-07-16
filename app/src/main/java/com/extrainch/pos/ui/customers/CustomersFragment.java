@@ -1,5 +1,6 @@
 package com.extrainch.pos.ui.customers;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,11 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentCustomersBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.customers.adapter.AdapterCustomer;
 import com.extrainch.pos.ui.customers.addcustomers.AddCustomerActivity;
 import com.extrainch.pos.ui.customers.data.Customer;
+import com.extrainch.pos.ui.profile.ProfileFragment;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
 
@@ -64,6 +69,14 @@ public class CustomersFragment extends Fragment {
         customerData = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.rvCustomer.setLayoutManager(linearLayoutManager);
+
+        if (customerData.isEmpty()) {
+            binding.rvCustomer.setVisibility(View.GONE);
+            binding.noData.setVisibility(View.VISIBLE);
+        } else {
+            binding.rvCustomer.setVisibility(View.VISIBLE);
+            binding.noData.setVisibility(View.GONE);
+        }
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
@@ -127,5 +140,39 @@ public class CustomersFragment extends Fragment {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(CustomersFragment.this.getContext());
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(CustomersFragment.this.getContext());
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
