@@ -1,11 +1,14 @@
 package com.extrainch.pos.ui.returngoods.postreturns;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddInwardsBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.customers.addcustomers.AddCustomerActivity;
@@ -170,64 +174,108 @@ public class AddInwardsActivity extends AppCompatActivity {
         String returnDate = binding.selectReturnedDate.getText().toString().trim();
         String returnReason = binding.returnedReason.getText().toString().trim();
 
-        ProgressDialog progressDialog = new ProgressDialog(AddInwardsActivity.this);
-        progressDialog.setMessage("Creating return inwards...");
-        progressDialog.show();
+        if (orderDate.isEmpty() || dateDelivered.isEmpty() || returnDate.isEmpty() || returnReason.isEmpty()) {
+            String empError = "Sorry, Please fill all the required fields!";
+            warnDialog(empError);
+        } else {
+            ProgressDialog progressDialog = new ProgressDialog(AddInwardsActivity.this);
+            progressDialog.setMessage("Creating return inwards...");
+            progressDialog.show();
 
-        JSONObject jsonObject = new JSONObject();
-        JSONArray jsonArray = new JSONArray();
-        try {
-            jsonObject.put("merchantBranchId", merchantBranchId);
-            jsonObject.put("supplierId", supplierId);
-            jsonObject.put("customerId", customerId);
-            jsonObject.put("orderDate", orderDate);
-            jsonObject.put("orderedQuantity", orderedQuantity);
-            jsonObject.put("dateDelivered", dateDelivered);
-            jsonObject.put("returnedQuantity", returnedQuantity);
-            jsonObject.put("returnDate", returnDate);
-            jsonObject.put("returnReason", returnReason);
-            jsonObject.put("createdById", uid);
-
-            jsonArray = new JSONArray("["+jsonObject.toString()+"]");
-            Log.d("post inwards", jsonArray.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray, response -> {
+            JSONObject jsonObject = new JSONObject();
+            JSONArray jsonArray = new JSONArray();
             try {
-                Log.d("response", response.toString());
-                progressDialog.dismiss();
-                goBack();
+                jsonObject.put("merchantBranchId", merchantBranchId);
+                jsonObject.put("supplierId", supplierId);
+                jsonObject.put("customerId", customerId);
+                jsonObject.put("orderDate", orderDate);
+                jsonObject.put("orderedQuantity", orderedQuantity);
+                jsonObject.put("dateDelivered", dateDelivered);
+                jsonObject.put("returnedQuantity", returnedQuantity);
+                jsonObject.put("returnDate", returnDate);
+                jsonObject.put("returnReason", returnReason);
+                jsonObject.put("createdById", uid);
+
+                jsonArray = new JSONArray("["+jsonObject.toString()+"]");
+                Log.d("post inwards", jsonArray.toString());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }, error -> {
-            error.printStackTrace();
-            progressDialog.dismiss();
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
-        }){
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Authorization", "Bearer " + token);
-                params.put("Content-Type", "application/json");
-                return params;
-            }
 
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
-        };
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray, response -> {
+                try {
+                    Log.d("response", response.toString());
+                    progressDialog.dismiss();
+                    String mg = "Return Inwards created successfully!";
+                    successDialog(mg);
+                    goBack();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    String err = "Error occurred while sending request\nCheck logs!";
+                    warnDialog(err);
+                }
+            }, error -> {
+                error.printStackTrace();
+                progressDialog.dismiss();
+                String failed = "Failed because the server was unreachable, check your internet connection!";
+                warnDialog(failed);
+            }){
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Authorization", "Bearer " + token);
+                    params.put("Content-Type", "application/json");
+                    return params;
+                }
+
+                @Override
+                public String getBodyContentType() {
+                    return "application/json";
+                }
+            };
+            jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
+        }
     }
 
     private void goBack() {
         Intent j = new Intent(this, InwardsOutwardsActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
