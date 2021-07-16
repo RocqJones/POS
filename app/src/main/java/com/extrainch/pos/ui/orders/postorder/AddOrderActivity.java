@@ -1,6 +1,7 @@
 package com.extrainch.pos.ui.orders.postorder;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddOrderBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.customers.addcustomers.AddCustomerActivity;
@@ -240,86 +244,93 @@ public class AddOrderActivity extends AppCompatActivity {
         int orderId = getOrderId(500);
         int totalOrderAmt = 33;
 
-        // I will check not empty here later
-        ProgressDialog progressDialog = new ProgressDialog(AddOrderActivity.this);
-        progressDialog.setMessage("Creating new order...");
-        progressDialog.show();
+        if (orderDate.isEmpty() || requiredDate.isEmpty() || shippingDate.isEmpty()) {
+            String empError = "Sorry, Please fill all the required fields!";
+            warnDialog(empError);
+        } else {
+            ProgressDialog progressDialog = new ProgressDialog(AddOrderActivity.this);
+            progressDialog.setMessage("Creating new order...");
+            progressDialog.show();
 
-        try {
-            JSONObject jsonObject2 = new JSONObject();
-
-            // 1st json obj inside root "order"
-            JSONObject jsonObject1 = new JSONObject();
-            jsonObject1.put("customerId", customerId);
-            jsonObject1.put("merchantId", merchantId);
-            jsonObject1.put("orderNo", orderNo);
-            jsonObject1.put("orderDate", orderDate);
-            jsonObject1.put("dateRequired", requiredDate);
-            jsonObject1.put("totalOrderAmt", totalOrderAmt);
-            jsonObject1.put("orderStatusId", orderStatusId);
-            jsonObject1.put("paymentTypeId", paymentTypeId);
-            jsonObject1.put("shippingDate", shippingDate);
-            jsonObject1.put("shippingAddress", shippingAddress);
-            jsonObject1.put("createdById", uid);
-
-            jsonObject.put("order", jsonObject1);
-
-            jsonObject2.put("orderId", orderId);
-            jsonObject2.put("productId", productId);
-            jsonObject2.put("quantity", quantity);
-            jsonObject2.put("unitCost", unitPrice);
-            jsonObject2.put("discountAmount", discount);
-            jsonObject2.put("totalDue", totalDue);
-            jsonObject2.put("supplierId", supplierId);
-
-            JSONArray jsonArray1 = new JSONArray("["+jsonObject2+"]");
-            jsonObject.put("details", jsonArray1);
-
-            array = new JSONArray("["+jsonObject.toString()+"]");
-            Log.d("post order", array.toString());
-        } catch (final JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest(Request.Method.POST, url, array, response -> {
             try {
-                Log.d("response order", response.toString());
-                for (int i = 0; i < response.length(); i++) {
-                    JSONObject jsonObj = response.getJSONObject(i);
-                    Log.d("order id", jsonObj.optString("uniqueId"));
+                JSONObject jsonObject2 = new JSONObject();
 
-                    editor = preferences.edit();
-                    editor.putString("orderId", jsonObj.optString("uniqueId"));
-                    editor.apply();
-                }
-                progressDialog.dismiss();
-                Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
-                proceedToViewOrder();
-            } catch (Exception e) {
+                // 1st json obj inside root "order"
+                JSONObject jsonObject1 = new JSONObject();
+                jsonObject1.put("customerId", customerId);
+                jsonObject1.put("merchantId", merchantId);
+                jsonObject1.put("orderNo", orderNo);
+                jsonObject1.put("orderDate", orderDate);
+                jsonObject1.put("dateRequired", requiredDate);
+                jsonObject1.put("totalOrderAmt", totalOrderAmt);
+                jsonObject1.put("orderStatusId", orderStatusId);
+                jsonObject1.put("paymentTypeId", paymentTypeId);
+                jsonObject1.put("shippingDate", shippingDate);
+                jsonObject1.put("shippingAddress", shippingAddress);
+                jsonObject1.put("createdById", uid);
+
+                jsonObject.put("order", jsonObject1);
+
+                jsonObject2.put("orderId", orderId);
+                jsonObject2.put("productId", productId);
+                jsonObject2.put("quantity", quantity);
+                jsonObject2.put("unitCost", unitPrice);
+                jsonObject2.put("discountAmount", discount);
+                jsonObject2.put("totalDue", totalDue);
+                jsonObject2.put("supplierId", supplierId);
+
+                JSONArray jsonArray1 = new JSONArray("["+jsonObject2+"]");
+                jsonObject.put("details", jsonArray1);
+
+                array = new JSONArray("["+jsonObject.toString()+"]");
+                Log.d("post order", array.toString());
+             } catch (final JSONException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
-        }, error -> {
-           error.printStackTrace();
-            progressDialog.dismiss();
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
-        }){
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/json");
-                params.put("Authorization", "Bearer " + token);
-                return params;
-            }
 
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
-        };
-        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
+            JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest(Request.Method.POST, url, array, response -> {
+                try {
+                    Log.d("response order", response.toString());
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObj = response.getJSONObject(i);
+                        Log.d("order id", jsonObj.optString("uniqueId"));
+
+                        editor = preferences.edit();
+                        editor.putString("orderId", jsonObj.optString("uniqueId"));
+                        editor.apply();
+                    }
+                    progressDialog.dismiss();
+                    String mg = "Order created successfully!";
+                    successDialog(mg);
+                    proceedToViewOrder();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    String err = "Error occurred while sending request\nCheck logs!";
+                    warnDialog(err);
+                }
+            }, error -> {
+                error.printStackTrace();
+                progressDialog.dismiss();
+                String failed = "Failed because the server was unreachable, check your internet connection!";
+                warnDialog(failed);
+            }){
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Content-Type", "application/json");
+                    params.put("Authorization", "Bearer " + token);
+                    return params;
+                }
+
+                @Override
+                public String getBodyContentType() {
+                    return "application/json";
+                }
+            };
+            jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
+        }
     }
 
     private void proceedToViewOrder() {
@@ -358,5 +369,39 @@ public class AddOrderActivity extends AppCompatActivity {
     static Integer getOrderId(int r) {
         Random rand = new Random();
         return rand.nextInt(r);
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
