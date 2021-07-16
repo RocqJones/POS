@@ -1,10 +1,13 @@
 package com.extrainch.pos.ui.inventory.postdata;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddCategoryBinding;
 import com.extrainch.pos.ui.inventory.InventoryActivityMain;
 import com.extrainch.pos.utils.Constants;
@@ -71,8 +75,9 @@ public class AddCategoryActivity extends AppCompatActivity {
         String name = binding.categoryName.getText().toString().trim();
         String remarks = binding.categoryRemarks.getText().toString().trim();
 
-        if (name.isEmpty() && remarks.isEmpty()) {
-            Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
+        if (name.isEmpty() || remarks.isEmpty()) {
+            String empError = "Sorry, Please fill all the required fields!";
+            warnDialog(empError);
         } else {
             ProgressDialog progressDialog = new ProgressDialog(AddCategoryActivity.this);
             progressDialog.setMessage("Creating new category...");
@@ -106,16 +111,20 @@ public class AddCategoryActivity extends AppCompatActivity {
                     }
 
                     progressDialog.dismiss();
-                    Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
+                    String mg = "Category created successfully!";
+                    successDialog(mg);
                     proceedToCreateProduct();
                 } catch (Exception e) {
-                    Toast.makeText(this, "Error occurred\nCheck logs!", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this, "Error occurred\nCheck logs!", Toast.LENGTH_LONG).show();
                     Log.i("new branch", Log.getStackTraceString(e));
+                    String err = "Error occurred while sending request\nCheck logs!";
+                    warnDialog(err);
                 }
             }, error -> {
                 progressDialog.dismiss();
                 Log.e("error", error.toString());
-                Toast.makeText(AddCategoryActivity.this, "Failed to create category!", Toast.LENGTH_SHORT).show();
+                String failed = "Failed because the server was unreachable, check your internet connection!";
+                warnDialog(failed);
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
@@ -142,5 +151,39 @@ public class AddCategoryActivity extends AppCompatActivity {
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
         finish();
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
