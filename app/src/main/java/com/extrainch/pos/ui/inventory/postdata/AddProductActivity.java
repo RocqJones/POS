@@ -1,17 +1,21 @@
 package com.extrainch.pos.ui.inventory.postdata;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddProductBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.inventory.InventoryActivityMain;
@@ -55,6 +59,11 @@ public class AddProductActivity extends AppCompatActivity {
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
+
+        String[] unitsOfMeasure = {"Select...", "kgs", "gms", "Lt" , "ml"};
+        ArrayAdapter<String> adapterUnit = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, unitsOfMeasure);
+        binding.addUnitMeasure.setAdapter(adapterUnit);
 
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
@@ -114,23 +123,24 @@ public class AddProductActivity extends AppCompatActivity {
         JSONObject jsonObjects = new JSONObject();
 
         String productName = binding.addName.getText().toString().trim();
-        String unitOfMeasure = binding.addUnitMeasure.getText().toString().trim();
+        String unitOfMeasure = binding.addUnitMeasure.getSelectedItem().toString().trim();
         String purchasePrice = binding.addPrice.getText().toString().trim();
         String quantity = binding.addQty.getText().toString().trim();
         String remarks = binding.addRemarks.getText().toString().trim();
         String reorderLevel = binding.addReOrderLevel.getText().toString().trim();
         String status = "Available";
 
-        if (productName.isEmpty() && unitOfMeasure.isEmpty() && purchasePrice.isEmpty()
-                && quantity.isEmpty() && remarks.isEmpty() && reorderLevel.isEmpty()) {
-            Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
+        if (productName.isEmpty() || unitOfMeasure.isEmpty() || purchasePrice.isEmpty()
+                || quantity.isEmpty() || remarks.isEmpty() || reorderLevel.isEmpty()) {
+            String empError = "Sorry, Please fill all the required fields!";
+            warnDialog(empError);
         } else {
             ProgressDialog progressDialog = new ProgressDialog(AddProductActivity.this);
             progressDialog.setMessage("Creating new product...");
             progressDialog.show();
 
             try {
-                jsonObjects.put("Id", uid);
+                jsonObjects.put("Id", "");
                 jsonObjects.put("name", productName);
                 jsonObjects.put("remarks", remarks);
                 jsonObjects.put("unitOfMeasure", unitOfMeasure);
@@ -164,16 +174,19 @@ public class AddProductActivity extends AppCompatActivity {
                     }
 
                     progressDialog.dismiss();
-                    Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
+                    String mg = "Product created successfully!";
+                    successDialog(mg);
                     proceedToInventory();
                 } catch (Exception e) {
-                    Toast.makeText(this, "Error occurred\nCheck logs!", Toast.LENGTH_LONG).show();
+                    String err = "Error occurred while sending request\nCheck logs!";
+                    warnDialog(err);
                     Log.i("new merchant", Log.getStackTraceString(e));
                 }
             }, error -> {
                 progressDialog.dismiss();
                 Log.e("error", error.toString());
-                Toast.makeText(AddProductActivity.this, "Failed to create product!", Toast.LENGTH_SHORT).show();
+                String failed = "Failed because the server was unreachable, check your internet connection!";
+                warnDialog(failed);
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
@@ -199,5 +212,39 @@ public class AddProductActivity extends AppCompatActivity {
         Intent j = new Intent(AddProductActivity.this, InventoryActivityMain.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
