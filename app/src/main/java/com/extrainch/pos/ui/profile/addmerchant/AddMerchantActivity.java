@@ -1,11 +1,14 @@
 package com.extrainch.pos.ui.profile.addmerchant;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.extrainch.pos.MainActivity;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddMerchantBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.utils.Constants;
@@ -103,7 +107,9 @@ public class AddMerchantActivity extends AppCompatActivity {
             }
         } , error -> {
             Log.e("error", error.toString());
-            Toast.makeText(AddMerchantActivity.this, "loading failed!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(AddMerchantActivity.this, "loading failed!", Toast.LENGTH_SHORT).show();
+            String failed = "The server was unreachable, check your internet connection!";
+            warnDialog(failed);
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -133,7 +139,8 @@ public class AddMerchantActivity extends AppCompatActivity {
         String merchantType = binding.merchantType.getSelectedItem().toString().trim();
 
         if (name.isEmpty() && country.isEmpty()) {
-            Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
+            String empError = "Sorry, Please fill all the fields required!";
+            warnDialog(empError);
         } else {
             ProgressDialog progressDialog = new ProgressDialog(AddMerchantActivity.this);
             progressDialog.setMessage("Creating new merchant...");
@@ -168,7 +175,9 @@ public class AddMerchantActivity extends AppCompatActivity {
                     }
 
                     progressDialog.dismiss();
-                    Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
+                    String mg = "Merchant created successfully!";
+                    successDialog(mg);
                     proceedToCreateProfile();
                 } catch (Exception e) {
                     Toast.makeText(this, "Error occurred\nCheck logs!", Toast.LENGTH_LONG).show();
@@ -177,7 +186,8 @@ public class AddMerchantActivity extends AppCompatActivity {
             }, error -> {
                 progressDialog.dismiss();
                 Log.e("error", error.toString());
-                Toast.makeText(AddMerchantActivity.this, "Failed to create merchant!", Toast.LENGTH_SHORT).show();
+                String failed = "The server was unreachable, check your internet connection!";
+                warnDialog(failed);
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
@@ -203,5 +213,39 @@ public class AddMerchantActivity extends AppCompatActivity {
         Intent j = new Intent(AddMerchantActivity.this, MainActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
