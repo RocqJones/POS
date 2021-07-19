@@ -1,11 +1,14 @@
 package com.extrainch.pos.ui.merchantbranch.addmerchantbranch;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddBranchBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.merchantbranch.MerchantBranchActivity;
@@ -142,7 +146,8 @@ public class NewBranchActivity extends AppCompatActivity {
 
         if (region.isEmpty() && address.isEmpty() &&
                 branchName.isEmpty() && contactPerson.isEmpty() && phone.isEmpty()) {
-            Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
+            String empError = "Sorry, Please fill all the fields required!";
+            warnDialog(empError);
         } else {
             ProgressDialog progressDialog = new ProgressDialog(NewBranchActivity.this);
             progressDialog.setMessage("Creating new branch merchant!");
@@ -181,8 +186,8 @@ public class NewBranchActivity extends AppCompatActivity {
                         editor.apply();
                     }
 
-                    Toast.makeText(this, "Created Successfully!", Toast.LENGTH_SHORT).show();
-
+                    String mg = "Merchant Branch created successfully!";
+                    successDialog(mg);
                     intentBackHome();
                 } catch (Exception e) {
                     Toast.makeText(this, "Error occurred\nCheck logs!", Toast.LENGTH_LONG).show();
@@ -191,7 +196,8 @@ public class NewBranchActivity extends AppCompatActivity {
             }, error -> {
                 progressDialog.dismiss();
                 Log.e("error", error.toString());
-                Toast.makeText(NewBranchActivity.this, "Failed to create branch!", Toast.LENGTH_SHORT).show();
+                String failed = "The server was unreachable, check your internet connection!";
+                warnDialog(failed);
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
@@ -219,5 +225,39 @@ public class NewBranchActivity extends AppCompatActivity {
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
         finish();
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
