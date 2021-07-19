@@ -1,5 +1,6 @@
 package com.extrainch.pos.ui.inventory.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,11 +19,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentProductCategoryBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.inventory.adapters.AdapterCategory;
 import com.extrainch.pos.ui.inventory.postdata.AddCategoryActivity;
 import com.extrainch.pos.ui.inventory.data.InventoryRemoteData;
+import com.extrainch.pos.ui.orders.fragments.OrdersFragment;
 import com.extrainch.pos.utils.Constants;
 
 import org.json.JSONObject;
@@ -56,6 +61,14 @@ public class CategoryFragment extends Fragment {
         categoryData = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.categoryRecycler.setLayoutManager(linearLayoutManager);
+
+        if (categoryData.isEmpty()) {
+            binding.categoryRecycler.setVisibility(View.GONE);
+            binding.noData.setVisibility(View.VISIBLE);
+        } else {
+            binding.categoryRecycler.setVisibility(View.VISIBLE);
+            binding.noData.setVisibility(View.GONE);
+        }
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
@@ -100,10 +113,13 @@ public class CategoryFragment extends Fragment {
                 binding.categoryRecycler.setAdapter(adapterCategory);
             } catch (Exception e){
                 e.printStackTrace();
+                String err = "Error occurred while sending request\nCheck logs!";
+                warnDialog(err);
             }
         }, error -> {
             error.printStackTrace();
-            Toast.makeText(getContext(), "Get failed", Toast.LENGTH_SHORT).show();
+            String failed = "Failed because the server was unreachable, check your internet connection!";
+            warnDialog(failed);
         }) {
             @Override
             public Map<String, String> getHeaders() {
@@ -128,5 +144,22 @@ public class CategoryFragment extends Fragment {
         Intent j = new Intent(CategoryFragment.this.getContext(), AddCategoryActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(CategoryFragment.this.getContext());
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
