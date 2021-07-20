@@ -279,13 +279,15 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
                     // to the next screen
                 } catch (Exception e) {
                     e.printStackTrace();
+                    String err = "Error occurred while sending request\nCheck logs!";
+                    warnDialog(err);
                 }
             }, error -> {
                 error.printStackTrace();
                 progressDialog.dismiss();
                 //Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 String failed = "The server was unreachable, check your internet connection!";
-                //warnDialog(failed);
+                warnDialog(failed);
                 final Dialog dialog = new Dialog(this);
                 dialog.setContentView(R.layout.dialog_warning);
                 dialog.setCancelable(false);
@@ -318,5 +320,22 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
         }
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(AddPurchaseOrderActivity.this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
