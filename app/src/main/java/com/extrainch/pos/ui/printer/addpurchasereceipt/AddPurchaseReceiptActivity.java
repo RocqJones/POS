@@ -23,8 +23,6 @@ import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.inventory.postdata.AddCategoryActivity;
 import com.extrainch.pos.ui.inventory.postdata.AddProductActivity;
 import com.extrainch.pos.ui.orders.postorder.AddPurchaseOrderActivity;
-import com.extrainch.pos.ui.printer.PrinterFragment;
-import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -234,6 +232,8 @@ public class AddPurchaseReceiptActivity extends AppCompatActivity {
                     // to the next screen
                 } catch (Exception e) {
                     e.printStackTrace();
+                    String err = "Error occurred while sending request\nCheck logs!";
+                    warnDialog(err);
                 }
             }, error -> {
                 error.printStackTrace();
