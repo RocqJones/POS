@@ -69,14 +69,6 @@ public class OutwardsFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.returnOutwardsRv.setLayoutManager(linearLayoutManager);
 
-        if (returnOutwardsData.isEmpty()) {
-            binding.returnOutwardsRv.setVisibility(View.GONE);
-            binding.noData.setVisibility(View.VISIBLE);
-        } else {
-            binding.returnOutwardsRv.setVisibility(View.VISIBLE);
-            binding.noData.setVisibility(View.GONE);
-        }
-
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
         if (preferences.contains("merchantId")) {
@@ -120,6 +112,14 @@ public class OutwardsFragment extends Fragment {
 
                 adapterReturnOutwards = new AdapterReturnOutwards(returnOutwardsData, this.getContext());
                 binding.returnOutwardsRv.setAdapter(adapterReturnOutwards);
+
+                if (adapterReturnOutwards.getItemCount() == 0) {
+                    binding.returnOutwardsRv.setVisibility(View.GONE);
+                    binding.noData.setVisibility(View.VISIBLE);
+                } else {
+                    binding.returnOutwardsRv.setVisibility(View.VISIBLE);
+                    binding.noData.setVisibility(View.GONE);
+                }
             } catch (Exception e){
                 e.printStackTrace();
                 String err = "Error occurred while sending request\nCheck logs!";
