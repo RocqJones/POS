@@ -75,14 +75,6 @@ public class OrdersFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.ordersRecyclerView.setLayoutManager(linearLayoutManager);
 
-        if (orderData.isEmpty()) {
-            binding.ordersRecyclerView.setVisibility(View.GONE);
-            binding.noData.setVisibility(View.VISIBLE);
-        } else {
-            binding.ordersRecyclerView.setVisibility(View.VISIBLE);
-            binding.noData.setVisibility(View.GONE);
-        }
-
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
         if (preferences.contains("merchantId")) {
@@ -158,6 +150,14 @@ public class OrdersFragment extends Fragment {
 
                 adapterOrder = new AdapterOrder(orderData, this.getContext());
                 binding.ordersRecyclerView.setAdapter(adapterOrder);
+
+                if (adapterOrder.getItemCount() == 0) {
+                    binding.ordersRecyclerView.setVisibility(View.GONE);
+                    binding.noData.setVisibility(View.VISIBLE);
+                } else {
+                    binding.ordersRecyclerView.setVisibility(View.VISIBLE);
+                    binding.noData.setVisibility(View.GONE);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

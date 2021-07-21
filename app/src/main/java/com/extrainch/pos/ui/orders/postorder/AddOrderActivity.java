@@ -164,8 +164,24 @@ public class AddOrderActivity extends AppCompatActivity {
         if (preferences.contains("merchantId")) {
             merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
         } else {
-            Intent mC = new Intent(this, AddMerchantActivity.class);
-            startActivity(mC);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create supplier you must maintain merchant!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent mC = new Intent(this, AddMerchantActivity.class);
+                startActivity(mC);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
 //        if (preferences.contains("supplierId")) {
@@ -196,8 +212,24 @@ public class AddOrderActivity extends AppCompatActivity {
             String [] s = sp.split(":");
             supplierId = s[0];
         } else {
-            Intent sP = new Intent(this, AddSupplierActivity.class);
-            startActivity(sP);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create order you must create an associate supplier!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent sP = new Intent(this, AddSupplierActivity.class);
+                startActivity(sP);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         if (preferences.contains("productArr")) {
@@ -213,8 +245,24 @@ public class AddOrderActivity extends AppCompatActivity {
             String [] s = sp.split(":");
             productId = s[0];
         } else {
-            Intent p = new Intent(this, AddProductActivity.class);
-            startActivity(p);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create order you must maintain an associate product!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent p = new Intent(this, AddProductActivity.class);
+                startActivity(p);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
 //        productId = Integer.valueOf(preferences.getString(PRODUCT_ID, "createProductId"));
