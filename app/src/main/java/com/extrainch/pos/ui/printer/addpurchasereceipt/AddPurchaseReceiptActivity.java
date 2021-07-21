@@ -22,6 +22,7 @@ import com.extrainch.pos.databinding.ActivityAddPurchaseReceiptBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.inventory.postdata.AddCategoryActivity;
 import com.extrainch.pos.ui.inventory.postdata.AddProductActivity;
+import com.extrainch.pos.ui.inventory.postdata.AddSupplierActivity;
 import com.extrainch.pos.ui.orders.postorder.AddPurchaseOrderActivity;
 import com.extrainch.pos.utils.Constants;
 
@@ -96,8 +97,24 @@ public class AddPurchaseReceiptActivity extends AppCompatActivity {
             String [] s = sp.split(":");
             productId = s[0];
         } else {
-            Intent p = new Intent(this, AddProductActivity.class);
-            startActivity(p);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create purchase receipt you must maintain a product!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent p = new Intent(this, AddProductActivity.class);
+                startActivity(p);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         if (preferences.contains("categoryArr")) {
@@ -113,8 +130,24 @@ public class AddPurchaseReceiptActivity extends AppCompatActivity {
             String [] c = ct.split(":");
             categoryId = c[0];
         } else {
-            Intent cT = new Intent(this, AddCategoryActivity.class);
-            startActivity(cT);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create purchase receipt you must create an product category!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent cT = new Intent(this, AddCategoryActivity.class);
+                startActivity(cT);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         binding.receivedDate.setOnClickListener(v -> {
