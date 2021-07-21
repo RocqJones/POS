@@ -1,10 +1,13 @@
 package com.extrainch.pos.ui.login;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +17,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.extrainch.pos.MainActivity;
+import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityLoginBinding;
+import com.extrainch.pos.ui.profile.ProfileFragment;
 import com.extrainch.pos.ui.resetpassword.ResetPwdActivity;
 import com.extrainch.pos.utils.Constants;
 
@@ -70,7 +75,9 @@ public class LoginActivity extends AppCompatActivity {
         String password = binding.loginPassword.getText().toString().trim();
 
         if (username.isEmpty() && password.isEmpty()) {
-            Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show();
+            String empError = "Sorry, Please fill all the fields required!";
+            warnDialog(empError);
         } else {
             ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
             progressDialog.setMessage("Logging in\nPlease wait...!");
@@ -111,7 +118,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             // Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
 
-                            Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                            String mg = "Login successful!";
+                            successDialog(mg);
 
                             intentHome();
 
@@ -121,8 +130,10 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }, error -> {
                         Log.e("error", error.toString());
-                        Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
+                        String failed = "The server was unreachable, check your internet connection!";
+                        warnDialog(failed);
                     }) {
                 @Override
                 public Map<String, String> getHeaders() {
@@ -149,5 +160,39 @@ public class LoginActivity extends AppCompatActivity {
         h.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(h);
         finish();
+    }
+
+    private void warnDialog(String message) {
+        final Dialog dialog = new Dialog(LoginActivity.this);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.setCancelable(false);
+
+        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        warnMessage.setText(message);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+    }
+
+    private void successDialog(String successM) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success);
+        dialog.setCancelable(false);
+
+        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+        successMessage.setText(successM);
+
+        okBtn.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 }
