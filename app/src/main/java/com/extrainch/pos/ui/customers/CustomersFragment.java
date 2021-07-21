@@ -70,14 +70,6 @@ public class CustomersFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.rvCustomer.setLayoutManager(linearLayoutManager);
 
-        if (customerData.isEmpty()) {
-            binding.rvCustomer.setVisibility(View.GONE);
-            binding.noData.setVisibility(View.VISIBLE);
-        } else {
-            binding.rvCustomer.setVisibility(View.VISIBLE);
-            binding.noData.setVisibility(View.GONE);
-        }
-
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
         if (preferences.contains("merchantId")) {
@@ -120,6 +112,14 @@ public class CustomersFragment extends Fragment {
 
                 adapterCustomer = new AdapterCustomer(customerData, this.getContext());
                 binding.rvCustomer.setAdapter(adapterCustomer);
+
+                if (adapterCustomer.getItemCount() == 0) {
+                    binding.rvCustomer.setVisibility(View.GONE);
+                    binding.noData.setVisibility(View.VISIBLE);
+                } else {
+                    binding.rvCustomer.setVisibility(View.VISIBLE);
+                    binding.noData.setVisibility(View.GONE);
+                }
             } catch (Exception e){
                 e.printStackTrace();
             }
