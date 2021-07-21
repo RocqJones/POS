@@ -62,14 +62,6 @@ public class CategoryFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         binding.categoryRecycler.setLayoutManager(linearLayoutManager);
 
-        if (categoryData.isEmpty()) {
-            binding.categoryRecycler.setVisibility(View.GONE);
-            binding.noData.setVisibility(View.VISIBLE);
-        } else {
-            binding.categoryRecycler.setVisibility(View.VISIBLE);
-            binding.noData.setVisibility(View.GONE);
-        }
-
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
         Log.d("category token", token);
@@ -111,6 +103,14 @@ public class CategoryFragment extends Fragment {
 
                 adapterCategory = new AdapterCategory(categoryData, this.getContext());
                 binding.categoryRecycler.setAdapter(adapterCategory);
+
+                if (adapterCategory.getItemCount() == 0) {
+                    binding.categoryRecycler.setVisibility(View.GONE);
+                    binding.noData.setVisibility(View.VISIBLE);
+                } else {
+                    binding.categoryRecycler.setVisibility(View.VISIBLE);
+                    binding.noData.setVisibility(View.GONE);
+                }
             } catch (Exception e){
                 e.printStackTrace();
                 String err = "Error occurred while sending request\nCheck logs!";

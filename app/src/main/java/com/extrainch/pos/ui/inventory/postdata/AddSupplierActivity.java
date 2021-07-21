@@ -63,8 +63,24 @@ public class AddSupplierActivity extends AppCompatActivity {
         if (preferences.contains("merchantId")) {
             merchantUid = preferences.getString(MERCHANT_ID, "merchantId");
         } else {
-            Intent mD = new Intent(this, AddMerchantActivity.class);
-            startActivity(mD);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create supplier you must maintain merchant!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent mD = new Intent(this, AddMerchantActivity.class);
+                startActivity(mD);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         Log.d("uid supplier", uid);

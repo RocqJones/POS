@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -90,8 +91,24 @@ public class AddProductActivity extends AppCompatActivity {
             String [] c = ct.split(":");
             categoryId = c[0];
         } else {
-            Intent cT = new Intent(this, AddCategoryActivity.class);
-            startActivity(cT);
+            final Dialog dialog = new Dialog(AddProductActivity.this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create product you must maintain category");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent cT = new Intent(AddProductActivity.this, AddCategoryActivity.class);
+                startActivity(cT);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         if (preferences.contains("supplierId") | preferences.contains("supplierArr")) {
@@ -108,8 +125,24 @@ public class AddProductActivity extends AppCompatActivity {
             String [] s = sp.split(":");
             supplierId = s[0];
         } else {
-            Intent sP = new Intent(this, AddSupplierActivity.class);
-            startActivity(sP);
+            final Dialog dialog = new Dialog(AddProductActivity.this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create product you must maintain suppliers");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent sP = new Intent(AddProductActivity.this, AddSupplierActivity.class);
+                startActivity(sP);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         binding.addSaveBtn.setOnClickListener(v -> {

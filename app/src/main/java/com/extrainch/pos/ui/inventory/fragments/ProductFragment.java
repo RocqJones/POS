@@ -163,6 +163,14 @@ public class ProductFragment extends Fragment {
 
                 adapterProducts = new AdapterProducts(productData, this.getContext());
                 binding.productRecycler.setAdapter(adapterProducts);
+
+                if (adapterProducts.getItemCount() == 0) {
+                    binding.productRecycler.setVisibility(View.GONE);
+                    binding.noData.setVisibility(View.VISIBLE);
+                } else {
+                    binding.productRecycler.setVisibility(View.VISIBLE);
+                    binding.noData.setVisibility(View.GONE);
+                }
             } catch (Exception e){
                 e.printStackTrace();
                 String err = "Error occurred while sending request\nCheck logs!";
