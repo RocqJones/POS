@@ -69,9 +69,24 @@ class MainActivity : AppCompatActivity() {
         if (preferences!!.contains("merchantName")) {
             merchantName = preferences!!.getString(MERCHANT_NAME, "merchantName")
         } else {
-            val mN = Intent(this, AddMerchantActivity::class.java)
-            mN.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(mN)
+            val dialog = Dialog(this@MainActivity)
+            dialog.setContentView(R.layout.dialog_warning)
+            dialog.setCancelable(false);
+
+            val warnMessage = dialog.findViewById(R.id.warnMessage) as TextView
+            val okBtn: Button = dialog.findViewById(R.id.okBtn) as Button
+            warnMessage.text = "It seems you have not setup Merchant Details, Click OK to proceed!"
+
+            okBtn.setOnClickListener {
+                dialog.dismiss()
+                val mN = Intent(this, AddMerchantActivity::class.java)
+                mN.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(mN)
+            }
+
+            dialog.window!!.attributes!!.windowAnimations = R.style.DialogAnimation_1
+            dialog.show()
+            dialog.setCanceledOnTouchOutside(true)
         }
 
         userName = (preferences?.getString("FirstName", "FirstName")
