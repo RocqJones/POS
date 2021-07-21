@@ -79,8 +79,24 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
         if (preferences.contains("merchantId")) {
             merchantId = Integer.valueOf(preferences.getString(MERCHANT_ID, "merchantId"));
         } else {
-            Intent mC = new Intent(this, AddMerchantActivity.class);
-            startActivity(mC);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create purchase order you must maintain a merchant!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent mC = new Intent(this, AddMerchantActivity.class);
+                startActivity(mC);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         if (preferences.contains("supplierArr")) {
@@ -96,8 +112,24 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
             String [] s = sp.split(":");
             supplierId = Integer.valueOf(s[0]);
         } else {
-            Intent sP = new Intent(this, AddSupplierActivity.class);
-            startActivity(sP);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create purchase order you must maintain a supplier!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent sP = new Intent(this, AddSupplierActivity.class);
+                startActivity(sP);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         binding.requestedDate.setOnClickListener(v -> {
