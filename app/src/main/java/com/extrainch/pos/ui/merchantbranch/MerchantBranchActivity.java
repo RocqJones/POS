@@ -64,14 +64,6 @@ public class MerchantBranchActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         binding.rvMerchantBranch.setLayoutManager(linearLayoutManager);
 
-        if (mBranchRemoteData.isEmpty()) {
-            binding.rvMerchantBranch.setVisibility(View.GONE);
-            binding.noData.setVisibility(View.VISIBLE);
-        } else {
-            binding.rvMerchantBranch.setVisibility(View.VISIBLE);
-            binding.noData.setVisibility(View.GONE);
-        }
-
         preferences = this.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
 
@@ -100,6 +92,14 @@ public class MerchantBranchActivity extends AppCompatActivity {
                 // set adapter constructor params
                 adapterBranchMerchant = new AdapterBranchMerchant(mBranchRemoteData, this);
                 binding.rvMerchantBranch.setAdapter(adapterBranchMerchant);
+
+                if (adapterBranchMerchant.getItemCount() == 0) {
+                    binding.rvMerchantBranch.setVisibility(View.GONE);
+                    binding.noData.setVisibility(View.VISIBLE);
+                } else {
+                    binding.rvMerchantBranch.setVisibility(View.VISIBLE);
+                    binding.noData.setVisibility(View.GONE);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
