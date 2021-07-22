@@ -23,11 +23,11 @@ import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentProductCategoryBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.inventory.adapters.AdapterCategory;
-import com.extrainch.pos.ui.inventory.postdata.AddCategoryActivity;
 import com.extrainch.pos.ui.inventory.data.InventoryRemoteData;
-import com.extrainch.pos.ui.orders.fragments.OrdersFragment;
+import com.extrainch.pos.ui.inventory.postdata.AddCategoryActivity;
 import com.extrainch.pos.utils.Constants;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -46,6 +46,8 @@ public class CategoryFragment extends Fragment {
     public SharedPreferences.Editor editor;
     public String SHARED_PREF_NAME = "pos_pref";
     public String KEY_TOKEN = "Token";
+    public String KEY_ID = "Id";
+    String uid;
 
     List<InventoryRemoteData> categoryData;
     private AdapterCategory adapterCategory;
@@ -64,6 +66,7 @@ public class CategoryFragment extends Fragment {
 
         preferences = this.getContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         token = preferences.getString(KEY_TOKEN, "Token");
+        uid = preferences.getString(KEY_ID, "Id");
         Log.d("category token", token);
 
         String url = Constants.BASE_URL + "ProductCategory";
@@ -74,7 +77,8 @@ public class CategoryFragment extends Fragment {
     }
 
     private void getCategoryData(String url) {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, response -> {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url,
+                null, response -> {
             try {
                 Log.d("response", response.toString());
 //            Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
@@ -83,8 +87,10 @@ public class CategoryFragment extends Fragment {
                 for (int i = 0; i < response.length(); i++) {
                     JSONObject jsonObject = (JSONObject) response.get(i);
                     InventoryRemoteData inventoryRemoteData = new InventoryRemoteData();
+                    inventoryRemoteData.setItemCatId(jsonObject.optString("id"));
                     inventoryRemoteData.setName(jsonObject.optString("name"));
                     inventoryRemoteData.setRemarks(jsonObject.optString("remarks"));
+                    inventoryRemoteData.setCreatedById(jsonObject.getString("createdById"));
 
                     String rawDate = jsonObject.optString("dateCreated");
                     String [] d = rawDate.split("T");
@@ -92,7 +98,7 @@ public class CategoryFragment extends Fragment {
                     inventoryRemoteData.setDateCreated(d[0]);
                     categoryData.add(inventoryRemoteData);
 
-                    // write names to arr. The '#' will be used to get sub-string
+                    // write names to arr. The ':' will be used to get sub-string
                     String temp_str = jsonObject.optString("id")+":"+jsonObject.optString("name");
                     category.add(temp_str);
                 }
@@ -161,5 +167,60 @@ public class CategoryFragment extends Fragment {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
         dialog.show();
         dialog.setCanceledOnTouchOutside(true);
+    }
+
+    public void modifyData(String id, String txt1, String txt2, String cId, String tokenM) {
+        String modUrl = Constants.BASE_URL + "ProductCategory/Create";
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("Id", Integer.valueOf(id));
+            jsonObject.put("Name", txt1);
+            jsonObject.put("Remarks", txt2);
+            jsonObject.put("createdById", cId);
+
+            jsonArray = new JSONArray("["+jsonObject.toString()+"]");
+            Log.d("postCatMod", jsonArray.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,
+                modUrl, jsonArray, response -> {
+                    try {
+                        Log.d("resMod", response.toString());
+
+                        for(int i=0; i < response.length(); i++) {
+                            JSONObject jsonObj = response.getJSONObject(i);
+                            String msg = jsonObj.optString("description");
+                            Toast.makeText(CategoryFragment.this.getContext(), msg, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }, error -> {
+            Log.e("error", error.toString());
+            String failed = "Failed because the server was unreachable, check your internet connection!";
+            //warnDialog(failed);
+        }){
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json");
+                params.put("Authorization", "Bearer " + tokenM);
+                return params;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonArrayRequest);
     }
 }
