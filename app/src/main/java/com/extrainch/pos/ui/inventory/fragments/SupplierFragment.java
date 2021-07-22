@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentSupplierBinding;
@@ -169,5 +171,64 @@ public class SupplierFragment extends Fragment {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
         dialog.show();
         dialog.setCanceledOnTouchOutside(true);
+    }
+
+    public void modifyData(String id, String cId, String tokenM) {
+        String modUrl = Constants.BASE_URL + "ProductCategory/Create";
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("Id", Integer.valueOf(id));
+            jsonObject.put("merchantId", );
+            jsonObject.put("name", );
+            jsonObject.put("address", );
+            jsonObject.put("phone", );
+            jsonObject.put("email", );
+            jsonObject.put("remarks", );
+            jsonObject.put("createdById", cId);
+
+            jsonArray = new JSONArray("["+jsonObject.toString()+"]");
+            Log.d("postCatMod", jsonArray.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,
+                modUrl, jsonArray, response -> {
+            try {
+                Log.d("resMod", response.toString());
+
+                for(int i=0; i < response.length(); i++) {
+                    JSONObject jsonObj = response.getJSONObject(i);
+                    String msg = jsonObj.optString("description");
+                    Toast.makeText(SupplierFragment.this.getContext(), msg, Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }, error -> {
+            Log.e("error", error.toString());
+            String failed = "Failed because the server was unreachable, check your internet connection!";
+            //warnDialog(failed);
+        }){
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json");
+                params.put("Authorization", "Bearer " + tokenM);
+                return params;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonArrayRequest);
     }
 }
