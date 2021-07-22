@@ -12,7 +12,9 @@ public class InventoryRemoteData {
     private String address;
     private String dateModified;
     private String email;
-    int merchantId;
+    private String sId;
+
+    private String merchantId;
     private String merchants;
     private String modifiedById;
     private String name;
@@ -22,6 +24,14 @@ public class InventoryRemoteData {
     private String reOrderLevel;
     private String category;
     private String supplier;
+
+    public String getsId() {
+        return sId;
+    }
+
+    public void setsId(String sId) {
+        this.sId = sId;
+    }
 
     public String getItemCatId() {
         return itemCatId;
@@ -135,11 +145,11 @@ public class InventoryRemoteData {
         this.email = email;
     }
 
-    public int getMerchantId() {
+    public String getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(int merchantId) {
+    public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
     }
 
