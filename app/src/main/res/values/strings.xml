@@ -151,5 +151,6 @@
     <string name="no_receipts_yet">No receipts yet…</string>
     <string name="there_is_no_item_to_display_yet">There is no item to display yet!</string>
     <string name="modify_product_category">Modify Product Category</string>
+    <string name="modify_supplier">Modify Supplier</string>
 
 </resources>
