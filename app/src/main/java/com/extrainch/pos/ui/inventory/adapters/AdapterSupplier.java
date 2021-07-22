@@ -3,6 +3,7 @@ package com.extrainch.pos.ui.inventory.adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.extrainch.pos.R;
@@ -57,7 +59,7 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.RvHold
         holder.mName.setText(supplierData.get(position).getMerchantName());
         holder.remarks.setText(supplierData.get(position).getRemarks());
         holder.editBtn.setOnClickListener(v -> {
-            String sId = supplierData.get(position).getItemCatId();
+            String sId = supplierData.get(position).getsId();
             String mId = supplierData.get(position).getMerchantId();
             String txt1 = supplierData.get(position).getName();
             String txt2 = supplierData.get(position).getAddress();
@@ -80,7 +82,7 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.RvHold
             EditText email = (EditText) dialog.findViewById(R.id.email);
             EditText remarks = (EditText) dialog.findViewById(R.id.remarks);
 
-            Button svBtn = (Button) dialog.findViewById(R.id.saveBtn);
+            AppCompatButton svBtn = (AppCompatButton) dialog.findViewById(R.id.saveBtn);
 
             name.setText(txt1);
             address.setText(txt2);
@@ -95,6 +97,8 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.RvHold
                 String gPh = phone.getText().toString().trim();
                 String gEm = email.getText().toString().trim();
                 String gRm = remarks.getText().toString().trim();
+
+                Log.d("data", sId + mId + " " + gNm + gAd + gPh + gRm + createdBy + " " + tokenS);
 
                 supplierFragment.modifyData(sId, mId, gNm, gAd, gPh, gEm, gRm, createdBy, tokenS);
             });
