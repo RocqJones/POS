@@ -1,26 +1,35 @@
 package com.extrainch.pos.ui.inventory.data;
 
 public class InventoryRemoteData {
-    String countryId;
-    String createdById;
-    String dateCreated;
-    int id;
-    String merchantName;
-    String merchantTypeId;
-    String statusId;
-    String address;
-    String dateModified;
-    String email;
+    private String itemCatId;
+    private String countryId;
+    private String createdById;
+    private String dateCreated;
+
+    private String merchantName;
+    private String merchantTypeId;
+    private String statusId;
+    private String address;
+    private String dateModified;
+    private String email;
     int merchantId;
-    String merchants;
-    String modifiedById;
-    String name;
-    String phone;
-    String remarks;
-    String units;
-    String reOrderLevel;
-    String category;
-    String supplier;
+    private String merchants;
+    private String modifiedById;
+    private String name;
+    private String phone;
+    private String remarks;
+    private String units;
+    private String reOrderLevel;
+    private String category;
+    private String supplier;
+
+    public String getItemCatId() {
+        return itemCatId;
+    }
+
+    public void setItemCatId(String itemCatId) {
+        this.itemCatId = itemCatId;
+    }
 
     public String getSupplier() {
         return supplier;
@@ -76,14 +85,6 @@ public class InventoryRemoteData {
 
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getMerchantName() {
