@@ -108,6 +108,9 @@ public class SupplierFragment extends Fragment {
                     inventoryRemoteData.setEmail(jsonObject.optString("email"));
                     inventoryRemoteData.setRemarks(jsonObject.optString("remarks"));
                     inventoryRemoteData.setMerchantName(mName);
+                    inventoryRemoteData.setsId(jsonObject.optString("id"));
+                    inventoryRemoteData.setMerchantId(jsonObject.optString("merchantId"));
+                    inventoryRemoteData.setCreatedById(jsonObject.getString("createdById"));
                     supplierData.add(inventoryRemoteData);
 
                     // write names to arr. The '#' will be used to get sub-string
@@ -173,23 +176,24 @@ public class SupplierFragment extends Fragment {
         dialog.setCanceledOnTouchOutside(true);
     }
 
-    public void modifyData(String id, String cId, String tokenM) {
-        String modUrl = Constants.BASE_URL + "ProductCategory/Create";
+    public void modifyData(String sId, String mId, String gNm, String gAd, String gPh, String gEm,
+                           String gRm, String createdBy, String tokenS) {
+        String modUrl = Constants.BASE_URL + "Supplier/Modify";
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("Id", Integer.valueOf(id));
-            jsonObject.put("merchantId", );
-            jsonObject.put("name", );
-            jsonObject.put("address", );
-            jsonObject.put("phone", );
-            jsonObject.put("email", );
-            jsonObject.put("remarks", );
-            jsonObject.put("createdById", cId);
+            jsonObject.put("Id", Integer.valueOf(sId));
+            jsonObject.put("merchantId", Integer.valueOf(mId));
+            jsonObject.put("name", gNm);
+            jsonObject.put("address", gAd);
+            jsonObject.put("phone", gPh);
+            jsonObject.put("email", gEm);
+            jsonObject.put("remarks", gRm);
+            jsonObject.put("createdById",createdBy);
 
             jsonArray = new JSONArray("["+jsonObject.toString()+"]");
-            Log.d("postCatMod", jsonArray.toString());
+            Log.d("postMod", jsonArray.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -217,7 +221,7 @@ public class SupplierFragment extends Fragment {
             public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", "application/json");
-                params.put("Authorization", "Bearer " + tokenM);
+                params.put("Authorization", "Bearer " + tokenS);
                 return params;
             }
 
