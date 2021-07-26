@@ -147,7 +147,7 @@ public class AddCategoryActivity extends AppCompatActivity {
     }
 
     private void proceedToCreateProduct() {
-        Intent j = new Intent(AddCategoryActivity.this, AddProductActivity.class);
+        Intent j = new Intent(AddCategoryActivity.this, InventoryActivityMain.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
         finish();
