@@ -25,6 +25,7 @@ import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.inventory.adapters.AdapterCategory;
 import com.extrainch.pos.ui.inventory.data.InventoryRemoteData;
 import com.extrainch.pos.ui.inventory.postdata.AddCategoryActivity;
+import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -47,7 +48,9 @@ public class CategoryFragment extends Fragment {
     public String SHARED_PREF_NAME = "pos_pref";
     public String KEY_TOKEN = "Token";
     public String KEY_ID = "Id";
+    public String MERCHANT_ID = "merchantId";
     String uid;
+    String merchantId;
 
     List<InventoryRemoteData> categoryData;
     private AdapterCategory adapterCategory;
@@ -69,8 +72,14 @@ public class CategoryFragment extends Fragment {
         uid = preferences.getString(KEY_ID, "Id");
         Log.d("category token", token);
 
-        String url = Constants.BASE_URL + "ProductCategory";
+        if (preferences.contains("merchantId")) {
+            merchantId = preferences.getString(MERCHANT_ID, "merchantId");
+        } else {
+            Intent mC = new Intent(this.getContext(), AddMerchantActivity.class);
+            startActivity(mC);
+        }
 
+        String url = Constants.BASE_URL + "ProductCategory?MerchantId=" + merchantId;
         getCategoryData(url);
 
         return binding.getRoot();
@@ -170,7 +179,7 @@ public class CategoryFragment extends Fragment {
     }
 
     public void modifyData(String id, String txt1, String txt2, String cId, String tokenM) {
-        String modUrl = Constants.BASE_URL + "ProductCategory/Create";
+        String modUrl = Constants.BASE_URL + "ProductCategory/Modify";
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject = new JSONObject();
 
