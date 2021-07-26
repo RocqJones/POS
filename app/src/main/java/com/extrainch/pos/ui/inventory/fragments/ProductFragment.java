@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentProductBinding;
@@ -146,9 +148,17 @@ public class ProductFragment extends Fragment {
                     JSONObject jsonObject3 = (JSONObject) jsonArray3.get(k);
                     InventoryRemoteData inventoryRemoteData = new InventoryRemoteData();
                     inventoryRemoteData.setName(jsonObject3.optString("name"));
+                    inventoryRemoteData.setpId(jsonObject3.optString("id"));
                     inventoryRemoteData.setUnits(jsonObject3.optString("unitOfMeasure"));
                     inventoryRemoteData.setStatusId(jsonObject3.optString("statusID"));
                     inventoryRemoteData.setReOrderLevel(jsonObject3.optString("reOrderLevel"));
+                    inventoryRemoteData.setpSupId(jsonObject3.optString("supplierId"));
+                    inventoryRemoteData.setpCatId(jsonObject3.optString("categoryId"));
+                    inventoryRemoteData.setpMerchId(jsonObject3.optString("merchantId"));
+                    inventoryRemoteData.setpQuantity(jsonObject3.optString("quantity"));
+                    inventoryRemoteData.setpUnitMeasure(jsonObject3.optString("unitOfMeasure"));
+                    inventoryRemoteData.setRemarks(jsonObject3.optString("remarks"));
+                    inventoryRemoteData.setCreatedById(jsonObject3.optString("createdById"));
                     inventoryRemoteData.setCategory(categoryName);
                     inventoryRemoteData.setSupplier(supplierName);
                     inventoryRemoteData.setRemarks(jsonObject3.optString("remarks"));
@@ -215,5 +225,69 @@ public class ProductFragment extends Fragment {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
         dialog.show();
         dialog.setCanceledOnTouchOutside(true);
+    }
+
+    public void modifyProduct(String pId, String cId, String sId, String mId, String pNm, String pQt,
+                              String pRl, String pUm, String pRm, String pSt, String createdBy,
+                              String tokenS) {
+        String modUrl = Constants.BASE_URL + "Product/Modify";
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("Id", Integer.valueOf(pId));
+            jsonObject.put("name", pNm);
+            jsonObject.put("remarks", pRm);
+            jsonObject.put("unitOfMeasure", pUm);
+            jsonObject.put("statusID", pSt);
+            jsonObject.put("reOrderLevel", Integer.valueOf(pRl));
+            jsonObject.put("categoryId", cId);
+            jsonObject.put("quantity", pQt);
+            jsonObject.put("supplierId", sId);
+            jsonObject.put("merchantId", Integer.valueOf(mId));
+            jsonObject.put("createdById",createdBy);
+
+            jsonArray = new JSONArray("["+jsonObject.toString()+"]");
+            Log.d("postMod", jsonArray.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,
+                modUrl, jsonArray, response -> {
+            try {
+                Log.d("resMod", response.toString());
+
+                for(int i=0; i < response.length(); i++) {
+                    JSONObject jsonObj = response.getJSONObject(i);
+                    String msg = jsonObj.optString("description");
+                    Toast.makeText(ProductFragment.this.getContext(), msg, Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }, error -> {
+            Log.e("error", error.toString());
+            String failed = "Failed because the server was unreachable, check your internet connection!";
+            //warnDialog(failed);
+        }){
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json");
+                params.put("Authorization", "Bearer " + tokenS);
+                return params;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getInstance(this.getContext()).addToRequestQueue(jsonArrayRequest);
     }
 }
