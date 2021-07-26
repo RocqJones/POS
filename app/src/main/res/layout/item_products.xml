@@ -225,7 +225,7 @@
                 android:textSize="14sp"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/edit"
+                android:id="@+id/prodEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
