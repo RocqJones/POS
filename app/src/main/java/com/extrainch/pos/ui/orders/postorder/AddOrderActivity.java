@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -119,6 +120,28 @@ public class AddOrderActivity extends AppCompatActivity {
                 }
                 String fnD = year + "-" + m + "-" + d;
                 binding.requiredDate.setText(fnD);
+            },mYear, mMonth, mDay);
+            datePickerDialog.show();
+        });
+
+        binding.shippingDate.setOnClickListener(v -> {
+            int mYear = myCalender.get(Calendar.YEAR);
+            int mMonth = myCalender.get(Calendar.MONTH);
+            int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(AddOrderActivity.this, (view, year, month, dayOfMonth) -> {
+                myCalender.set(year, month, dayOfMonth);
+                if(month < 10){
+                    m ="0" + (month + 1);
+                } else {
+                    m = ""+ (month + 1);
+                }
+                if (dayOfMonth<10){
+                    d ="0"+ dayOfMonth;
+                } else {
+                    d = "" + dayOfMonth;
+                }
+                String fnD = year + "-" + m + "-" + d;
+                binding.shippingDate.setText(fnD);
             },mYear, mMonth, mDay);
             datePickerDialog.show();
         });
