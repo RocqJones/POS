@@ -24,6 +24,61 @@ public class InventoryRemoteData {
     private String reOrderLevel;
     private String category;
     private String supplier;
+    private String pId;
+    private String pSupId;
+    private String pCatId;
+    private String pMerchId;
+    private String pQuantity;
+    private String pUnitMeasure;
+
+
+    public String getpUnitMeasure() {
+        return pUnitMeasure;
+    }
+
+    public void setpUnitMeasure(String pUnitMeasure) {
+        this.pUnitMeasure = pUnitMeasure;
+    }
+
+    public String getpQuantity() {
+        return pQuantity;
+    }
+
+    public void setpQuantity(String pQuantity) {
+        this.pQuantity = pQuantity;
+    }
+
+    public String getpMerchId() {
+        return pMerchId;
+    }
+
+    public void setpMerchId(String pMerchId) {
+        this.pMerchId = pMerchId;
+    }
+
+    public String getpSupId() {
+        return pSupId;
+    }
+
+    public void setpSupId(String pSupId) {
+        this.pSupId = pSupId;
+    }
+
+    public String getpCatId() {
+        return pCatId;
+    }
+
+    public void setpCatId(String pCatId) {
+        this.pCatId = pCatId;
+    }
+
+    public String getpId() {
+        return pId;
+    }
+
+    public void setpId(String pId) {
+        this.pId = pId;
+    }
 
     public String getsId() {
         return sId;
