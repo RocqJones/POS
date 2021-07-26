@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_printer">Printer</string>
     <string name="title_profile">Profile</string>
-    <string name="welcome">Welcome Back!</string>
+    <string name="welcome">Welcome!</string>
     <string name="login_welcome_msg">Login into your account</string>
     <string name="login">Login</string>
     <string name="email">Email Address</string>
@@ -152,5 +152,6 @@
     <string name="there_is_no_item_to_display_yet">There is no item to display yet!</string>
     <string name="modify_product_category">Modify Product Category</string>
     <string name="modify_supplier">Modify Supplier</string>
+    <string name="modify_product">Modify Product</string>
 
 </resources>
