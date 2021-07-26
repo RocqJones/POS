@@ -95,8 +95,7 @@
                     android:drawableStart="@drawable/baseline_account_circle_blue_700_18dp"
                     android:drawablePadding="20dp"
                     android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:autofillHints="" />
+                    android:paddingEnd="20dp" />
 
                 <EditText
                     android:id="@+id/loginPassword"
@@ -138,7 +137,6 @@
                     android:textColor="@color/white"
                     android:fontFamily="sans-serif"
                     android:textAllCaps="false"
-                    android:drawableEnd="@drawable/baseline_arrow_right_alt_white_36dp"
                     android:background="@drawable/bg_round_btn"/>
 
 <!--                <TextView-->
