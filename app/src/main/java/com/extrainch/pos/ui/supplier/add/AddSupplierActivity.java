@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.inventory.postdata;
+package com.extrainch.pos.ui.supplier.add;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +19,7 @@ import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddSupplierBinding;
 import com.extrainch.pos.ui.inventory.InventoryActivityMain;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
+import com.extrainch.pos.ui.supplier.SupplierActivity;
 import com.extrainch.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -50,7 +50,7 @@ public class AddSupplierActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.addBackBtn.setOnClickListener(v -> {
-            Intent i = new Intent(AddSupplierActivity.this, InventoryActivityMain.class);
+            Intent i = new Intent(AddSupplierActivity.this, SupplierActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
