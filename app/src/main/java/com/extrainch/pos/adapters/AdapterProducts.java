@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.inventory.adapters;
+package com.extrainch.pos.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ItemProductsBinding;
-import com.extrainch.pos.ui.inventory.data.InventoryRemoteData;
-import com.extrainch.pos.ui.inventory.fragments.ProductFragment;
+import com.extrainch.pos.repository.InventoryRemoteData;
+import com.extrainch.pos.ui.products.ProductActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.RVHold
     ItemProductsBinding binding;
     Context mContext;
 
-    ProductFragment productFragment = new ProductFragment();
+    ProductActivity productActivity = new ProductActivity();
 
     public AdapterProducts(List<InventoryRemoteData> productData, Context mContext) {
         this.productData = productData;
@@ -116,7 +116,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.RVHold
                 String pSt = status.getSelectedItem().toString().trim();
 
                 Log.d("data", pId + cId + sId + mId + " " + createdBy + " " + tokenS);
-                productFragment.modifyProduct(pId, cId, sId, mId, pNm, pQt, pRl, pUm, pRm, pSt, createdBy, tokenS);
+                productActivity.modifyProduct(pId, cId, sId, mId, pNm, pQt, pRl, pUm, pRm, pSt, createdBy, tokenS);
             });
 
             dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;

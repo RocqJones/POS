@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.inventory.adapters;
+package com.extrainch.pos.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,8 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ItemSupplierBinding;
-import com.extrainch.pos.ui.inventory.data.InventoryRemoteData;
+import com.extrainch.pos.repository.InventoryRemoteData;
 import com.extrainch.pos.ui.inventory.fragments.SupplierFragment;
+import com.extrainch.pos.ui.supplier.SupplierActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.RvHold
     ItemSupplierBinding binding;
     Context mContext;
 
-    SupplierFragment supplierFragment = new SupplierFragment();
+    SupplierActivity supplierActivity = new SupplierActivity();
 
     public AdapterSupplier(List<InventoryRemoteData> supplierData, Context mContext) {
         this.supplierData = supplierData;
@@ -100,7 +100,7 @@ public class AdapterSupplier extends RecyclerView.Adapter<AdapterSupplier.RvHold
 
                 Log.d("data", sId + mId + " " + gNm + gAd + gPh + gRm + createdBy + " " + tokenS);
 
-                supplierFragment.modifyData(sId, mId, gNm, gAd, gPh, gEm, gRm, createdBy, tokenS);
+                supplierActivity.modifyData(sId, mId, gNm, gAd, gPh, gEm, gRm, createdBy, tokenS);
             });
 
             dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;

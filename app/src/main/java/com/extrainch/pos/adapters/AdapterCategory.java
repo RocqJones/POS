@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.inventory.adapters;
+package com.extrainch.pos.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ItemCategoryBinding;
-import com.extrainch.pos.ui.inventory.data.InventoryRemoteData;
+import com.extrainch.pos.repository.InventoryRemoteData;
+import com.extrainch.pos.ui.category.CategoryActivity;
 import com.extrainch.pos.ui.inventory.fragments.CategoryFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -34,7 +35,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.RvHold
     ItemCategoryBinding binding;
     Context mContext;
 
-    CategoryFragment categoryFragment = new CategoryFragment();
+    CategoryActivity categoryActivity = new CategoryActivity();
 
     public AdapterCategory(List<InventoryRemoteData> categoryData, Context mContext) {
         this.categoryData = categoryData;
@@ -79,7 +80,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.RvHold
                 dialog.dismiss();
                 String name = catName.getText().toString().trim();
                 String rmk = remarks.getText().toString().trim();
-                categoryFragment.modifyData(cId, name, rmk, createdBy, tokenM);
+                categoryActivity.modifyData(cId, name, rmk, createdBy, tokenM);
             });
 
             dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
