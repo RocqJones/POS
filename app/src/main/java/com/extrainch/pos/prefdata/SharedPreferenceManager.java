@@ -1,4 +1,4 @@
-package com.extrainch.pos.data;
+package com.extrainch.pos.prefdata;
 
 import android.content.Context;
 import android.content.SharedPreferences;
