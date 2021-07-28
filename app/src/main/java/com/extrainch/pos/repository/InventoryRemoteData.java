@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.inventory.data;
+package com.extrainch.pos.repository;
 
 public class InventoryRemoteData {
     private String itemCatId;
