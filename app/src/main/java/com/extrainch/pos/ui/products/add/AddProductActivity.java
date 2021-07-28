@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.inventory.postdata;
+package com.extrainch.pos.ui.products.add;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +18,9 @@ import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddProductBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.inventory.InventoryActivityMain;
+import com.extrainch.pos.ui.category.add.AddCategoryActivity;
+import com.extrainch.pos.ui.supplier.add.AddSupplierActivity;
+import com.extrainch.pos.ui.products.ProductActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
 
@@ -56,7 +57,7 @@ public class AddProductActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.addBackBtn.setOnClickListener(v -> {
-            Intent i = new  Intent(AddProductActivity.this, InventoryActivityMain.class);
+            Intent i = new  Intent(AddProductActivity.this, ProductActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
