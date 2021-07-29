@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.orders.postorder;
+package com.extrainch.pos.ui.purchase.add;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -21,8 +21,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddPurchaseOrderBinding;
 import com.extrainch.pos.patterns.MySingleton;
-import com.extrainch.pos.ui.inventory.postdata.AddProductActivity;
-import com.extrainch.pos.ui.inventory.postdata.AddSupplierActivity;
+import com.extrainch.pos.ui.products.add.AddProductActivity;
+import com.extrainch.pos.ui.purchase.PurchaseActivity;
+import com.extrainch.pos.ui.supplier.add.AddSupplierActivity;
 import com.extrainch.pos.ui.orders.OrdersActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
@@ -66,7 +67,7 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.backBtn.setOnClickListener(v -> {
-            Intent i = new Intent(this, OrdersActivity.class);
+            Intent i = new Intent(this, PurchaseActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
