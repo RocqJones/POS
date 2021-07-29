@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_bg"
+    android:background="@drawable/vintagebg"
     tools:context=".ui.products.ProductActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -65,7 +65,7 @@
         android:layout_height="0dp"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,17 +102,5 @@
             android:textStyle="bold" />
 
     </RelativeLayout>
-
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        android:layout_margin="@dimen/fab_margin"-->
-<!--        android:backgroundTint="@color/teal_700"-->
-<!--        android:contentDescription="@string/ic"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:srcCompat="@android:drawable/ic_input_add" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
