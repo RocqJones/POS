@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_bg"
+    android:background="@drawable/vintagebg"
     android:orientation="vertical"
     tools:context=".ui.profile.ProfileFragment">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:padding="20dp"
-        android:background="@drawable/gradient_solid_blue"
+        android:background="@drawable/vintagebg"
         android:orientation="vertical"/>
 
     <LinearLayout
@@ -203,16 +203,21 @@
 
         </LinearLayout>
 
-        <ImageView
+        <TextView
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/linearLyt"
             android:layout_alignParentEnd="true"
+            android:text="@string/logout"
+            android:textColor="@color/text_color_blue"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/baseline_logout_blue_700_24dp"
-            android:contentDescription="@string/ic" />
+            android:contentDescription="@string/ic"
+            android:drawablePadding="4sp"
+            app:drawableTopCompat="@drawable/baseline_logout_blue_700_24dp" />
 
     </RelativeLayout>
 
