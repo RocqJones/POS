@@ -1,193 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/light_bg"
+    android:background="@drawable/vintagebg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alignmentMode="alignMargins"
-    android:columnCount="2"
-    android:rowCount="3"
     tools:context=".ui.home.HomeFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/homeInventory"
-        android:layout_width="wrap_content"
+    <GridLayout
         android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        android:layout_width="match_parent"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:rowCount="4">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homeInventory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@string/inventory"
-                android:textColor="#2196F3"
-                app:drawableTopCompat="@drawable/baseline_inventory_blue_500_48dp" />
-        </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/inventory"
+                    android:textColor="#2196F3"
+                    app:drawableTopCompat="@drawable/baseline_inventory_blue_500_48dp" />
+            </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/homeSalesExp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homeCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@string/sales_expenses"
-                android:textColor="#2196F3"
-                app:drawableTopCompat="@drawable/baseline_shopping_cart_blue_500_48dp" />
-        </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/category"
+                    android:textColor="#2196F3"
+                    app:drawableTopCompat="@drawable/baseline_playlist_add_blue_500_48dp" />
+            </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/homeOrders"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homeProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@string/orders"
-                android:textColor="#2196F3"
-                app:drawableTopCompat="@drawable/baseline_emoji_transportation_blue_500_48dp" />
-        </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/product"
+                    android:textColor="#2196F3"
+                    app:drawableTopCompat="@drawable/baseline_stacked_bar_chart_blue_500_48dp" />
+            </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/homeReports"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homeSupplier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@string/report"
-                android:textColor="#2196F3"
-                app:drawableTopCompat="@drawable/baseline_bar_chart_blue_500_48dp" />
-        </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/supplier"
+                    android:textColor="#2196F3"
+                    app:drawableTopCompat="@drawable/baseline_business_center_blue_500_48dp" />
+            </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/homeMerchants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homePurchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@string/register_branch"
-                android:textColor="#2196F3"
-                app:drawableTopCompat="@drawable/baseline_add_business_blue_500_48dp" />
-        </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/purchase"
+                    android:textColor="#2196F3"
+                    app:drawableTopCompat="@drawable/baseline_shopping_cart_blue_500_48dp" />
+            </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/homeReturnInOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homeOrders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@string/goods_return"
-                android:textColor="#2196F3"
-                app:drawableTopCompat="@drawable/baseline_trending_up_blue_500_48dp" />
-        </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/orders"
+                    android:textColor="#2196F3"
+                    app:drawableTopCompat="@drawable/baseline_emoji_transportation_blue_500_48dp" />
+            </LinearLayout>
 
-</GridLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homeReturnInOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/goods_return"
+                    android:textColor="#2196F3"
+                    app:drawableTopCompat="@drawable/baseline_trending_up_blue_500_48dp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homeMerchants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/register_branch"
+                    android:textColor="#2196F3"
+                    app:drawableTopCompat="@drawable/baseline_add_business_blue_500_48dp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!--    <androidx.cardview.widget.CardView-->
+        <!--        android:id="@+id/homeReports"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_column="1"-->
+        <!--        android:layout_columnWeight="1"-->
+        <!--        android:layout_marginTop="16dp"-->
+        <!--        android:layout_marginStart="8dp"-->
+        <!--        android:layout_marginEnd="16dp"-->
+        <!--        app:cardCornerRadius="8dp"-->
+        <!--        app:cardElevation="8dp">-->
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center_horizontal"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:padding="16dp">-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:fontFamily="sans-serif"-->
+        <!--                android:text="@string/report"-->
+        <!--                android:textColor="#2196F3"-->
+        <!--                app:drawableTopCompat="@drawable/baseline_bar_chart_blue_500_48dp" />-->
+        <!--        </LinearLayout>-->
+
+        <!--    </androidx.cardview.widget.CardView>-->
+
+    </GridLayout>
+
+</ScrollView>
