@@ -1,8 +1,8 @@
-package com.extrainch.pos.ui.orders.data;
+package com.extrainch.pos.repository;
 
 public class PurchaseRemoteData {
-    private int id;
-    private int supplierId;
+    private String id;
+    private String supplierId;
     private String requestDate;
     private String paymentStatusId;
     private String purchaseStatusId;
@@ -13,19 +13,19 @@ public class PurchaseRemoteData {
     private String pTotalCost;
     private String pRemarks;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getSupplierId() {
+    public String getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(int supplierId) {
+    public void setSupplierId(String supplierId) {
         this.supplierId = supplierId;
     }
 
