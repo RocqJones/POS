@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.orders.adapter;
+package com.extrainch.pos.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.extrainch.pos.databinding.ItemOrdersBinding;
-import com.extrainch.pos.ui.orders.data.OrderRemoteData;
+import com.extrainch.pos.repository.OrderRemoteData;
 
 import java.util.List;
 

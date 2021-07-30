@@ -1,4 +1,4 @@
-package com.extrainch.pos.ui.orders.data;
+package com.extrainch.pos.repository;
 
 public class OrderRemoteData {
     private int id;
