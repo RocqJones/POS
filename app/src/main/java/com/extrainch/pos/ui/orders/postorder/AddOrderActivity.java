@@ -9,11 +9,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,8 +22,8 @@ import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddOrderBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.customers.addcustomers.AddCustomerActivity;
-import com.extrainch.pos.ui.inventory.postdata.AddProductActivity;
-import com.extrainch.pos.ui.inventory.postdata.AddSupplierActivity;
+import com.extrainch.pos.ui.products.add.AddProductActivity;
+import com.extrainch.pos.ui.supplier.add.AddSupplierActivity;
 import com.extrainch.pos.ui.orders.OrdersActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
