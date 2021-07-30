@@ -1,43 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/vintagebg"
     tools:context=".ui.orders.OrdersActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.POS.AppBarOverlay">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue_500"
+        android:theme="@style/Theme.POS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/title"
+        <ImageView
+            android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
-            android:text="@string/orders_amp_quote"
-            android:drawablePadding="16dp"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            app:drawableStartCompat="@drawable/baseline_arrow_back_white_24dp" />
+            android:clickable="true"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="start"
+            android:src="@drawable/baseline_arrow_back_white_24dp"
+            android:contentDescription="@string/ic"
+            android:focusable="true" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orders"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+        <ImageView
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="end"
+            android:src="@drawable/baseline_add_circle_white_36dp"
+            android:contentDescription="@string/ic"
+            android:focusable="true" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ordersRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
+    <RelativeLayout
+        android:id="@+id/noData"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
+
+        <ImageView
+            android:id="@+id/snackIc"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/noposts"
+            android:contentDescription="@string/ic"
+            android:gravity="center_vertical"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:tabIndicatorColor="@color/black"
-            app:tabTextColor="@color/white"/>
+            android:layout_below="@+id/snackIc"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/white"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/there_is_no_item_to_display_yet"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </RelativeLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/light_bg"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
