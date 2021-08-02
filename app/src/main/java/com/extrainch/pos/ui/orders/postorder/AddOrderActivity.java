@@ -49,9 +49,9 @@ public class AddOrderActivity extends AppCompatActivity {
     public String KEY_ID = "Id";
     public String KEY_TOKEN = "Token";
     public String MERCHANT_ID = "merchantId";
-    public String SUPPLIER_ID = "supplierId";
+//    public String SUPPLIER_ID = "supplierId";
     public String CUSTOMER_ID = "customerId";
-    public String PRODUCT_ID = "createProductId";
+//    public String PRODUCT_ID = "createProductId";
 
     public String SUPPLIER_ARR = "supplierArr";
     public String PRODUCT_ARR = "productArr";
@@ -72,7 +72,7 @@ public class AddOrderActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         String[] paymentTypes = {"Cash", "Mobile", "Card"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, paymentTypes);
         binding.paymentType.setAdapter(adapter);
 
@@ -189,8 +189,8 @@ public class AddOrderActivity extends AppCompatActivity {
             dialog.setContentView(R.layout.dialog_warning);
             dialog.setCancelable(false);
 
-            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+            TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+            Button okBtn = dialog.findViewById(R.id.okBtn);
 
             warnMessage.setText("To create supplier you must maintain merchant!");
 
@@ -225,7 +225,7 @@ public class AddOrderActivity extends AppCompatActivity {
 
             String temp_str = supplierArr.replace("[", "").replace("]", "");
             String[] supplierT = temp_str.split(",");
-            ArrayAdapter<String> adapterS = new ArrayAdapter<String>(this,
+            ArrayAdapter<String> adapterS = new ArrayAdapter<>(this,
                     android.R.layout.simple_dropdown_item_1line, supplierT);
             binding.orderSupplier.setAdapter(adapterS);
 
@@ -258,7 +258,7 @@ public class AddOrderActivity extends AppCompatActivity {
 
             String temp_str_p = supplierArr.replace("[", "").replace("]", "");
             String[] supplierT = temp_str_p.split(",");
-            ArrayAdapter<String> adapterP = new ArrayAdapter<String>(this,
+            ArrayAdapter<String> adapterP = new ArrayAdapter<>(this,
                     android.R.layout.simple_dropdown_item_1line, supplierT);
             binding.selectProduct.setAdapter(adapterP);
 
@@ -270,8 +270,8 @@ public class AddOrderActivity extends AppCompatActivity {
             dialog.setContentView(R.layout.dialog_warning);
             dialog.setCancelable(false);
 
-            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+            TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+            Button okBtn = dialog.findViewById(R.id.okBtn);
 
             warnMessage.setText("To create order you must maintain an associate product!");
 
@@ -385,7 +385,7 @@ public class AddOrderActivity extends AppCompatActivity {
             }){
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String> params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<>();
                     params.put("Content-Type", "application/json");
                     params.put("Authorization", "Bearer " + token);
                     return params;
@@ -445,8 +445,8 @@ public class AddOrderActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_success);
         dialog.setCancelable(false);
 
-        TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
-        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+        TextView successMessage = dialog.findViewById(R.id.successMessage);
+        Button okBtn = dialog.findViewById(R.id.okBtn);
 
         successMessage.setText(successM);
 
@@ -462,8 +462,8 @@ public class AddOrderActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_warning);
         dialog.setCancelable(false);
 
-        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+        TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+        Button okBtn = dialog.findViewById(R.id.okBtn);
 
         warnMessage.setText(message);
 
