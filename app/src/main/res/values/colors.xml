@@ -12,4 +12,7 @@
 
     <color name="text_color_blue">#2CABE3</color>
     <color name="light_bg">#EAEDFA</color>
+
+    <color name="prim_main_500">#FD8313</color>
+    <color name="prim_variant_700">#F18623</color>
 </resources>
