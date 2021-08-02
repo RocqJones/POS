@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.extrainch.pos.databinding.FragmentPrinterBinding;
-import com.extrainch.pos.ui.orders.data.PurchaseRemoteData;
+import com.extrainch.pos.repository.PurchaseRemoteData;
 import com.extrainch.pos.ui.printer.addpurchasereceipt.AddPurchaseReceiptActivity;
 
 import java.util.ArrayList;
