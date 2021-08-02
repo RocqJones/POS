@@ -31,7 +31,7 @@
     <string name="ic">ic</string>
     <string name="inventory">Inventory</string>
     <string name="sales_expenses">Sales / Expenses</string>
-    <string name="orders">Orders / Purchase</string>
+    <string name="orders">Orders</string>
     <string name="report">Reports</string>
     <string name="stock_transfer">Stock Transfer</string>
     <string name="title_activity_sales_and_expenses">SalesAndExpenses</string>
@@ -153,5 +153,10 @@
     <string name="modify_product_category">Modify Product Category</string>
     <string name="modify_supplier">Modify Supplier</string>
     <string name="modify_product">Modify Product</string>
+    <string name="purchase">Purchase</string>
+    <string name="products">Products</string>
+    <string name="product_category">Product Category</string>
+    <string name="purchase_order">Purchase order</string>
+    <string name="logout">LogOut</string>
 
 </resources>
