@@ -12,11 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.POS">
+
+        <activity
+            android:name=".ui.purchase.PurchaseActivity"
+            android:theme="@style/Theme.POS.NoActionBar" />
+        <activity
+            android:name=".ui.supplier.SupplierActivity"
+            android:theme="@style/Theme.POS.NoActionBar" />
+        <activity
+            android:name=".ui.category.CategoryActivity"
+            android:theme="@style/Theme.POS.NoActionBar" />
+        <activity
+            android:name=".ui.products.ProductActivity"
+            android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.printer.addpurchasereceipt.AddPurchaseReceiptActivity"
-            android:theme="@style/Theme.POS.NoActionBar"/>
+            android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.orders.postorder.AddPurchaseOrderActivity"
+            android:name=".ui.purchase.add.AddPurchaseOrderActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.merchantbranch.MerchantBranchActivity"
@@ -51,17 +64,17 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.inventory.postdata.AddSupplierActivity"
+            android:name=".ui.supplier.add.AddSupplierActivity"
             android:label="@string/add_supplier"
             android:parentActivityName=".ui.inventory.InventoryActivityMain"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.inventory.postdata.AddCategoryActivity"
+            android:name=".ui.category.add.AddCategoryActivity"
             android:label="@string/add_category"
             android:parentActivityName=".ui.inventory.InventoryActivityMain"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.inventory.postdata.AddProductActivity"
+            android:name=".ui.products.add.AddProductActivity"
             android:label="@string/add_product"
             android:parentActivityName=".ui.inventory.InventoryActivityMain"
             android:theme="@style/Theme.POS.NoActionBar" />
