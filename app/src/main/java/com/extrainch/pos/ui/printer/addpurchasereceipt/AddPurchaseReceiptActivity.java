@@ -20,10 +20,9 @@ import com.extrainch.pos.MainActivity;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddPurchaseReceiptBinding;
 import com.extrainch.pos.patterns.MySingleton;
-import com.extrainch.pos.ui.inventory.postdata.AddCategoryActivity;
-import com.extrainch.pos.ui.inventory.postdata.AddProductActivity;
-import com.extrainch.pos.ui.inventory.postdata.AddSupplierActivity;
-import com.extrainch.pos.ui.orders.postorder.AddPurchaseOrderActivity;
+import com.extrainch.pos.ui.category.add.AddCategoryActivity;
+import com.extrainch.pos.ui.products.add.AddProductActivity;
+import com.extrainch.pos.ui.purchase.add.AddPurchaseOrderActivity;
 import com.extrainch.pos.utils.Constants;
 
 import org.json.JSONArray;
