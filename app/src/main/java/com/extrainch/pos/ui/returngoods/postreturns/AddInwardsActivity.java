@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +19,7 @@ import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddInwardsBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.customers.addcustomers.AddCustomerActivity;
-import com.extrainch.pos.ui.inventory.postdata.AddSupplierActivity;
+import com.extrainch.pos.ui.supplier.add.AddSupplierActivity;
 import com.extrainch.pos.ui.merchantbranch.addmerchantbranch.NewBranchActivity;
 import com.extrainch.pos.ui.returngoods.InwardsOutwardsActivity;
 import com.extrainch.pos.utils.Constants;
