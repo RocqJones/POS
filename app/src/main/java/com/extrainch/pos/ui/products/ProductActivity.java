@@ -129,7 +129,7 @@ public class ProductActivity extends AppCompatActivity {
             Log.d("response products", response.toString());
             try {
 
-                ArrayList<String> products = new ArrayList<String>();
+                ArrayList<String> products = new ArrayList<>();
 
                 JSONArray jsonArray1 = response.getJSONArray("productCategory");
                 for (int i = 0; i < jsonArray1.length(); i++) {
@@ -215,8 +215,8 @@ public class ProductActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_warning);
         dialog.setCancelable(false);
 
-        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+        TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+        Button okBtn = dialog.findViewById(R.id.okBtn);
 
         warnMessage.setText(message);
 
@@ -274,7 +274,7 @@ public class ProductActivity extends AppCompatActivity {
         }){
             @Override
             public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json");
                 params.put("Authorization", "Bearer " + tokenS);
                 return params;
