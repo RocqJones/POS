@@ -22,9 +22,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentProductCategoryBinding;
 import com.extrainch.pos.patterns.MySingleton;
-import com.extrainch.pos.ui.inventory.adapters.AdapterCategory;
-import com.extrainch.pos.ui.inventory.data.InventoryRemoteData;
-import com.extrainch.pos.ui.inventory.postdata.AddCategoryActivity;
+import com.extrainch.pos.adapters.AdapterCategory;
+import com.extrainch.pos.repository.InventoryRemoteData;
+import com.extrainch.pos.ui.category.add.AddCategoryActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
 
