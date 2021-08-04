@@ -71,7 +71,7 @@ public class AddMerchantActivity extends AppCompatActivity {
         String[] merchantTypes = {"Select...", "TypeA", "TypeB"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, merchantTypes);
-        binding.merchantType.setAdapter(adapter);
+//        binding.merchantType.setAdapter(adapter);
 
         Log.d("uid category", uid);
         Log.d("token category", token);
@@ -136,7 +136,7 @@ public class AddMerchantActivity extends AppCompatActivity {
 
         String name = binding.merchantName.getText().toString().trim();
         String country = binding.merchantCountries.getSelectedItem().toString().trim();
-        String merchantType = binding.merchantType.getSelectedItem().toString().trim();
+//        String merchantType = binding.merchantType.getSelectedItem().toString().trim();
 
         if (name.isEmpty() && country.isEmpty()) {
             String empError = "Sorry, Please fill all the fields required!";
@@ -148,7 +148,7 @@ public class AddMerchantActivity extends AppCompatActivity {
 
             try {
                 jsonObjects.put("MerchantName", name);
-                jsonObjects.put("MerchantTypeId", merchantType);
+                jsonObjects.put("MerchantTypeId", "TypeA");
                 jsonObjects.put("CountryId", country);
                 jsonObjects.put("createdById", uid);
 
