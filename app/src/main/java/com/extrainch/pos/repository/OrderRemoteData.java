@@ -2,6 +2,9 @@ package com.extrainch.pos.repository;
 
 public class OrderRemoteData {
     private int id;
+    private String customerId;
+    private String merchantId;
+    private String orderId;
     private String orderNo;
     private String orderDate;
     private String dateRequired;
@@ -14,6 +17,8 @@ public class OrderRemoteData {
     private String phone;
     private String unitCost;
     private String discountAmount;
+    private String createdBy;
+    private String orderQuantity;
 
     public int getId() {
         return id;
@@ -21,6 +26,46 @@ public class OrderRemoteData {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public String getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(String orderQuantity) {
+        this.orderQuantity = orderQuantity;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
     }
 
     public String getOrderNo() {
