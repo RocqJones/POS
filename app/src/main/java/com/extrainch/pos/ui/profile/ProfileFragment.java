@@ -2,6 +2,7 @@ package com.extrainch.pos.ui.profile;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -59,6 +60,8 @@ public class ProfileFragment extends Fragment {
     public String KEY_ID = "Id";
     String uid;
 
+    Context context;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
@@ -82,6 +85,12 @@ public class ProfileFragment extends Fragment {
 
         binding.profileEditMerchant.setOnClickListener(v ->
                 dialogEditMerchant(R.style.DialogAnimation_1, "Left - Right Animation!"));
+
+        if (preferences.contains("merchantId")) {
+            binding.profileAddMerchant.setVisibility(View.GONE);
+        } else {
+            binding.profileAddMerchant.setVisibility(View.VISIBLE);
+        }
 
         binding.logout.setOnClickListener(v -> {
             SharedPreferences.Editor editor = preferences.edit();
@@ -154,19 +163,19 @@ public class ProfileFragment extends Fragment {
 
         String[] countries = mutableArrCountry.toArray(new String[mutableArrCountry.size()]);
         Log.d("arrStr", String.valueOf(countries));
-        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this.getContext(),
+        ArrayAdapter<String> adapterC = new ArrayAdapter<>(this.getContext(),
                 android.R.layout.simple_dropdown_item_1line, countries);
         merchantCountries.setAdapter(adapterC);
 
         String[] merchantTypes = {"Select...", "TypeA", "TypeB"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(),
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(),
                 android.R.layout.simple_dropdown_item_1line, merchantTypes);
-        merchantType.setAdapter(adapter);
+//        merchantType.setAdapter(adapter);
 
         merchantSaveBtn.setOnClickListener(v -> {
             mName = merchantName.getText().toString().trim();
             mCountry = merchantCountries.getSelectedItem().toString().trim();
-            mType = merchantType.getSelectedItem().toString().trim();
+//            mType = merchantType.getSelectedItem().toString().trim();
             dialog.dismiss();
             String url = Constants.BASE_URL + "Merchant/Modify";
             modifyMerchant(url);
@@ -195,7 +204,7 @@ public class ProfileFragment extends Fragment {
             try {
                 jsonObjects.put("Id", mId);
                 jsonObjects.put("MerchantName", mName);
-                jsonObjects.put("MerchantTypeId", mType);
+                jsonObjects.put("MerchantTypeId", "TypeA");
                 jsonObjects.put("CountryId", mCountry);
                 jsonObjects.put("createdById", uid);
 
@@ -229,7 +238,7 @@ public class ProfileFragment extends Fragment {
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String> params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<>();
                     params.put("Content-Type", "application/json");
                     params.put("Authorization", "Bearer " + token);
                     return params;
@@ -330,7 +339,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void warnDialog(String message) {
-        final Dialog dialog = new Dialog(ProfileFragment.this.getContext());
+        final Dialog dialog = new Dialog(this.getContext());
         dialog.setContentView(R.layout.dialog_warning);
         dialog.setCancelable(false);
 
