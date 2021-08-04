@@ -97,7 +97,7 @@ public class CustomersFragment extends Fragment {
 
                 JSONArray jsonArray = response.getJSONArray("customers");
 
-                for(int i=0; i < jsonArray.length(); i++) {
+                for(int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                     Log.d("response fname", jsonObject.optString("firstName"));
                     Customer customer = new Customer();
