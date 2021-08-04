@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
             dialog.window!!.attributes!!.windowAnimations = R.style.DialogAnimation_1
             dialog.show()
-            dialog.setCanceledOnTouchOutside(true)
+            //dialog.setCanceledOnTouchOutside(true)
         }
 
         userName = (preferences?.getString("FirstName", "FirstName")
@@ -97,6 +97,29 @@ class MainActivity : AppCompatActivity() {
 
 //        editor?.remove("supplierArr")
 //        editor?.apply()
+
+        if (preferences!!.contains("merchantId")) {
+            merchantId = Integer.valueOf(preferences!!.getString(MERCHANT_ID, "merchantId"))
+        } else {
+            val dialog = Dialog(this@MainActivity)
+            dialog.setContentView(R.layout.dialog_warning)
+            dialog.setCancelable(false)
+
+            val warnMessage = dialog.findViewById(R.id.warnMessage) as TextView
+            val okBtn: Button = dialog.findViewById(R.id.okBtn) as Button
+            warnMessage.text = getString(R.string.setup_merchant_details)
+
+            okBtn.setOnClickListener {
+                dialog.dismiss()
+                val mer = Intent(this, AddMerchantActivity::class.java)
+                mer.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(mer)
+            }
+
+            dialog.window!!.attributes!!.windowAnimations = R.style.DialogAnimation_1
+            dialog.show()
+            //dialog.setCanceledOnTouchOutside(true)
+        }
 
         getMerchantDetails()
     }
@@ -113,7 +136,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getMerchantDetails() {
         val url = Constants.BASE_URL + "Merchant/?merchantId="
-        merchantId = Integer.valueOf(preferences!!.getString(MERCHANT_ID, "merchantId"))
         token = preferences!!.getString("Token", "Token")
         val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
             Method.GET,
