@@ -71,11 +71,11 @@ class MainActivity : AppCompatActivity() {
         } else {
             val dialog = Dialog(this@MainActivity)
             dialog.setContentView(R.layout.dialog_warning)
-            dialog.setCancelable(false);
+            dialog.setCancelable(false)
 
             val warnMessage = dialog.findViewById(R.id.warnMessage) as TextView
             val okBtn: Button = dialog.findViewById(R.id.okBtn) as Button
-            warnMessage.text = "It seems you have not setup Merchant Details, Click OK to proceed!"
+            warnMessage.text = getString(R.string.setup_merchant_details)
 
             okBtn.setOnClickListener {
                 dialog.dismiss()
@@ -106,20 +106,14 @@ class MainActivity : AppCompatActivity() {
         getMerchantDetails()
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        getMerchantDetails()
-    }
+//    override fun onRestart() {
+//        super.onRestart()
+//        getMerchantDetails()
+//    }
 
     private fun getMerchantDetails() {
         val url = Constants.BASE_URL + "Merchant/?merchantId="
-        if (preferences!!.contains("merchantId")) {
-            merchantId = Integer.valueOf(preferences!!.getString(MERCHANT_ID, "merchantId"))
-        } else {
-            val mer = Intent(this, AddMerchantActivity::class.java)
-            mer.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(mer)
-        }
+        merchantId = Integer.valueOf(preferences!!.getString(MERCHANT_ID, "merchantId"))
         token = preferences!!.getString("Token", "Token")
         val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
             Method.GET,
@@ -170,7 +164,7 @@ class MainActivity : AppCompatActivity() {
     private fun warnDialog(message: String) {
         val dialog = Dialog(this@MainActivity)
         dialog.setContentView(R.layout.dialog_warning)
-        dialog.setCancelable(false);
+        dialog.setCancelable(false)
 
         val warnMessage = dialog.findViewById(R.id.warnMessage) as TextView
         val okBtn: Button = dialog.findViewById(R.id.okBtn) as Button
