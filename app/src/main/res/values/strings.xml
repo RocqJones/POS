@@ -158,5 +158,8 @@
     <string name="product_category">Product Category</string>
     <string name="purchase_order">Purchase order</string>
     <string name="logout">LogOut</string>
+    <string name="setup_merchant_details">It seems you have not setup Merchant Details, Click OK to proceed!</string>
+    <string name="modify_order">Modify Order</string>
+    <string name="shipping_address">Shipping Address</string>
 
 </resources>
