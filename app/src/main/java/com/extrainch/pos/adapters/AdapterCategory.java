@@ -18,7 +18,6 @@ import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ItemCategoryBinding;
 import com.extrainch.pos.repository.InventoryRemoteData;
 import com.extrainch.pos.ui.category.CategoryActivity;
-import com.extrainch.pos.ui.inventory.fragments.CategoryFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ItemSupplierBinding;
 import com.extrainch.pos.repository.InventoryRemoteData;
-import com.extrainch.pos.ui.inventory.fragments.SupplierFragment;
 import com.extrainch.pos.ui.supplier.SupplierActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

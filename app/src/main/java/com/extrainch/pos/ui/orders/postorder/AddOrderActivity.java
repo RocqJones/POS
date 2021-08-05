@@ -264,7 +264,28 @@ public class AddOrderActivity extends AppCompatActivity {
 
             String sp = binding.selectProduct.getSelectedItem().toString().trim();
             String [] s = sp.split(":");
-            productId = s[0];
+            if (s[0].isEmpty()) {
+                final Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.dialog_warning);
+                dialog.setCancelable(false);
+
+                TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+                Button okBtn = dialog.findViewById(R.id.okBtn);
+
+                warnMessage.setText("To create order you must maintain an associate product!");
+
+                okBtn.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent p = new Intent(this, AddProductActivity.class);
+                    startActivity(p);
+                });
+
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(true);
+            } else {
+                productId = s[0];
+            }
         } else {
             final Dialog dialog = new Dialog(this);
             dialog.setContentView(R.layout.dialog_warning);
@@ -357,7 +378,8 @@ public class AddOrderActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest(Request.Method.POST, url, array, response -> {
+            JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest(Request.Method.POST, url,
+                    array, response -> {
                 try {
                     Log.d("response order", response.toString());
                     for (int i = 0; i < response.length(); i++) {

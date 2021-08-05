@@ -161,5 +161,8 @@
     <string name="setup_merchant_details">It seems you have not setup Merchant Details, Click OK to proceed!</string>
     <string name="modify_order">Modify Order</string>
     <string name="shipping_address">Shipping Address</string>
+    <string name="purchased_date">Purchased Date</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="create_inventory">Create Inventory</string>
 
 </resources>

@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,7 +21,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.FragmentOutwardsBinding;
 import com.extrainch.pos.patterns.MySingleton;
-import com.extrainch.pos.ui.inventory.fragments.SupplierFragment;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.ui.returngoods.adapter.AdapterReturnOutwards;
 import com.extrainch.pos.ui.returngoods.data.ReturnRemoteData;
