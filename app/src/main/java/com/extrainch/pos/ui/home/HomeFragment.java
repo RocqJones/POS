@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.extrainch.pos.databinding.FragmentHomeBinding;
 import com.extrainch.pos.ui.category.CategoryActivity;
-import com.extrainch.pos.ui.inventory.InventoryActivityMain;
+import com.extrainch.pos.ui.inventory.InventoryActivity;
 import com.extrainch.pos.ui.merchantbranch.MerchantBranchActivity;
 import com.extrainch.pos.ui.orders.OrdersActivity;
 import com.extrainch.pos.ui.products.ProductActivity;
@@ -34,7 +34,7 @@ public class HomeFragment  extends Fragment {
 
     private void navigationFromHomeUI() {
         binding.homeInventory.setOnClickListener(v -> {
-            Intent i = new Intent(HomeFragment.this.getContext(), InventoryActivityMain.class);
+            Intent i = new Intent(HomeFragment.this.getContext(), InventoryActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
