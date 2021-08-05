@@ -18,7 +18,6 @@ import com.android.volley.toolbox.Volley;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddCategoryBinding;
 import com.extrainch.pos.ui.category.CategoryActivity;
-import com.extrainch.pos.ui.inventory.InventoryActivityMain;
 import com.extrainch.pos.utils.Constants;
 
 import org.json.JSONArray;
@@ -147,7 +146,7 @@ public class AddCategoryActivity extends AppCompatActivity {
     }
 
     private void proceedToCreateProduct() {
-        Intent j = new Intent(AddCategoryActivity.this, InventoryActivityMain.class);
+        Intent j = new Intent(AddCategoryActivity.this, CategoryActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
         finish();

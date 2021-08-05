@@ -17,7 +17,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddSupplierBinding;
-import com.extrainch.pos.ui.inventory.InventoryActivityMain;
+import com.extrainch.pos.ui.inventory.InventoryActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.ui.supplier.SupplierActivity;
 import com.extrainch.pos.utils.Constants;
@@ -181,7 +181,7 @@ public class AddSupplierActivity extends AppCompatActivity {
     }
 
     private void proceedToCreateProduct() {
-        Intent j = new Intent(AddSupplierActivity.this, InventoryActivityMain.class);
+        Intent j = new Intent(AddSupplierActivity.this, InventoryActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
         finish();

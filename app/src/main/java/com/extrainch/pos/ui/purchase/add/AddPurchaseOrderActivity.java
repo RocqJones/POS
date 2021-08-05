@@ -84,8 +84,8 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
             dialog.setContentView(R.layout.dialog_warning);
             dialog.setCancelable(false);
 
-            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+            TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+            Button okBtn = dialog.findViewById(R.id.okBtn);
 
             warnMessage.setText("To create purchase order you must maintain a merchant!");
 
@@ -105,20 +105,41 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
 
             String temp_str = supplierArr.replace("[", "").replace("]", "");
             String[] supplierT = temp_str.split(",");
-            ArrayAdapter<String> adapterS = new ArrayAdapter<String>(this,
+            ArrayAdapter<String> adapterS = new ArrayAdapter<>(this,
                     android.R.layout.simple_dropdown_item_1line, supplierT);
             binding.selectSupplier.setAdapter(adapterS);
 
             String sp = binding.selectSupplier.getSelectedItem().toString().trim();
             String [] s = sp.split(":");
-            supplierId = Integer.valueOf(s[0]);
+            if (s[0].isEmpty()) {
+                final Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.dialog_warning);
+                dialog.setCancelable(false);
+
+                TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+                Button okBtn = dialog.findViewById(R.id.okBtn);
+
+                warnMessage.setText("To create purchase order you must maintain a supplier!");
+
+                okBtn.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent ss = new Intent(this, AddSupplierActivity.class);
+                    startActivity(ss);
+                });
+
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(true);
+            } else {
+                supplierId = Integer.valueOf(s[0]);
+            }
         } else {
             final Dialog dialog = new Dialog(this);
             dialog.setContentView(R.layout.dialog_warning);
             dialog.setCancelable(false);
 
-            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+            TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+            Button okBtn = dialog.findViewById(R.id.okBtn);
 
             warnMessage.setText("To create purchase order you must maintain a supplier!");
 
@@ -156,12 +177,12 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
         });
 
         String[] pStatus = {"Select...", "Quote", "Paid", "Unpaid", "Prepaid", "Postpaid"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, pStatus);
         binding.purchaseStatus.setAdapter(adapter);
 
         String[] payType = {"Select...", "Cash", "Card", "Mobile"};
-        ArrayAdapter<String> adapterT = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapterT = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, payType);
         binding.paymentType.setAdapter(adapterT);
 
@@ -170,16 +191,53 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
 
             String temp_str_p = supplierArr.replace("[", "").replace("]", "");
             String[] supplierT = temp_str_p.split(",");
-            ArrayAdapter<String> adapterP = new ArrayAdapter<String>(this,
+            ArrayAdapter<String> adapterP = new ArrayAdapter<>(this,
                     android.R.layout.simple_dropdown_item_1line, supplierT);
             binding.selectProduct.setAdapter(adapterP);
 
             String sp = binding.selectProduct.getSelectedItem().toString().trim();
             String [] s = sp.split(":");
-            productId = Integer.valueOf(s[0]);
+            if (s[0].isEmpty()) {
+                final Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.dialog_warning);
+                dialog.setCancelable(false);
+
+                TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+                Button okBtn = dialog.findViewById(R.id.okBtn);
+
+                warnMessage.setText("To create purchase order you must maintain a product!");
+
+                okBtn.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent ss = new Intent(this, AddProductActivity.class);
+                    startActivity(ss);
+                });
+
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(true);
+            } else {
+                productId = Integer.valueOf(s[0]);
+            }
         } else {
-            Intent p = new Intent(this, AddProductActivity.class);
-            startActivity(p);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_warning);
+            dialog.setCancelable(false);
+
+            TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+            Button okBtn = dialog.findViewById(R.id.okBtn);
+
+            warnMessage.setText("To create purchase order you must maintain a product!");
+
+            okBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent p = new Intent(this, AddProductActivity.class);
+                startActivity(p);
+            });
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
         }
 
         // auto calculate total cost
@@ -233,8 +291,8 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
             dialog.setContentView(R.layout.dialog_warning);
             dialog.setCancelable(false);
 
-            TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-            Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+            TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+            Button okBtn = dialog.findViewById(R.id.okBtn);
 
             warnMessage.setText(msg);
 
@@ -295,13 +353,13 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
                     dialog.setContentView(R.layout.dialog_success);
                     dialog.setCancelable(false);
 
-                    TextView successMessage = (TextView) dialog.findViewById(R.id.successMessage);
-                    Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+                    TextView successMessage = dialog.findViewById(R.id.successMessage);
+                    Button okBtn = dialog.findViewById(R.id.okBtn);
 
                     successMessage.setText(responseMessage);
 
                     okBtn.setOnClickListener(v -> {
-                        Intent iN = new Intent(this, OrdersActivity.class);
+                        Intent iN = new Intent(this, PurchaseActivity.class);
                         startActivity(iN);
                         dialog.dismiss();
                     });
@@ -325,8 +383,8 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.dialog_warning);
                 dialog.setCancelable(false);
 
-                TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-                Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+                TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+                Button okBtn = dialog.findViewById(R.id.okBtn);
 
                 warnMessage.setText("The server was unreachable, check your internet connection!");
 
@@ -338,7 +396,7 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
             }){
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String> params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<>();
                     params.put("Content-Type", "application/json");
                     params.put("Authorization", "Bearer " + token);
                     return params;
@@ -360,8 +418,8 @@ public class AddPurchaseOrderActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_warning);
         dialog.setCancelable(false);
 
-        TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
-        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+        TextView warnMessage = dialog.findViewById(R.id.warnMessage);
+        Button okBtn = dialog.findViewById(R.id.okBtn);
 
         warnMessage.setText(message);
 

@@ -13,11 +13,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityAddProductBinding;
 import com.extrainch.pos.patterns.MySingleton;
-import com.extrainch.pos.ui.inventory.InventoryActivityMain;
+import com.extrainch.pos.ui.inventory.InventoryActivity;
 import com.extrainch.pos.ui.category.add.AddCategoryActivity;
 import com.extrainch.pos.ui.supplier.add.AddSupplierActivity;
 import com.extrainch.pos.ui.products.ProductActivity;
@@ -90,7 +91,28 @@ public class AddProductActivity extends AppCompatActivity {
 
             String ct = binding.category.getSelectedItem().toString().trim();
             String [] c = ct.split(":");
-            categoryId = c[0];
+            if (c[0].isEmpty()) {
+                final Dialog dialog = new Dialog(AddProductActivity.this);
+                dialog.setContentView(R.layout.dialog_warning);
+                dialog.setCancelable(false);
+
+                TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+                Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+                warnMessage.setText("To create product you must maintain category");
+
+                okBtn.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent cT = new Intent(AddProductActivity.this, AddCategoryActivity.class);
+                    startActivity(cT);
+                });
+
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(true);
+            } else {
+                categoryId = c[0];
+            }
         } else {
             final Dialog dialog = new Dialog(AddProductActivity.this);
             dialog.setContentView(R.layout.dialog_warning);
@@ -124,7 +146,28 @@ public class AddProductActivity extends AppCompatActivity {
 
             String sp = binding.supplier.getSelectedItem().toString().trim();
             String [] s = sp.split(":");
-            supplierId = s[0];
+            if (s[0].isEmpty()) {
+                final Dialog dialog = new Dialog(AddProductActivity.this);
+                dialog.setContentView(R.layout.dialog_warning);
+                dialog.setCancelable(false);
+
+                TextView warnMessage = (TextView) dialog.findViewById(R.id.warnMessage);
+                Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+
+                warnMessage.setText("To create product you must maintain suppliers");
+
+                okBtn.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent sP = new Intent(AddProductActivity.this, AddSupplierActivity.class);
+                    startActivity(sP);
+                });
+
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(true);
+            } else {
+                supplierId = s[0];
+            }
         } else {
             final Dialog dialog = new Dialog(AddProductActivity.this);
             dialog.setContentView(R.layout.dialog_warning);
@@ -192,7 +235,7 @@ public class AddProductActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(com.android.volley.Request.Method.POST,
+            JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.POST,
                     url, array, response -> {
                 try {
                     Log.d("response", response.toString());
@@ -210,7 +253,7 @@ public class AddProductActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     String mg = "Product created successfully!";
                     successDialog(mg);
-                    proceedToInventory();
+                    proceedToProduct();
                 } catch (Exception e) {
                     String err = "Error occurred while sending request\nCheck logs!";
                     warnDialog(err);
@@ -242,8 +285,8 @@ public class AddProductActivity extends AppCompatActivity {
         }
     }
 
-    private void proceedToInventory() {
-        Intent j = new Intent(AddProductActivity.this, InventoryActivityMain.class);
+    private void proceedToProduct() {
+        Intent j = new Intent(AddProductActivity.this, ProductActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
     }
