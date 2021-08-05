@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     var preferences: SharedPreferences? = null
     var SHARED_PREF_NAME = "pos_pref"
-    var MERCHANT_NAME = "merchantName"
+    var MERCHANT_NAME  = "merchantName"
     var merchantName: String? = null
     var userName: String? = null
 
