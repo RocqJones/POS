@@ -15,4 +15,7 @@
 
     <color name="prim_main_500">#FD8313</color>
     <color name="prim_variant_700">#F18623</color>
+
+    <color name="toolbar_bg">#FD8313</color>
+
 </resources>
