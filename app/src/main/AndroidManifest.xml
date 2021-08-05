@@ -66,20 +66,20 @@
         <activity
             android:name=".ui.supplier.add.AddSupplierActivity"
             android:label="@string/add_supplier"
-            android:parentActivityName=".ui.inventory.InventoryActivityMain"
+            android:parentActivityName=".ui.inventory.InventoryActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.category.add.AddCategoryActivity"
             android:label="@string/add_category"
-            android:parentActivityName=".ui.inventory.InventoryActivityMain"
+            android:parentActivityName=".ui.inventory.InventoryActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
             android:name=".ui.products.add.AddProductActivity"
             android:label="@string/add_product"
-            android:parentActivityName=".ui.inventory.InventoryActivityMain"
+            android:parentActivityName=".ui.inventory.InventoryActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
         <activity
-            android:name=".ui.inventory.InventoryActivityMain"
+            android:name=".ui.inventory.InventoryActivity"
             android:label="@string/title_activity_inventory_main"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.POS.NoActionBar" />
