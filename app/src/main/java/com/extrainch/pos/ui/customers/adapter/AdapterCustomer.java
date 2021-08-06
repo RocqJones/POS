@@ -34,8 +34,8 @@ public class AdapterCustomer extends RecyclerView.Adapter<AdapterCustomer.RVHold
 
     @Override
     public void onBindViewHolder(@NonNull RVHolder holder, int position) {
-        holder.fName.setText(rvCustomerData.get(position).getFirstName());
-        holder.oName.setText(rvCustomerData.get(position).getOtherNames());
+        holder.fName.setText(String.format("%s %s", rvCustomerData.get(position).getFirstName(),
+                rvCustomerData.get(position).getOtherNames()));
         holder.address.setText(rvCustomerData.get(position).getAddress());
         holder.phone.setText(rvCustomerData.get(position).getPhone());
         holder.email.setText(rvCustomerData.get(position).getEmail());
@@ -49,13 +49,12 @@ public class AdapterCustomer extends RecyclerView.Adapter<AdapterCustomer.RVHold
 
     static class RVHolder extends RecyclerView.ViewHolder {
 
-        TextView fName, oName, address, phone, email, mName;
+        TextView fName, address, phone, email, mName;
 
         public RVHolder(View view) {
             super(view);
             ItemCustomerBinding itemCustomerBinding = ItemCustomerBinding.bind(view);
             fName = itemCustomerBinding.fName;
-            oName = itemCustomerBinding.otherName;
             phone = itemCustomerBinding.phone;
             email = itemCustomerBinding.email;
             mName = itemCustomerBinding.merchantName;
