@@ -10,7 +10,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="text_color_blue">#2CABE3</color>
+<!--    <color name="text_color_blue">#2CABE3</color>-->
+    <color name="text_color_blue">#FF000000</color>
     <color name="light_bg">#EAEDFA</color>
 
     <color name="prim_main_500">#FD8313</color>
