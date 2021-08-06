@@ -54,7 +54,7 @@
                 android:hint="@string/product"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textColor="@color/black"/>
 
             <ImageView
@@ -77,7 +77,7 @@
                 android:layout_toStartOf="@id/orderQuantity"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:text="@string/ordered_quantity"
                 android:textColor="@color/text_color_blue"
                 android:textSize="14sp"
@@ -91,7 +91,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:hint="@string/g_kgs"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -106,7 +106,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/pd"
                 android:text="@string/returned_quantity"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textColor="@color/text_color_blue"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -121,7 +121,7 @@
                 android:layout_below="@id/pd"
                 android:layout_marginStart="5dp"
                 android:hint="@string/g_kgs"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textStyle="normal"
                 android:textSize="14sp"
                 android:textColor="@color/black"/>
@@ -136,7 +136,7 @@
                 android:textColor="@color/text_color_blue"
                 android:textStyle="bold"
                 android:textSize="14sp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:layout_below="@id/s"/>
 
             <TextView
@@ -149,7 +149,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_below="@id/s"
                 android:hint="@string/_2021_01_01"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
@@ -163,7 +163,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/u"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textColor="@color/text_color_blue"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -177,7 +177,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/u"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textSize="14sp"
                 android:textColor="@color/black"
                 android:hint="@string/_2021_01_01"/>
@@ -193,7 +193,7 @@
                 android:text="@string/customer"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textColor="@color/text_color_blue"/>
 
             <TextView
@@ -207,7 +207,7 @@
                 android:hint="@string/name"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:fontFamily="sans-serif"/>
+                android:fontFamily="@font/font_regular"/>
 
             <TextView
                 android:id="@+id/sn"
@@ -220,7 +220,7 @@
                 android:textColor="@color/text_color_blue"
                 android:textStyle="bold"
                 android:textSize="14sp"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="@font/font_bold" />
 
             <TextView
                 android:id="@+id/supplierName"
@@ -232,7 +232,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_below="@id/orderDate"
                 android:hint="@string/supplier"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
@@ -249,7 +249,7 @@
                 android:text="@string/returned_reason"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textColor="@color/text_color_blue" />
 
             <TextView
@@ -263,7 +263,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_below="@id/rtr"
                 android:hint="@string/returned_reason"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"

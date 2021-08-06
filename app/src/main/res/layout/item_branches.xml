@@ -41,7 +41,7 @@
                 android:text="@string/branch_name"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textColor="@color/text_color_blue"/>
 
             <TextView
@@ -53,7 +53,7 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/bn"/>
@@ -80,7 +80,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/bn"
                 android:hint="@string/address"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
 
@@ -94,7 +94,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/bn"
                 android:hint="@string/region"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textColor="@color/text_color_blue"
                 android:textSize="14sp"/>
 
@@ -108,7 +108,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/phone"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
 
@@ -121,7 +121,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_below="@id/address"
                 android:textSize="14sp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textStyle="bold"
                 android:textColor="@color/text_color_blue"
                 android:text="@string/contact_person"/>
@@ -135,7 +135,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_below="@id/address"
                 android:textSize="14sp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:hint="@string/contact_person"/>
@@ -150,7 +150,7 @@
                 android:text="@string/merchant"
                 android:textStyle="bold"
                 android:textSize="14sp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textColor="@color/text_color_blue"
                 android:layout_below="@id/cp" />
 
@@ -164,7 +164,7 @@
                 android:layout_toEndOf="@id/m"
                 android:textColor="@color/black"
                 android:text="@string/merchant_name"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_bold"
                 android:textSize="14sp"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

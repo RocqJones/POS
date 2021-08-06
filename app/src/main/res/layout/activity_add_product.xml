@@ -56,7 +56,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="20dp"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/font_bold"
                         android:text="@string/add_product"
                         android:textColor="@color/text_color_blue"
                         android:textSize="20sp"
@@ -75,7 +75,7 @@
                         android:autofillHints="yes"
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/font_regular"
                         android:hint="@string/product_name"
                         android:inputType="text"
                         android:padding="5dp"
@@ -108,7 +108,7 @@
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="5dp"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="sans-serif"/>
+                            android:fontFamily="@font/font_regular"/>
 
                         <Spinner
                             android:id="@+id/addUnitMeasure"
@@ -116,7 +116,7 @@
                             android:layout_height="@dimen/btn_default_height"
                             android:ems="10"
                             android:hint="@string/select_item"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/font_regular"
                             android:padding="5dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
@@ -139,7 +139,7 @@
 
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/font_regular"
                         android:hint="@string/purchase_price_ksh"
                         android:importantForAutofill="yes"
                         android:inputType="number"
@@ -163,7 +163,7 @@
 
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/font_regular"
                         android:hint="@string/quantity"
                         android:importantForAutofill="yes"
                         android:inputType="text"
@@ -187,7 +187,7 @@
 
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/font_regular"
                         android:hint="@string/add_remarks"
                         android:importantForAutofill="yes"
                         android:inputType="textMultiLine"
@@ -210,7 +210,7 @@
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/bg_edit_text"
                         android:ems="10"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/font_regular"
                         android:hint="@string/re_order_level"
                         android:importantForAutofill="yes"
                         android:inputType="textMultiLine"
@@ -243,7 +243,7 @@
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="5dp"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="sans-serif"/>
+                            android:fontFamily="@font/font_regular"/>
 
                         <Spinner
                             android:id="@+id/supplier"
@@ -251,7 +251,7 @@
                             android:layout_height="@dimen/btn_default_height"
                             android:ems="10"
                             android:hint="@string/select_item"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/font_regular"
                             android:padding="5dp"
                             android:paddingStart="5dp"
                             android:paddingEnd="10dp"
@@ -284,7 +284,7 @@
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="5dp"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="sans-serif"/>
+                            android:fontFamily="@font/font_regular"/>
 
                         <Spinner
                             android:id="@+id/category"
@@ -292,7 +292,7 @@
                             android:layout_height="@dimen/btn_default_height"
                             android:ems="10"
                             android:hint="@string/select_item"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/font_regular"
                             android:padding="5dp"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
@@ -315,7 +315,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/bg_round_btn"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/font_regular"
                         android:text="@string/save"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
@@ -342,7 +342,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/font_regular"
                 android:gravity="bottom"
                 android:text="@string/tag_line"
                 android:textColor="@color/text_color_blue"

@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:drawablePadding="16dp"
             android:gravity="center"
+            android:fontFamily="@font/font_bold"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
             android:text="@string/sales_n_expenses"

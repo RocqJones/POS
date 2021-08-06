@@ -35,7 +35,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:fontFamily="sans-serif"/>
+            android:fontFamily="@font/font_bold"/>
 
         <ImageView
             android:id="@+id/fab"
@@ -96,7 +96,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@color/white"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/font_regular"
             android:gravity="center_vertical|center_horizontal"
             android:text="@string/there_is_no_item_to_display_yet"
             android:textSize="24sp"
