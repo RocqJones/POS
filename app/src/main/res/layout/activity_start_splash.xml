@@ -8,16 +8,27 @@
     tools:context=".ui.splash.StartSplashActivity">
 
     <ImageView
+        android:id="@+id/banner"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/logo_banner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/ic" />
+
+    <ImageView
         android:id="@+id/loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/ic"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/ic" />
+        app:layout_constraintTop_toBottomOf="@+id/banner" />
 
     <TextView
         android:id="@+id/textView"
@@ -26,7 +37,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="70dp"
-        android:fontFamily="@font/font_regular"
+        android:fontFamily="@font/font_bold"
         android:text="@string/tag_line"
         android:textColor="@color/text_color_blue"
         android:textSize="14sp"
