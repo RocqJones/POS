@@ -24,7 +24,6 @@ import com.extrainch.pos.R;
 import com.extrainch.pos.databinding.ActivityInventoryMainBinding;
 import com.extrainch.pos.patterns.MySingleton;
 import com.extrainch.pos.ui.category.add.AddCategoryActivity;
-import com.extrainch.pos.ui.orders.postorder.AddOrderActivity;
 import com.extrainch.pos.ui.products.add.AddProductActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
