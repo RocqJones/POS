@@ -164,5 +164,8 @@
     <string name="purchased_date">Purchased Date</string>
     <string name="expiry_date">Expiry Date</string>
     <string name="create_inventory">Create Inventory</string>
+    <string name="stock_quantity">Stock Quantity</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="modify_inventory">Modify Inventory</string>
 
 </resources>
