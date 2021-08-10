@@ -62,9 +62,6 @@ public class InventoryActivity extends AppCompatActivity {
     public String CATEGORY_ARR = "categoryArr";
     public String PRODUCT_ARR = "productArr";
 
-    String categoryName;
-    String supplierName;
-
     final Calendar myCalender = Calendar.getInstance();
     String m, d;
 
@@ -152,7 +149,7 @@ public class InventoryActivity extends AppCompatActivity {
 
             String temp_str = categoryArr.replace("[", "").replace("]", "");
             String[] categoryT = temp_str.split(",");
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(InventoryActivity.this,
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(InventoryActivity.this,
                     android.R.layout.simple_dropdown_item_1line, categoryT);
             category.setAdapter(adapter);
 
@@ -380,7 +377,7 @@ public class InventoryActivity extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<String, String>();
+                Map<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json");
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
@@ -443,8 +440,6 @@ public class InventoryActivity extends AppCompatActivity {
         }, error -> {
             progressDialog.dismiss();
             Log.e("error", error.toString());
-            String failed = "Failed because the server was unreachable, check your internet connection!";
-//            warnDialog(failed);
         }){
             @Override
             public Map<String, String> getHeaders() {
