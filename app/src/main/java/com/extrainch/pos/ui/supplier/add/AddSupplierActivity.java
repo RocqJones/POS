@@ -181,7 +181,7 @@ public class AddSupplierActivity extends AppCompatActivity {
     }
 
     private void proceedToCreateProduct() {
-        Intent j = new Intent(AddSupplierActivity.this, InventoryActivity.class);
+        Intent j = new Intent(AddSupplierActivity.this, SupplierActivity.class);
         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(j);
         finish();
