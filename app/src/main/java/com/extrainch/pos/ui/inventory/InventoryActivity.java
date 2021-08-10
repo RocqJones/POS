@@ -3,10 +3,12 @@ package com.extrainch.pos.ui.inventory;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,15 +17,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.extrainch.pos.MainActivity;
 import com.extrainch.pos.R;
+import com.extrainch.pos.adapters.AdapterInventory;
 import com.extrainch.pos.databinding.ActivityInventoryMainBinding;
 import com.extrainch.pos.patterns.MySingleton;
+import com.extrainch.pos.repository.DataInventoryMgt;
+import com.extrainch.pos.ui.category.CategoryActivity;
 import com.extrainch.pos.ui.category.add.AddCategoryActivity;
+import com.extrainch.pos.ui.orders.OrdersActivity;
+import com.extrainch.pos.ui.orders.postorder.AddOrderActivity;
+import com.extrainch.pos.ui.products.ProductActivity;
 import com.extrainch.pos.ui.products.add.AddProductActivity;
 import com.extrainch.pos.ui.profile.addmerchant.AddMerchantActivity;
 import com.extrainch.pos.utils.Constants;
@@ -31,8 +42,10 @@ import com.extrainch.pos.utils.Constants;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InventoryActivity extends AppCompatActivity {
@@ -60,12 +73,20 @@ public class InventoryActivity extends AppCompatActivity {
     final Calendar myCalender = Calendar.getInstance();
     String m, d;
 
+    List<DataInventoryMgt> inventoryMgtData;
+    private AdapterInventory adapterInventory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityInventoryMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // set up rv
+        inventoryMgtData = new ArrayList<>();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(InventoryActivity.this);
+        binding.inventoryRv.setLayoutManager(linearLayoutManager);
 
         binding.backBtn.setOnClickListener(v -> {
             Intent j = new Intent(InventoryActivity.this, MainActivity.class);
@@ -85,6 +106,9 @@ public class InventoryActivity extends AppCompatActivity {
         }
 
         binding.fab.setOnClickListener(v -> createInventory());
+
+        String url = Constants.BASE_URL + "Inventory/?MerchantId=" + merchantId;
+        getInventoryDetails(url);
     }
 
     private void createInventory() {
@@ -297,6 +321,153 @@ public class InventoryActivity extends AppCompatActivity {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_1;
         dialog.show();
         dialog.setCanceledOnTouchOutside(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String url = Constants.BASE_URL + "Inventory/?MerchantId=" + merchantId;
+        getInventoryDetails(url);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        String url = Constants.BASE_URL + "Inventory/?MerchantId=" + merchantId;
+        getInventoryDetails(url);
+    }
+
+    private void getInventoryDetails(String url) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    Log.d("responseIn", response.toString());
+                    try {
+                        DataInventoryMgt dataInventoryMgt = new DataInventoryMgt();
+                        JSONArray jsonArray1 = response.getJSONArray("inventoy");
+                        for (int i = 0; i < jsonArray1.length(); i++) {
+                            JSONObject jsonObject = (JSONObject) jsonArray1.get(i);
+                            dataInventoryMgt.setId(jsonObject.optString("id"));
+                            dataInventoryMgt.setProduct(jsonObject.optString("product"));
+                            dataInventoryMgt.setMerchantId(jsonObject.getString("merchantId"));
+                            dataInventoryMgt.setProductId(jsonObject.optString("productId"));
+                            dataInventoryMgt.setCategoryId(jsonObject.optString("categoryId"));
+                            dataInventoryMgt.setUnitOfMeasure(jsonObject.optString("unitOfMeasure"));
+                            dataInventoryMgt.setUnitPrice(jsonObject.optString("unitPrice"));
+                            dataInventoryMgt.setStockQuantity(jsonObject.optString("stockQuantity"));
+                            dataInventoryMgt.setReOrderLevel(jsonObject.optString("reOrderLevel"));
+                            dataInventoryMgt.setPurhaseDate(jsonObject.optString("purhaseDate"));
+                            dataInventoryMgt.setExpiryDate(jsonObject.optString("expiryDate"));
+                            dataInventoryMgt.setCreatedById(jsonObject.optString("createdById"));
+
+                            inventoryMgtData.add(dataInventoryMgt);
+                        }
+
+                        adapterInventory = new AdapterInventory(inventoryMgtData, InventoryActivity.this);
+                        binding.inventoryRv.setAdapter(adapterInventory);
+
+                        if (adapterInventory.getItemCount() == 0) {
+                            binding.inventoryRv.setVisibility(View.GONE);
+                            binding.noData.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.inventoryRv.setVisibility(View.VISIBLE);
+                            binding.noData.setVisibility(View.GONE);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        String err = "Error occurred while sending request\nCheck logs!";
+                        warnDialog(err);
+                    }
+
+                }, error -> {
+            error.printStackTrace();
+            String failed = "Failed because the server was unreachable, check your internet connection!";
+            warnDialog(failed);
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleton.getInstance(InventoryActivity.this).addToRequestQueue(jsonObjectRequest);
+    }
+
+    public void modifyInventory(String iId, String mId, String pId, String cId, String iUm, String iUp,
+                                String iRl, String iEd, String iPd, Context mContext, String createdBy, String tokenI) {
+        String modUrl = Constants.BASE_URL + "Inventory/Modify";
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+
+        ProgressDialog progressDialog = new ProgressDialog(mContext);
+        progressDialog.setMessage("Modifying inventory...");
+        progressDialog.show();
+
+        try {
+            jsonObject.put("Id", Integer.valueOf(iId));
+            jsonObject.put("merchantId", mId);
+            jsonObject.put("inventoryTypeId", "Type-A");
+            jsonObject.put("productId", Integer.valueOf(pId));
+            jsonObject.put("categoryId", Integer.valueOf(cId));
+            jsonObject.put("unitOfMeasure", iUm);
+            jsonObject.put("unitPrice", Double.valueOf(iUp));
+            jsonObject.put("reOrderLevel", Double.valueOf(iRl));
+            jsonObject.put("expiryDate", iEd);
+            jsonObject.put("purhaseDate", iPd);
+            jsonObject.put("createdById",createdBy);
+
+            jsonArray = new JSONArray("["+jsonObject.toString()+"]");
+            Log.d("postMod", jsonArray.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,
+                modUrl, jsonArray, response -> {
+            try {
+                Log.d("resMod", response.toString());
+                progressDialog.dismiss();
+                for(int i=0; i < response.length(); i++) {
+                    JSONObject jsonObj = response.getJSONObject(i);
+                    String msg = jsonObj.optString("description");
+                    Toast.makeText(InventoryActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                progressDialog.dismiss();
+                e.printStackTrace();
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            Log.e("error", error.toString());
+            String failed = "Failed because the server was unreachable, check your internet connection!";
+//            warnDialog(failed);
+        }){
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json");
+                params.put("Authorization", "Bearer " + tokenI);
+                return params;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getInstance(InventoryActivity.this).addToRequestQueue(jsonArrayRequest);
     }
 
     private void successDialog(String successM) {
