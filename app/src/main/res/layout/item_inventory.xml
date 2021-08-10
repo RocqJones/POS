@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/vintagebg">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/itembgt"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/ic" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/pd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/product"
+                android:fontFamily="@font/font_bold"
+                android:textColor="@color/text_color_blue"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/pName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/pd"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:hint="@string/product_name"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/unp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@id/quantity"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/font_bold"
+                android:text="@string/unit_price"
+                android:textColor="@color/text_color_blue"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/unitPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/font_regular"
+                android:hint="@string/_0_0"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/unp"
+                android:layout_toStartOf="@id/quantity"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/font_bold"
+                android:text="@string/stock_quantity"
+                android:textColor="@color/text_color_blue"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/unitPrice"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/font_regular"
+                android:hint="@string/status"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/u"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/pName"
+                android:text="@string/units"
+                android:fontFamily="@font/font_bold"
+                android:textColor="@color/text_color_blue"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:drawablePadding="10dp" />
+
+            <TextView
+                android:id="@+id/pUnits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/u"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/pName"
+                android:layout_marginStart="5dp"
+                android:hint="@string/g_kgs"
+                android:fontFamily="@font/font_regular"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/cn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/pCategoryName"
+                android:layout_marginTop="10dp"
+                android:text="@string/category"
+                android:textColor="@color/text_color_blue"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/font_bold"
+                android:layout_below="@id/quantity"/>
+
+            <TextView
+                android:id="@+id/pCategoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_below="@id/s"
+                android:hint="@string/category_name"
+                android:fontFamily="@font/font_regular"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:drawablePadding="10dp" />
+
+            <TextView
+                android:id="@+id/e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/u"
+                android:fontFamily="@font/font_bold"
+                android:textColor="@color/text_color_blue"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/re_order_level"/>
+
+            <TextView
+                android:id="@+id/pReorderLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/e"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/u"
+                android:fontFamily="@font/font_regular"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:hint="@string/level"/>
+
+            <TextView
+                android:id="@+id/pSup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pReorderLevel"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/supplier"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_bold"
+                android:textColor="@color/text_color_blue"/>
+
+            <TextView
+                android:id="@+id/pSupplier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/pSup"
+                android:layout_marginStart="5dp"
+                android:layout_below="@id/pReorderLevel"
+                android:layout_marginTop="10dp"
+                android:hint="@string/supplier_name"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:fontFamily="@font/font_regular"/>
+
+            <TextView
+                android:id="@+id/pDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pSup"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/purchased_date"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_bold"
+                android:textColor="@color/text_color_blue"/>
+
+            <TextView
+                android:id="@+id/purchaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/pDate"
+                android:layout_marginStart="5dp"
+                android:layout_below="@id/pSupplier"
+                android:layout_marginTop="10dp"
+                android:hint="@string/_2021_01_01"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:fontFamily="@font/font_regular"/>
+
+
+            <TextView
+                android:id="@+id/eDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pDate"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/expiry_date"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_bold"
+                android:textColor="@color/text_color_blue"/>
+
+            <TextView
+                android:id="@+id/expiryDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/eDate"
+                android:layout_marginStart="5dp"
+                android:layout_below="@id/purchaseDate"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/_2021_01_01"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:fontFamily="@font/font_regular"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/prodEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@id/pCategoryName"
+                android:backgroundTint="@color/light_bg"
+                app:fabCustomSize="@dimen/btn_default_height"
+                android:src="@drawable/baseline_edit_note_blue_700_18dp"
+                android:contentDescription="@string/float_btn" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
