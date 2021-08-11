@@ -316,13 +316,6 @@ public class InventoryActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        String url = Constants.BASE_URL + "Inventory/?MerchantId=" + merchantId;
-        getInventoryDetails(url);
-    }
-
-    @Override
     protected void onRestart() {
         super.onRestart();
         String url = Constants.BASE_URL + "Inventory/?MerchantId=" + merchantId;
@@ -334,10 +327,11 @@ public class InventoryActivity extends AppCompatActivity {
                 response -> {
                     Log.d("responseIn", response.toString());
                     try {
-                        DataInventoryMgt dataInventoryMgt = new DataInventoryMgt();
                         JSONArray jsonArray1 = response.getJSONArray("inventoy");
                         for (int i = 0; i < jsonArray1.length(); i++) {
                             JSONObject jsonObject = (JSONObject) jsonArray1.get(i);
+
+                            DataInventoryMgt dataInventoryMgt = new DataInventoryMgt();
                             dataInventoryMgt.setId(jsonObject.optString("id"));
                             dataInventoryMgt.setProduct(jsonObject.optString("product"));
                             dataInventoryMgt.setMerchantId(jsonObject.getString("merchantId"));
