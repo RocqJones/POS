@@ -124,15 +124,15 @@ class MainActivity : AppCompatActivity() {
         getMerchantDetails()
     }
 
-    override fun onResume() {
-        super.onResume()
-        getMerchantDetails()
-    }
-
-//    override fun onRestart() {
-//        super.onRestart()
+//    override fun onResume() {
+//        super.onResume()
 //        getMerchantDetails()
 //    }
+
+    override fun onRestart() {
+        super.onRestart()
+        getMerchantDetails()
+    }
 
     private fun getMerchantDetails() {
         val url = Constants.BASE_URL + "Merchant/?merchantId="
