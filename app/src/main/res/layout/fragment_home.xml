@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/inventory"
-                    android:textColor="#2196F3"
+                    android:textColor="@color/black"
                     app:drawableTopCompat="@drawable/baseline_inventory_blue_500_48dp" />
             </LinearLayout>
 
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/category"
-                    android:textColor="#2196F3"
+                    android:textColor="@color/black"
                     app:drawableTopCompat="@drawable/baseline_playlist_add_blue_500_48dp" />
             </LinearLayout>
 
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/product"
-                    android:textColor="#2196F3"
+                    android:textColor="@color/black"
                     app:drawableTopCompat="@drawable/baseline_stacked_bar_chart_blue_500_48dp" />
             </LinearLayout>
 
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/supplier"
-                    android:textColor="#2196F3"
+                    android:textColor="@color/black"
                     app:drawableTopCompat="@drawable/baseline_business_center_blue_500_48dp" />
             </LinearLayout>
 
@@ -158,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/purchase"
-                    android:textColor="#2196F3"
+                    android:textColor="@color/black"
                     app:drawableTopCompat="@drawable/baseline_shopping_cart_blue_500_48dp" />
             </LinearLayout>
 
@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/orders"
-                    android:textColor="#2196F3"
+                    android:textColor="@color/black"
                     app:drawableTopCompat="@drawable/baseline_emoji_transportation_blue_500_48dp" />
             </LinearLayout>
 
@@ -218,7 +218,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/goods_return"
-                    android:textColor="#2196F3"
+                    android:textColor="@color/black"
                     app:drawableTopCompat="@drawable/baseline_trending_up_blue_500_48dp" />
             </LinearLayout>
 
@@ -248,7 +248,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_regular"
                     android:text="@string/register_branch"
-                    android:textColor="#2196F3"
+                    android:textColor="@color/black"
                     app:drawableTopCompat="@drawable/baseline_add_business_blue_500_48dp" />
             </LinearLayout>
 
@@ -278,7 +278,7 @@
         <!--                android:layout_height="wrap_content"-->
         <!--                android:fontFamily="@font/font_regular"-->
         <!--                android:text="@string/report"-->
-        <!--                android:textColor="#2196F3"-->
+        <!--                android:textColor="@color/black"-->
         <!--                app:drawableTopCompat="@drawable/baseline_bar_chart_blue_500_48dp" />-->
         <!--        </LinearLayout>-->
 
