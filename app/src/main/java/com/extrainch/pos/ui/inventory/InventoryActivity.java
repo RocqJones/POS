@@ -293,10 +293,10 @@ public class InventoryActivity extends AppCompatActivity {
                 }){
                     @Override
                     public Map<String, String> getHeaders() {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("Content-Type", "application/json");
-                        params.put("Authorization", "Bearer " + token);
-                        return params;
+                        Map<String, String> headers = new HashMap<>();
+                        headers.put("Content-Type", "application/json");
+                        headers.put("Authorization", "Bearer " + token);
+                        return headers;
                     }
 
                     @Override
@@ -437,10 +437,10 @@ public class InventoryActivity extends AppCompatActivity {
         }){
             @Override
             public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<>();
-                params.put("Content-Type", "application/json");
-                params.put("Authorization", "Bearer " + tokenI);
-                return params;
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + tokenI);
+                return headers;
             }
 
             @Override
