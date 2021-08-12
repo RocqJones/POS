@@ -159,7 +159,6 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/font_regular"
                     android:textAllCaps="false"
-                    android:drawableEnd="@drawable/baseline_arrow_right_alt_white_36dp"
                     android:background="@drawable/bg_round_btn"/>
 
             </RelativeLayout>
