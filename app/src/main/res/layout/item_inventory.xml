@@ -21,7 +21,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/itembgt"
+            android:background="@color/light_bg"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:contentDescription="@string/ic" />
