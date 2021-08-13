@@ -1,5 +1,6 @@
 package com.extrainch.pos.adapters;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ import com.extrainch.pos.repository.OrderRemoteData;
 import com.extrainch.pos.ui.orders.OrdersActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Calendar;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -31,6 +33,9 @@ public class AdapterOrder extends RecyclerView.Adapter<AdapterOrder.RVHolder> {
     public SharedPreferences preferences;
     public String SHARED_PREF_NAME = "pos_pref";
     public String KEY_TOKEN = "Token";
+
+    final Calendar myCalender = Calendar.getInstance();
+    String m, d;
 
     List<OrderRemoteData> rvOrderData;
     ItemOrdersBinding binding;
@@ -69,11 +74,7 @@ public class AdapterOrder extends RecyclerView.Adapter<AdapterOrder.RVHolder> {
             String cId = rvOrderData.get(position).getCustomerId();
             String oId = rvOrderData.get(position).getOrderId();
             String txt1 = rvOrderData.get(position).getOrderNo();
-            String txt2 = rvOrderData.get(position).getOrderDate();
-            String txt3 = rvOrderData.get(position).getDateRequired();
             String txt4 = rvOrderData.get(position).getTotalOrderAmt();
-            String txt5 = rvOrderData.get(position).getShippingDate();
-            String txt6 = rvOrderData.get(position).getShippingAddress();
             String txt7 = rvOrderData.get(position).getUnitCost();
             String txt8 = rvOrderData.get(position).getDiscountAmount();
             String createdBy = rvOrderData.get(position).getCreatedBy();
@@ -101,19 +102,87 @@ public class AdapterOrder extends RecyclerView.Adapter<AdapterOrder.RVHolder> {
             AppCompatButton svBtn = (AppCompatButton) dialog.findViewById(R.id.saveBtn);
 
             orderNo.setText(txt1);
-            orderDate.setText(txt2);
-            requiredDate.setText(txt3);
+
+            orderDate.setOnClickListener(v12 -> {
+                int mYear = myCalender.get(Calendar.YEAR);
+                int mMonth = myCalender.get(Calendar.MONTH);
+                int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext,
+                        (view, year, month, dayOfMonth) -> {
+                            myCalender.set(year, month, dayOfMonth);
+                            if(month < 10){
+                                m ="0" + (month + 1);
+                            } else {
+                                m = ""+ (month + 1);
+                            }
+                            if (dayOfMonth<10){
+                                d ="0"+ dayOfMonth;
+                            } else {
+                                d = "" + dayOfMonth;
+                            }
+                            String fnD = year + "-" + m + "-" + d;
+                            orderDate.setText(fnD);
+                        },mYear, mMonth, mDay);
+                datePickerDialog.show();
+            });
+
+            requiredDate.setOnClickListener(v13 -> {
+                int mYear = myCalender.get(Calendar.YEAR);
+                int mMonth = myCalender.get(Calendar.MONTH);
+                int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext,
+                        (view, year, month, dayOfMonth) -> {
+                            myCalender.set(year, month, dayOfMonth);
+                            if(month < 10){
+                                m ="0" + (month + 1);
+                            } else {
+                                m = ""+ (month + 1);
+                            }
+                            if (dayOfMonth<10){
+                                d ="0"+ dayOfMonth;
+                            } else {
+                                d = "" + dayOfMonth;
+                            }
+                            String fnD = year + "-" + m + "-" + d;
+                            requiredDate.setText(fnD);
+                        },mYear, mMonth, mDay);
+                datePickerDialog.show();
+            });
+
+            shippingDate.setOnClickListener(v14 -> {
+                int mYear = myCalender.get(Calendar.YEAR);
+                int mMonth = myCalender.get(Calendar.MONTH);
+                int mDay = myCalender.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext,
+                        (view, year, month, dayOfMonth) -> {
+                            myCalender.set(year, month, dayOfMonth);
+                            if(month < 10){
+                                m ="0" + (month + 1);
+                            } else {
+                                m = ""+ (month + 1);
+                            }
+                            if (dayOfMonth<10){
+                                d ="0"+ dayOfMonth;
+                            } else {
+                                d = "" + dayOfMonth;
+                            }
+                            String fnD = year + "-" + m + "-" + d;
+                            shippingDate.setText(fnD);
+                        },mYear, mMonth, mDay);
+                datePickerDialog.show();
+            });
+
             totalDue.setText(txt4);
             unitCost.setText(txt7);
             discount.setText(txt8);
 
             String[] payT = {"Select...", "Cash", "Mpesa", "Card"};
-            ArrayAdapter<String> adapterUnit = new ArrayAdapter<String>(mContext,
+            ArrayAdapter<String> adapterUnit = new ArrayAdapter<>(mContext,
                     android.R.layout.simple_dropdown_item_1line, payT);
             paymentType.setAdapter(adapterUnit);
 
             String[] pStatus = {"Select...", "Quote", "Delivered", "Shipping", "In Stock", "Out of stock"};
-            ArrayAdapter<String> adapterStatus = new ArrayAdapter<String>(mContext,
+            ArrayAdapter<String> adapterStatus = new ArrayAdapter<>(mContext,
                     android.R.layout.simple_dropdown_item_1line, pStatus);
             status.setAdapter(adapterStatus);
 
