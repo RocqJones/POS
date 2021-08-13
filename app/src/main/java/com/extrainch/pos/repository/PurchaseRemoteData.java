@@ -2,16 +2,34 @@ package com.extrainch.pos.repository;
 
 public class PurchaseRemoteData {
     private String id;
+    private String purchaseId;
     private String supplierId;
-    private String requestDate;
-    private String paymentStatusId;
-    private String purchaseStatusId;
+    private String productId;
+    private String quantity;
+    private String unitCost;
+    private String totalCost;
     private String supplier;
     private String product;
-    private String quantity;
-    private String pUnitCost;
-    private String pTotalCost;
-    private String pRemarks;
+    private String purchase;
+    private String merchantId;
+    private String createdById;
+
+
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public String getCreatedById() {
+        return createdById;
+    }
+
+    public void setCreatedById(String createdById) {
+        this.createdById = createdById;
+    }
 
     public String getId() {
         return id;
@@ -19,6 +37,14 @@ public class PurchaseRemoteData {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(String purchaseId) {
+        this.purchaseId = purchaseId;
     }
 
     public String getSupplierId() {
@@ -29,28 +55,36 @@ public class PurchaseRemoteData {
         this.supplierId = supplierId;
     }
 
-    public String getRequestDate() {
-        return requestDate;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setRequestDate(String requestDate) {
-        this.requestDate = requestDate;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public String getPaymentStatusId() {
-        return paymentStatusId;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setPaymentStatusId(String paymentStatusId) {
-        this.paymentStatusId = paymentStatusId;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
-    public String getPurchaseStatusId() {
-        return purchaseStatusId;
+    public String getUnitCost() {
+        return unitCost;
     }
 
-    public void setPurchaseStatusId(String purchaseStatusId) {
-        this.purchaseStatusId = purchaseStatusId;
+    public void setUnitCost(String unitCost) {
+        this.unitCost = unitCost;
+    }
+
+    public String getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(String totalCost) {
+        this.totalCost = totalCost;
     }
 
     public String getSupplier() {
@@ -69,35 +103,11 @@ public class PurchaseRemoteData {
         this.product = product;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getPurchase() {
+        return purchase;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getpUnitCost() {
-        return pUnitCost;
-    }
-
-    public void setpUnitCost(String pUnitCost) {
-        this.pUnitCost = pUnitCost;
-    }
-
-    public String getpTotalCost() {
-        return pTotalCost;
-    }
-
-    public void setpTotalCost(String pTotalCost) {
-        this.pTotalCost = pTotalCost;
-    }
-
-    public String getpRemarks() {
-        return pRemarks;
-    }
-
-    public void setpRemarks(String pRemarks) {
-        this.pRemarks = pRemarks;
+    public void setPurchase(String purchase) {
+        this.purchase = purchase;
     }
 }
