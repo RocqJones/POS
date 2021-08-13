@@ -167,5 +167,6 @@
     <string name="stock_quantity">Stock Quantity</string>
     <string name="unit_price">Unit Price</string>
     <string name="modify_inventory">Modify Inventory</string>
+    <string name="modify_purchase">Modify Purchase</string>
 
 </resources>
